@@ -61,5 +61,10 @@ namespace лр_1
         {
             //nums of sentences
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
