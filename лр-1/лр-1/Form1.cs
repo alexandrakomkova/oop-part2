@@ -12,24 +12,32 @@ namespace лр_1
 {
     public partial class Form1 : Form
     {
+        Calculator calc;
         public Form1()
         {
             InitializeComponent();
+            calc = new Calculator();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             //symbol by index
+            int indx;
+            indx = Convert.ToInt32(textBox3.Text);
+            textBox4.Text = "Найденный символ: " + calc.GetSymbolByIndex(textBox1.Text, indx);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             //length
+            textBox4.Text = "Длина строки: " +  calc.GetLenght(textBox1.Text).ToString();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             //change substr
+            textBox4.Text = "Измененная строка: " + calc.ChangeSubstr(textBox1.Text, textBox2.Text, textBox3.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,6 +71,11 @@ namespace лр_1
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
