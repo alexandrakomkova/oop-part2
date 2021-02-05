@@ -22,9 +22,26 @@ namespace лр_1
         private void button3_Click(object sender, EventArgs e)
         {
             //symbol by index
-            int indx;
-            indx = Convert.ToInt32(textBox3.Text);
-            textBox4.Text = "Найденный символ: " + calc.GetSymbolByIndex(textBox1.Text, indx);
+
+            if (textBox3.TextLength == 0)
+            {
+                MessageBox.Show("Вы не ввели индекс в поле\n'Введите символ/индекс/подстроку для замены'");
+            }
+            else 
+            {
+                try
+                {
+                    textBox4.Text = "Найденный символ: " + calc.GetSymbolByIndex(textBox1.Text, Convert.ToInt32(textBox3.Text));
+                }
+                catch
+                {
+                    MessageBox.Show("Вы ввели слишком большой индекс..\nПопробуйте еще раз!!");
+                }
+               
+            }
+            
+ 
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -37,17 +54,52 @@ namespace лр_1
         private void button2_Click(object sender, EventArgs e)
         {
             //change substr
-            textBox4.Text = "Измененная строка: " + calc.ChangeSubstr(textBox1.Text, textBox2.Text, textBox3.Text);
+            
+            if (textBox3.TextLength == 0)
+            {
+                MessageBox.Show("Вы не ввели подстроку в поле\n'Введите символ/индекс/подстроку для замены'");
+            }
+            else
+            {
+                try
+                {
+                    textBox4.Text = "Измененная строка: " + calc.ChangeSubstr(textBox1.Text, textBox2.Text, textBox3.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Вы не ввели подстроку в поле\n'Введите подстроку, которую необходимо заменить'\nПопробуйте еще раз!!");
+                }
+
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //delete_symbol
+            //delete_substr
+            
+            if (textBox3.TextLength == 0)
+            {
+                MessageBox.Show("Вы не ввели подстроку в поле\n'Введите символ/индекс/подстроку для замены или удаления'");
+            }
+            else
+            {
+                try
+                {
+                    textBox4.Text = "Измененная строка: " + calc.DeleteSubstr(textBox1.Text, textBox3.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Что-то пошло не так..\nПопробуйте еще раз!!");
+                }
+
+            }
+
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             //nums of symbols
+            textBox4.Text = "Количество слов в строке: " + calc.NumOfWords(textBox1.Text);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -58,21 +110,24 @@ namespace лр_1
         private void button5_Click(object sender, EventArgs e)
         {
             //nums of vowels
+            textBox4.Text = "Количество гласных в строке: " + calc.NumOfVowels(textBox1.Text);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             //nums of consonants
+            textBox4.Text = "Количество согласных в строке: " + calc.NumOfConsonants(textBox1.Text);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             //nums of sentences
+            textBox4.Text = "Количество предложений: " + calc.NumOfSentences(textBox1.Text);
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("помощь");
         }
 
         private void label2_Click(object sender, EventArgs e)

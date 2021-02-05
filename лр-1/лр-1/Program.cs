@@ -10,7 +10,7 @@ namespace лр_1
     {
         //str1 исходная строка
         void PutSymbol(string str1);
-        string DeleteSubstr(string substr);
+        string DeleteSubstr(string str1, string substr);
         string ChangeSubstr(string str1, string substr1, string substr2);
         char GetSymbolByIndex(string str1, int indx); 
         int GetLenght(string str1);
@@ -25,7 +25,7 @@ namespace лр_1
     {
         public string str1 = "";
         public int CountVowels = 0;
-        public int CountWords = 0;
+        public int CountNumbers = 0;
         public int CountSentences = 0;
         public void PutSymbol(string str1) 
         {
@@ -45,13 +45,14 @@ namespace лр_1
             str1 = str1.Replace(substr1, substr2);
             return str1;
         }
-        public string DeleteSubstr(string substr) 
+        public string DeleteSubstr(string str1, string substr) 
         {
             str1 = str1.Replace(substr, "");
             return str1;
         }
         public int NumOfVowels(string str1) 
         {
+            CountVowels = 0;
             str1.ToLower();
             for (int i = 0; i < str1.Length; i++) 
             {
@@ -71,34 +72,54 @@ namespace лр_1
             }
             return CountVowels;
         }
-        public int NumOfConsonants(string str1)
-        {
-            NumOfVowels(str1); //отнять пробелы, восклицательные знаки
-            return (str1.Length - CountVowels);
-        }
+       
         public int NumOfWords(string str1) 
         {
-            for (int i = 0; i < str1.Length; i++)
-            {
-                if (str1[i] == ' ')
-                {
-                    CountWords++;
-                }
-            }
-            return CountWords;
+            string[] strMass;
+            str1.Trim();
+            strMass = str1.Split(' ');
+            return strMass.Length;
         }
         public int NumOfSentences(string str1)
         {
+            CountSentences = 0;
             for (int i = 0; i < str1.Length; i++)
             {
                 if (str1[i] == '.'
                     || str1[i] == '!'
-                    || str1[i] == '?')
+                    || str1[i] == '?'
+                    || str1[i] == '…')
                 {
                     CountSentences++;
                 }
             }
             return CountSentences;
+        }
+        public int NumOfConsonants(string str1)
+        {
+            CountNumbers = 0;
+            str1.Trim();
+            str1.Replace(" ", "");
+            NumOfVowels(str1);
+            NumOfSentences(str1);
+            for (int i = 0; i < str1.Length; i++)
+            {
+                if (str1[i] == '1'
+                    || str1[i] == '2'
+                    || str1[i] == '3'
+                    || str1[i] == '4'
+                    || str1[i] == '5'
+                    || str1[i] == '6'
+                    || str1[i] == '7'
+                    || str1[i] == '8'
+                    || str1[i] == '9'
+                    || str1[i] == '0')
+                {
+                    CountNumbers++;
+                }
+            }
+            return (str1.Length - CountVowels - CountSentences - CountNumbers); 
+            //что с цифрами делать?
         }
     }
 
