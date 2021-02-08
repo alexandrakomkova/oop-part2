@@ -13,6 +13,7 @@ namespace лр_1
     public partial class Form1 : Form
     {
         Calculator calc;
+        
         public Form1()
         {
             InitializeComponent();
@@ -127,7 +128,12 @@ namespace лр_1
 
         private void label1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("помощь");
+           
+            MessageBox.Show("Инструкция:\n" +
+                "Для выполнения всех операций необходимо ввести исходную строку в поле Введите строку.\n" +
+                "Удаление подстроки: введите подстроку в поле Введите символ/индекс/подстроку " +
+                "для замены или удаления после чего нажмите кнопку Удалить подстроку.\n" +
+                "");
         }
 
         private void label2_Click(object sender, EventArgs e)

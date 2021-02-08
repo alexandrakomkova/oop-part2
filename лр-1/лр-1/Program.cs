@@ -119,7 +119,6 @@ namespace лр_1
                 }
             }
             return (str1.Length - CountVowels - CountSentences - CountNumbers); 
-            //что с цифрами делать?
         }
     }
 
