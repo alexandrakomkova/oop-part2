@@ -8,3 +8,4 @@ D:\uni\ооп\лр-2\лр-2\obj\Debug\лр-2.csproj.GenerateResource.cache
 D:\uni\ооп\лр-2\лр-2\obj\Debug\лр-2.csproj.CoreCompileInputs.cache
 D:\uni\ооп\лр-2\лр-2\obj\Debug\лр-2.exe
 D:\uni\ооп\лр-2\лр-2\obj\Debug\лр-2.pdb
+D:\uni\ооп\лр-2\лр-2\obj\Debug\лр_2.Form2.resources
