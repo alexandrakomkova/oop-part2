@@ -116,13 +116,16 @@ namespace лр_1
 
         private void button6_Click(object sender, EventArgs e)
         {
+            
             //nums of consonants
+           
             textBox4.Text = "Количество согласных в строке: " + calc.NumOfConsonants(textBox1.Text);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             //nums of sentences
+
             textBox4.Text = "Количество предложений: " + calc.NumOfSentences(textBox1.Text);
         }
 

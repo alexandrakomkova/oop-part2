@@ -9,7 +9,7 @@ namespace лр_1
     public interface ICalculator 
     {
         //str1 исходная строка
-        void PutSymbol(string str1);
+        
         string DeleteSubstr(string str1, string substr);
         string ChangeSubstr(string str1, string substr1, string substr2);
         char GetSymbolByIndex(string str1, int indx); 
@@ -27,10 +27,9 @@ namespace лр_1
         public int CountVowels = 0;
         public int CountNumbers = 0;
         public int CountSentences = 0;
-        public void PutSymbol(string str1) 
-        {
-            this.str1 = str1;
-        }
+        public int CountSpace = 0;
+        public int CountConsonants = 0;
+      
         public int GetLenght(string str1) 
         {
             return str1.Length;
@@ -54,6 +53,7 @@ namespace лр_1
         {
             CountVowels = 0;
             str1.ToLower();
+            
             for (int i = 0; i < str1.Length; i++) 
             {
                 if (str1[i] == 'а' 
@@ -78,6 +78,7 @@ namespace лр_1
             string[] strMass;
             str1.Trim();
             strMass = str1.Split(' ');
+
             return strMass.Length;
         }
         public int NumOfSentences(string str1)
@@ -88,20 +89,32 @@ namespace лр_1
                 if (str1[i] == '.'
                     || str1[i] == '!'
                     || str1[i] == '?'
-                    || str1[i] == '…')
+                    || str1[i] == '…' )
                 {
                     CountSentences++;
                 }
             }
+            
+
             return CountSentences;
         }
         public int NumOfConsonants(string str1)
         {
             CountNumbers = 0;
+            CountConsonants = 0;
+            CountSpace = 0;
             str1.Trim();
-            str1.Replace(" ", "");
+            for (int i = 0; i < str1.Length; i++)
+            {
+                if (str1[i] == ' ' )
+                {
+                    CountSpace++;
+                }
+            }
+
             NumOfVowels(str1);
             NumOfSentences(str1);
+            
             for (int i = 0; i < str1.Length; i++)
             {
                 if (str1[i] == '1'
@@ -118,7 +131,8 @@ namespace лр_1
                     CountNumbers++;
                 }
             }
-            return (str1.Length - CountVowels - CountSentences - CountNumbers); 
+            CountConsonants = str1.Length - CountVowels - CountSentences - CountNumbers - CountSpace;
+            return CountConsonants; 
         }
     }
 
