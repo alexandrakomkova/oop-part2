@@ -12,11 +12,20 @@ namespace лр_2
 {
     public partial class Form2 : Form
     {
+        public static Producer producer;
+
         public Form2(Form1 form1)
         {
             InitializeComponent();
+            
         }
+        public Form2()
+        {
+            InitializeComponent();
 
+            producer = new Producer();
+
+        }
         private void Form2_Load(object sender, EventArgs e)
         {
 
@@ -65,12 +74,26 @@ namespace лр_2
             this.richTextBox1.Text += "Страна: " + comboBox1.Text + "\r\n";
             this.richTextBox1.Text += "Адрес: " + this.textBox3.Text + "\r\n";
             this.richTextBox1.Text += "Телефон: " + maskedTextBox1.Text;
+
             outputForm2 = this.richTextBox1.Text;
             
+
 
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
+            //producer.Add(this.textBox1.Text);
+            //this.richTextBox1.Text = "ФИО: " + this.textBox1.Text + "\r\n";
+            //this.richTextBox1.Text += "Огранизация: " + this.textBox2.Text + "\r\n";
+            //this.richTextBox1.Text += "Страна: " + this.comboBox1.Text + "\r\n";
+            //this.richTextBox1.Text += "Адрес: " + this.textBox3.Text + "\r\n";
+            //this.richTextBox1.Text += "Телефон: " + this.maskedTextBox1.Text;
+
+            producer.pr_fio = this.textBox1.Text;
+            producer.pr_company = this.textBox2.Text;
+            producer.pr_country = this.comboBox1.Text;
+            producer.pr_address = this.textBox3.Text;
+            producer.pr_phone = this.maskedTextBox1.Text;
             MessageBox.Show("Данные успешно записаны!!");
             this.Close();
         }

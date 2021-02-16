@@ -174,22 +174,11 @@ namespace лр_2
             item.item_id  = Convert.ToInt32(textBox2.Text);
             item.item_size = radioChoice;
             item.item_date = dateTimePicker1.Text;
-            item.item_producer = Form2.outputForm2;
+            item.Producer = Form2.producer;
             item.item_type = comboBox1.Text;
             item.item_weight = trackBar1.Value;
             item.item_count = Convert.ToInt32(numericUpDown1.Text);
             item.item_cost = trackBar2.Value;
-
-            //string output;
-            //output = "Название товара: " + this.textBox1.Text + "\r\n";
-            //output += "Инвентарный номер: " + this.textBox2.Text + "\r\n";
-            //output += "Размер: " + radioChoice + "\r\n";
-            //output += "Тип: " + this.comboBox1.Text + "\r\n";
-            //output += "Дата поступления: " + this.dateTimePicker1.Text + "\r\n";
-            //output += "Производитель: " + this.textBox3.Text + "\r\n";
-            //output += "Вес: " + this.trackBar1.Value + "\r\n";
-            //output += "Количество товаров: " + this.numericUpDown1.Text + "\r\n";
-            //output += "Цена: " + this.trackBar2.Value + "\r\n";
 
             using (FileStream fs = new FileStream(@"D:\uni\ооп\infoshop.xml", FileMode.OpenOrCreate))
             {
@@ -222,7 +211,7 @@ namespace лр_2
                 this.richTextOutput.Text += "Размер: " + itemfromfile.item_size + "\r\n";
                 this.richTextOutput.Text += "Тип: " + itemfromfile.item_type + "\r\n";
                 this.richTextOutput.Text += "Дата поступления: " + itemfromfile.item_date + "\r\n";
-                this.richTextOutput.Text += "Производитель: " + itemfromfile.item_producer+ "\r\n";
+               // this.richTextOutput.Text += "Производитель: " + itemfromfile.item_producer+ "\r\n";
                 this.richTextOutput.Text += "Вес: " + itemfromfile.item_weight + "\r\n";
                 this.richTextOutput.Text += "Количество товаров: " + itemfromfile.item_count + "\r\n";
                 this.richTextOutput.Text += "Цена: " + itemfromfile.item_cost + "\r\n";
