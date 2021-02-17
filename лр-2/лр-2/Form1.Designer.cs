@@ -146,6 +146,7 @@ namespace лр_2
             this.textBox2.TabIndex = 7;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            this.textBox2.Validating += new System.ComponentModel.CancelEventHandler(this.textBox2_Validating);
             // 
             // dateTimePicker1
             // 
@@ -201,6 +202,7 @@ namespace лр_2
             0,
             0});
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown1.Validating += new System.ComponentModel.CancelEventHandler(this.numericUpDown1_Validating);
             // 
             // label6
             // 
@@ -241,6 +243,7 @@ namespace лр_2
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 19;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox1_Validating);
             // 
             // label9
             // 
@@ -309,6 +312,7 @@ namespace лр_2
             this.label11.Size = new System.Drawing.Size(23, 25);
             this.label11.TabIndex = 26;
             this.label11.Text = "?";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // button3
             // 

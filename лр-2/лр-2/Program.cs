@@ -12,6 +12,8 @@ namespace лр_2
     [XmlType("Item")]
     public class Item
     {
+        
+
         [XmlElement(ElementName = "item_name")]
         public string item_name { get; set; }
 
@@ -24,9 +26,6 @@ namespace лр_2
         [XmlElement(ElementName = "item_date")] 
         public string item_date { get; set; }
 
-        //[XmlElement(ElementName = "item_producer")] 
-        //public string item_producer { get; set; }
-
         [XmlElement(ElementName = "item_type")] 
         public string item_type { get; set; }
 
@@ -38,30 +37,17 @@ namespace лр_2
 
         [XmlElement(ElementName = "item_cost")]
         public int item_cost { get; set; }
-
-        // [XmlAttribute("item_producer")]
-        [XmlArray("item_producer")]
-        [XmlArrayItem("pr")]
-        public Producer Producer { get; set; }
+        public Producer item_producer { get; set; }
        
         public Item()
         {
             
         }
-        public Item(string item_name, int item_id, string item_size, string item_date,
-            Producer Producer, string item_type, int item_weight, int item_cost, int item_count)
+        public Item(Producer producer)
         {
-            this.item_name =  item_name;
-            this.item_id = item_id;
-            this.item_size = item_size;
-            this.item_date = item_date;
-            //this.item_producer = Form2.producer;
-            this.Producer = Form2.producer;
-            this.item_type = item_type;
-            this.item_weight = item_weight;
-            this.item_count = item_count;
-            this.item_cost = item_cost;
+            this.item_producer = producer;
         }
+       
     }
     [Serializable]
     public class Producer
@@ -88,9 +74,6 @@ namespace лр_2
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
-           
-            
         }
     }
 }
