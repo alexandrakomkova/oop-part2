@@ -43,6 +43,20 @@ namespace лр_2
         {
             
         }
+        public Item(string item_name, int item_id, string item_size, string item_date,
+           Producer producer, string item_type, int item_weight, int item_cost, int item_count)
+        {
+            this.item_name = item_name;
+            this.item_id = item_id;
+            this.item_size = item_size;
+            this.item_date = item_date;
+            this.item_producer = producer;
+            this.item_type = item_type;
+            this.item_weight = item_weight;
+            this.item_count = item_count;
+            this.item_cost = item_cost;
+        }
+       
         public Item(Producer producer)
         {
             this.item_producer = producer;

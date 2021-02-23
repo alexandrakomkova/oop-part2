@@ -49,12 +49,10 @@ namespace лр_2
         private void textBox1_Validating(object sender, CancelEventArgs e)
         {
             if (textBox1.Text == " " || textBox1.Text.Length == 0)
-                e.Cancel = true; //не теряется фокуc  
-            //if (textBox1.Text.Length == 0) 
-            //{
-            //    MessageBox.Show("Вы не заполнили поле.");
-            //    e.Cancel = true;
-            //}
+                label7.Visible = true;
+                //e.Cancel = true; //не теряется фокуc  
+                
+           
         }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -68,32 +66,23 @@ namespace лр_2
         private void textBox2_Validating(object sender, CancelEventArgs e)
         {
             if (textBox2.Text == " " || textBox2.Text.Length == 0)
-                e.Cancel = true; //не теряется фокуc  
-            //if (textBox2.Text.Length == 0)
-            //{
-            //    MessageBox.Show("Вы не заполнили поле.");
-            //    e.Cancel = true;
-            //}
+                label8.Visible = true;
+            // e.Cancel = true; //не теряется фокуc  
+
         }
         private void textBox3_Validating(object sender, CancelEventArgs e)
         {
             if (textBox3.Text == " " || textBox3.Text.Length == 0)
-                e.Cancel = true; //не теряется фокуc  
-            //if (textBox3.Text.Length == 0)
-            //{
-            //    MessageBox.Show("Вы не заполнили поле.");
-            //    e.Cancel = true;
-            //}
+                label9.Visible = true;
+            // e.Cancel = true; //не теряется фокуc  
+
         }
         private void comboBox1_Validating(object sender, CancelEventArgs e)
         {
             if (comboBox1.Text == " " || comboBox1.Text.Length == 0)
-                e.Cancel = true; //не теряется фокуc  
-            //if (comboBox1.Text.Length == 0)
-            //{
-            //    MessageBox.Show("Вы не заполнили поле.");
-            //    e.Cancel = true;
-            //}
+                label10.Visible = true;
+            // e.Cancel = true; //не теряется фокуc  
+
         }
         public static string outputForm2;
         private void button1_Click(object sender, EventArgs e)
@@ -125,6 +114,42 @@ namespace лр_2
         private void label6_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Инструкция\nКомкова А.В. 2021");
+        }
+
+       
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            if (maskedTextBox1.Text == " " || maskedTextBox1.Text.Length == 0)
+                label11.Visible = true;
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void deleteDataForm2()
+        {
+            textBox1.Text = ""; //фио
+            textBox2.Text = ""; //организация
+            textBox3.Text = ""; //адрес
+            maskedTextBox1.Text = ""; //телефон
+            comboBox1.Text = "";//страна
+            richTextBox1.Text = "";
+
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            deleteDataForm2();
         }
     }
 }

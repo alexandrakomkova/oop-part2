@@ -14,16 +14,18 @@ namespace лр_2
 {
     public partial class Form1 : Form
     {
-        
+
         public static Producer producer = new Producer();
         public Item item = new Item(producer);
+       
+        public List<Item> itemList = new List<Item> { };
 
         public Form1()
         {
             InitializeComponent();
-            
-           
-            
+
+
+
         }
 
         public Form1(Form2 form2)
@@ -33,12 +35,7 @@ namespace лр_2
         private void textBox1_Validating(object sender, CancelEventArgs e)
         {
             if (textBox1.Text == " " || textBox1.Text.Length == 0)
-                e.Cancel = true; //не теряется фокуc  
-            //if (textBox1.Text.Length == 0)
-            //{
-            //    MessageBox.Show("Вы не заполнили поле.");
-            //    e.Cancel = true;
-            //}
+                label12.Visible = true;
         }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -49,16 +46,7 @@ namespace лр_2
                 e.Handled = true;
             }
         }
-       
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
 
-            if (Char.IsDigit(number))
-            {
-                e.Handled = true;
-            }
-        }
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -71,7 +59,7 @@ namespace лр_2
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             //название товара
-            
+
         }
         private void label3_Click(object sender, EventArgs e)
         {
@@ -86,36 +74,26 @@ namespace лр_2
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //тип товара
-            
+
         }
         private void comboBox1_Validating(object sender, CancelEventArgs e)
         {
+            //тип товара
             if (comboBox1.Text == " " || comboBox1.Text.Length == 0)
-                e.Cancel = true; //не теряется фокуc  
-            //if (comboBox1.Text.Length == 0)
-            //{
-            //    MessageBox.Show("Вы не заполнили поле.");
-            //    e.Cancel = true;
-            //}
+                label14.Visible = true;
+            //    e.Cancel = true; //не теряется фокуc  
+
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             //инвентарный номер
-            //if (textBox2.Text.Length == 0)
-            //{
-            //    MessageBox.Show("Вы не заполнили поле.");
-            //}
+
         }
         private void textBox2_Validating(object sender, CancelEventArgs e)
         {
             if (textBox2.Text == " " || textBox2.Text.Length == 0)
-                e.Cancel = true; //не теряется фокуc  
-            //if (textBox2.Text.Length == 0)
-            //{
-            //    MessageBox.Show("Вы не заполнили поле.");
-            //    e.Cancel = true;
-            //}
+                label13.Visible = true;
         }
         public string radioChoice;
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -124,7 +102,7 @@ namespace лр_2
             RadioButton radioButton = (RadioButton)sender;
             if (radioButton.Checked)
             {
-                radioChoice =  radioButton1.Text;
+                radioChoice = radioButton1.Text;
             }
 
         }
@@ -148,8 +126,8 @@ namespace лр_2
                 radioChoice = radioButton3.Text;
             }
         }
-        
-       
+
+
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
@@ -176,14 +154,14 @@ namespace лр_2
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
             //цена
-            
+
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
-       
+
         private void button4_Click(object sender, EventArgs e)
         {
             Form2 f = new Form2(this);
@@ -191,7 +169,6 @@ namespace лр_2
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            
             string output;
             output = "Название товара: " + this.textBox1.Text + "\r\n";
             output += "Инвентарный номер: " + this.textBox2.Text + "\r\n";
@@ -204,15 +181,21 @@ namespace лр_2
             output += "Цена: " + this.trackBar2.Value + "\r\n";
             // Вставка нового текста.
             this.richTextOutput.Text = output;
+           
         }
 
-        
-        XmlSerializer formatter = new XmlSerializer(typeof(Item));
+
+
+        //XmlSerializer formatter = new XmlSerializer(typeof(List<Item>),
+        //     new XmlRootAttribute("item"));
+        //public Item[] itemCollection = new Item[] { comboBox2.Items };
+        XmlSerializer formatter = new XmlSerializer(typeof(List<Item>));
         private void button1_Click(object sender, EventArgs e)
         {
+            //itemList.Add(item);
             //запись в файл
             item.item_name = textBox1.Text;
-            item.item_id  = Convert.ToInt32(textBox2.Text);
+            item.item_id = Convert.ToInt32(textBox2.Text);
             item.item_size = radioChoice;
             item.item_date = dateTimePicker1.Text;
             item.item_producer = producer;
@@ -220,12 +203,30 @@ namespace лр_2
             item.item_weight = trackBar1.Value;
             item.item_count = Convert.ToInt32(numericUpDown1.Text);
             item.item_cost = trackBar2.Value;
+            
 
+
+            //comboBox2.DisplayMember = "item_name";
+            //comboBox2.ValueMember = "item_id";
+            //comboBox2.Items.Add(item);
+            //comboBox2.Text = item.item_name;
+           // itemList.Add(item);
+            itemList.Add(new Item(textBox1.Text, 
+                Convert.ToInt32(textBox2.Text),
+                radioChoice,
+                dateTimePicker1.Text,
+                producer,
+                comboBox1.Text,
+                trackBar1.Value,
+                Convert.ToInt32(numericUpDown1.Text),
+                trackBar2.Value)
+                );
             using (FileStream fs = new FileStream(@"D:\uni\ооп\infoshop.xml", FileMode.OpenOrCreate))
             {
                 try
                 {
-                    formatter.Serialize(fs, item);
+                    formatter.Serialize(fs, itemList);
+     
                 }
                 catch
                 {
@@ -235,38 +236,112 @@ namespace лр_2
                 {
                     MessageBox.Show("Данные записаны в файл");
                 }
+                fs.Close();
+            }
+           
 
+            deleteDataForm1();
+            
+
+        }
+        //public string filename = @"D:\uni\ооп\infoshop.xml";
+        public static class XmlSerializeWrapper
+        {
+            public static T Deserialize<T>(string filename)
+            {
+                T obj;
+                using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
+                {
+                    XmlSerializer formatter = new XmlSerializer(typeof(T));
+                    obj = (T)formatter.Deserialize(fs);
+                }
+                return obj;
             }
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            //чтение из файла
-            using (FileStream fs = new FileStream(@"D:\uni\ооп\infoshop.xml", FileMode.OpenOrCreate))
+            
+            List<Item> listFromFile = XmlSerializeWrapper.Deserialize<List<Item>>(@"D:\uni\ооп\infoshop.xml");
+            this.richTextOutput.Text = "Из файла прочитано:\n";
+            foreach (Item itemFromFile in listFromFile)
             {
+                this.richTextOutput.Text += "Название товара: " + itemFromFile.item_name + "\r\n";
+                this.richTextOutput.Text += "Инвентарный номер: " + itemFromFile.item_id + "\r\n";
+                this.richTextOutput.Text += "Размер: " + itemFromFile.item_size + "\r\n";
+                this.richTextOutput.Text += "Тип: " + itemFromFile.item_type + "\r\n";
+                this.richTextOutput.Text += "Дата поступления: " + itemFromFile.item_date + "\r\n";
+                this.richTextOutput.Text += "----------------" + "\r\n" + "Производитель: "
+                    + "ФИО: " + itemFromFile.item_producer.pr_fio + "\r\n"
+                    + "Адрес: " + itemFromFile.item_producer.pr_address + "\r\n"
+                    + "Огранизация: " + itemFromFile.item_producer.pr_company + "\r\n"
+                    + "Страна: " + itemFromFile.item_producer.pr_country + "\r\n"
+                    + "Телефон: " + itemFromFile.item_producer.pr_phone + "\r\n" + "----------------" + "\r\n";
+                this.richTextOutput.Text += "Вес: " + itemFromFile.item_weight + "\r\n";
+                this.richTextOutput.Text += "Количество товаров: " + itemFromFile.item_count + "\r\n";
+                this.richTextOutput.Text += "Цена: " + itemFromFile.item_cost + "\r\n\n";
 
-                Item itemfromfile = (Item)formatter.Deserialize(fs);
-
-                this.richTextOutput.Text = "Из файла прочитано:\n";
-                this.richTextOutput.Text += "Название товара: " + itemfromfile.item_name + "\r\n";
-                this.richTextOutput.Text += "Инвентарный номер: " + itemfromfile.item_id + "\r\n";
-                this.richTextOutput.Text += "Размер: " + itemfromfile.item_size + "\r\n";
-                this.richTextOutput.Text += "Тип: " + itemfromfile.item_type + "\r\n";
-                this.richTextOutput.Text += "Дата поступления: " + itemfromfile.item_date + "\r\n";
-                this.richTextOutput.Text += "----------------" + "\r\n" + "Производитель: " 
-                    + "ФИО: " + itemfromfile.item_producer.pr_fio + "\r\n"
-                    + "Адрес: " + itemfromfile.item_producer.pr_address + "\r\n"
-                    + "Огранизация: " + itemfromfile.item_producer.pr_company + "\r\n"
-                    + "Страна: " + itemfromfile.item_producer.pr_country + "\r\n"
-                    + "Телефон: " +  itemfromfile.item_producer.pr_phone + "\r\n" + "----------------" + "\r\n";
-                this.richTextOutput.Text += "Вес: " + itemfromfile.item_weight + "\r\n";
-                this.richTextOutput.Text += "Количество товаров: " + itemfromfile.item_count + "\r\n";
-                this.richTextOutput.Text += "Цена: " + itemfromfile.item_cost + "\r\n";
             }
+
+
         }
 
         private void label11_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Инструкция\nКомкова А.В. 2021");
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void deleteDataForm1()
+        {
+            textBox1.Text = ""; //название товара
+            textBox2.Text = ""; //инвентарный номер
+            radioChoice = "";
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            comboBox1.Text = "";
+            trackBar1.Value = trackBar1.Minimum;
+            trackBar2.Value = trackBar2.Minimum;
+            numericUpDown1.Value = numericUpDown1.Minimum;
+            richTextOutput.Text = "";
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            deleteDataForm1();
+        }
+
+        private void label15_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Лабораторная работа 3\nКомкова А.В.\n2021");
         }
     }
 }
