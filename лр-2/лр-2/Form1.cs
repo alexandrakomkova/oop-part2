@@ -19,6 +19,8 @@ namespace лр_2
         public Item item = new Item(producer);
        
         public List<Item> itemList = new List<Item> { };
+        Form form3 = new Form3();
+        public int countItems = 0;
 
         public Form1()
         {
@@ -30,7 +32,9 @@ namespace лр_2
 
         public Form1(Form2 form2)
         {
+
         }
+       
 
         private void textBox1_Validating(object sender, CancelEventArgs e)
         {
@@ -186,13 +190,11 @@ namespace лр_2
 
 
 
-        //XmlSerializer formatter = new XmlSerializer(typeof(List<Item>),
-        //     new XmlRootAttribute("item"));
-        //public Item[] itemCollection = new Item[] { comboBox2.Items };
+       
         XmlSerializer formatter = new XmlSerializer(typeof(List<Item>));
         private void button1_Click(object sender, EventArgs e)
         {
-            //itemList.Add(item);
+           
             //запись в файл
             item.item_name = textBox1.Text;
             item.item_id = Convert.ToInt32(textBox2.Text);
@@ -221,6 +223,7 @@ namespace лр_2
                 Convert.ToInt32(numericUpDown1.Text),
                 trackBar2.Value)
                 );
+            countItems++;
             using (FileStream fs = new FileStream(@"D:\uni\ооп\infoshop.xml", FileMode.OpenOrCreate))
             {
                 try
@@ -258,11 +261,11 @@ namespace лр_2
                 return obj;
             }
         }
-
+        public static List<Item> listFromFile;
         private void button2_Click(object sender, EventArgs e)
         {
             
-            List<Item> listFromFile = XmlSerializeWrapper.Deserialize<List<Item>>(@"D:\uni\ооп\infoshop.xml");
+             listFromFile = XmlSerializeWrapper.Deserialize<List<Item>>(@"D:\uni\ооп\infoshop.xml");
             this.richTextOutput.Text = "Из файла прочитано:\n";
             foreach (Item itemFromFile in listFromFile)
             {
@@ -286,10 +289,6 @@ namespace лр_2
 
         }
 
-        private void label11_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Инструкция\nКомкова А.В. 2021");
-        }
 
         private void label12_Click(object sender, EventArgs e)
         {
@@ -342,6 +341,71 @@ namespace лр_2
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Лабораторная работа 3\nКомкова А.В.\n2021");
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Инструкция\nКомкова А.В. 2021");
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            //find -> ...
+           
+            form3.Show();
+        }
+
+        private void названиеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            //find -> item name
+            form3.Show();
+           
+
+            //var selectedNames = from t in listFromFile 
+            //                    where t.ToUpper().StartsWith("Б") //фильтрация по критерию
+            //                    orderby t  // упорядочиваем по возрастанию
+            //                    select t; // выбираем объект
+
+            //foreach (var s in selectedNames)
+                MessageBox.Show("");
+
+        }
+
+        private void textStatistics_TextChanged(object sender, EventArgs e)
+        {
+            this.textStatistics.Text = $"           {countItems}";
+        }
+
+        private void dateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sortByDate = from i in itemList
+                                 orderby i
+                                 select i;
+            foreach (var s in sortByDate) 
+            {
+
+            }
+        }
+
+        private void countryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

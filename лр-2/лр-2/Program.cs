@@ -10,6 +10,7 @@ namespace лр_2
     [Serializable]
     [XmlRoot(Namespace = "лр_2")]
     [XmlType("Item")]
+
     public class Item
     {
         
@@ -77,6 +78,8 @@ namespace лр_2
         [XmlElement(ElementName = "pr_country")]
         public string pr_country { get; set; }
     }
+   
+
     static class Program
     {
         /// <summary>
