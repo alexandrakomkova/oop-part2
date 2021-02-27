@@ -77,6 +77,21 @@ namespace лр_2
         public string pr_phone { get; set; }
         [XmlElement(ElementName = "pr_country")]
         public string pr_country { get; set; }
+        public Producer() { }
+        public Producer(
+            string pr_fio, 
+            string pr_company, 
+            string pr_address, 
+            string pr_phone, 
+            string pr_country )
+        {
+            this.pr_fio = pr_fio;
+            this.pr_company = pr_company;
+            this.pr_address = pr_address;
+            this.pr_phone = pr_phone;
+            this.pr_country = pr_country;
+        }
+
     }
    
 

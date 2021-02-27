@@ -23,8 +23,6 @@ namespace лр_2
         {
             InitializeComponent();
 
-            
-
         }
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -84,7 +82,7 @@ namespace лр_2
             // e.Cancel = true; //не теряется фокуc  
 
         }
-        public static string outputForm2;
+        public static string outputForm2, str_fio, str_address, str_country, str_company,str_phone;
         private void button1_Click(object sender, EventArgs e)
         {
             this.richTextBox1.Text = "ФИО: " + this.textBox1.Text + "\r\n";
@@ -92,6 +90,12 @@ namespace лр_2
             this.richTextBox1.Text += "Страна: " + comboBox1.Text + "\r\n";
             this.richTextBox1.Text += "Адрес: " + this.textBox3.Text + "\r\n";
             this.richTextBox1.Text += "Телефон: " + maskedTextBox1.Text;
+
+            str_fio = this.textBox1.Text;
+            str_address = this.textBox3.Text;
+            str_country = this.comboBox1.Text;
+            str_phone = this.maskedTextBox1.Text;
+            str_company = this.textBox2.Text;
 
             outputForm2 = this.richTextBox1.Text;
         }

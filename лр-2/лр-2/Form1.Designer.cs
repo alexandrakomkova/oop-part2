@@ -473,6 +473,7 @@ namespace лр_2
             this.nameToolStripMenuItem1.Name = "nameToolStripMenuItem1";
             this.nameToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.nameToolStripMenuItem1.Text = "Item Name";
+            this.nameToolStripMenuItem1.Click += new System.EventHandler(this.nameToolStripMenuItem1_Click);
             // 
             // saveToolStripMenuItem
             // 

@@ -20,6 +20,7 @@ namespace лр_2
        
         public List<Item> itemList = new List<Item> { };
         Form form3 = new Form3();
+        public Form Form4 = new Form4();
         public int countItems = 0;
 
         public Form1()
@@ -34,6 +35,7 @@ namespace лр_2
         {
 
         }
+
        
 
         private void textBox1_Validating(object sender, CancelEventArgs e)
@@ -183,7 +185,7 @@ namespace лр_2
             output += "Вес: " + this.trackBar1.Value + "\r\n";
             output += "Количество товаров: " + this.numericUpDown1.Text + "\r\n";
             output += "Цена: " + this.trackBar2.Value + "\r\n";
-            // Вставка нового текста.
+          
             this.richTextOutput.Text = output;
            
         }
@@ -205,24 +207,34 @@ namespace лр_2
             item.item_weight = trackBar1.Value;
             item.item_count = Convert.ToInt32(numericUpDown1.Text);
             item.item_cost = trackBar2.Value;
-            
 
+            //itemList.Add(new Item(textBox1.Text, 
+            //    Convert.ToInt32(textBox2.Text),
+            //    radioChoice,
+            //    dateTimePicker1.Text,
+            //    producer,
+            //    comboBox1.Text,
+            //    trackBar1.Value,
+            //    Convert.ToInt32(numericUpDown1.Text),
+            //    trackBar2.Value)
+            //    );
 
-            //comboBox2.DisplayMember = "item_name";
-            //comboBox2.ValueMember = "item_id";
-            //comboBox2.Items.Add(item);
-            //comboBox2.Text = item.item_name;
-           // itemList.Add(item);
-            itemList.Add(new Item(textBox1.Text, 
-                Convert.ToInt32(textBox2.Text),
-                radioChoice,
-                dateTimePicker1.Text,
-                producer,
-                comboBox1.Text,
-                trackBar1.Value,
-                Convert.ToInt32(numericUpDown1.Text),
-                trackBar2.Value)
-                );
+            itemList.Add(new Item(textBox1.Text,
+               Convert.ToInt32(textBox2.Text),
+               radioChoice,
+               dateTimePicker1.Text,
+               new Producer(Form2.str_fio,
+              Form2.str_company,
+              Form2.str_address,
+              Form2.str_phone,
+              Form2.str_country
+               ),
+               comboBox1.Text,
+               trackBar1.Value,
+               Convert.ToInt32(numericUpDown1.Text),
+               trackBar2.Value)
+               );
+
             countItems++;
             using (FileStream fs = new FileStream(@"D:\uni\ооп\infoshop.xml", FileMode.OpenOrCreate))
             {
@@ -391,21 +403,89 @@ namespace лр_2
         {
             this.textStatistics.Text = $"           {countItems}";
         }
-
+        public static string result;
         private void dateToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            result = "";
             var sortByDate = from i in itemList
-                                 orderby i
-                                 select i;
-            foreach (var s in sortByDate) 
+                             orderby i.item_date
+                             select i;
+            foreach (Item s in sortByDate)
             {
+                result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
+                result += "Инвентарный номер: " + s.item_id + "\r\n";
+                result += "Размер: " + s.item_size + "\r\n";
+                result += "Тип: " + s.item_type + "\r\n";
+                result += "Дата поступления: " + s.item_date + "\r\n";
+                result += "Производитель: " + "\n"
+                    + "ФИО: " + s.item_producer.pr_fio + "\r\n"
+                    + "Адрес: " + s.item_producer.pr_address + "\r\n"
+                    + "Огранизация: " + s.item_producer.pr_company + "\r\n"
+                    + "Страна: " + s.item_producer.pr_country + "\r\n"
+                    + "Телефон: " + s.item_producer.pr_phone + "\r\n";
+                result += "Вес: " + s.item_weight + "\r\n";
+                result += "Количество товаров: " + s.item_count + "\r\n";
+                result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
 
             }
+
+             MessageBox.Show(result);
+           // Form4.Show();
         }
 
         private void countryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            result = "";
+            var sortByCountry = from i in itemList
+                                orderby i.item_producer.pr_country
+                                select i;
+            foreach (Item s in sortByCountry)
+            {
+                result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
+                result += "Инвентарный номер: " + s.item_id + "\r\n";
+                result += "Размер: " + s.item_size + "\r\n";
+                result += "Тип: " + s.item_type + "\r\n";
+                result += "Дата поступления: " + s.item_date + "\r\n";
+                result += "Производитель: " + "\n"
+                    + "ФИО: " + s.item_producer.pr_fio + "\r\n"
+                    + "Адрес: " + s.item_producer.pr_address + "\r\n"
+                    + "Огранизация: " + s.item_producer.pr_company + "\r\n"
+                    + "Страна: " + s.item_producer.pr_country + "\r\n"
+                    + "Телефон: " + s.item_producer.pr_phone + "\r\n";
+                result += "Вес: " + s.item_weight + "\r\n";
+                result += "Количество товаров: " + s.item_count + "\r\n";
+                result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
+            }
+            MessageBox.Show(result);
+            //Form4.Show();
+        }
 
+        private void nameToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            result = "";
+            var sortByName = from i in itemList
+                             orderby i.item_name
+                             select i;
+            foreach (Item s in sortByName)
+            {
+                result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
+                result += "Инвентарный номер: " + s.item_id + "\r\n";
+                result += "Размер: " + s.item_size + "\r\n";
+                result += "Тип: " + s.item_type + "\r\n";
+                result += "Дата поступления: " + s.item_date + "\r\n";
+                result += "Производитель: " + "\n"
+                    + "ФИО: " + s.item_producer.pr_fio + "\r\n"
+                    + "Адрес: " + s.item_producer.pr_address + "\r\n"
+                    + "Огранизация: " + s.item_producer.pr_company + "\r\n"
+                    + "Страна: " + s.item_producer.pr_country + "\r\n"
+                    + "Телефон: " + s.item_producer.pr_phone + "\r\n";
+                result += "Вес: " + s.item_weight + "\r\n";
+                result += "Количество товаров: " + s.item_count + "\r\n";
+                result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
+
+            }
+            MessageBox.Show(result);
+            //Form4.Show();
         }
     }
 }
