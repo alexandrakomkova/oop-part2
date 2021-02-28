@@ -45,6 +45,7 @@ namespace лр_2
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -96,6 +97,7 @@ namespace лр_2
             this.textPriceLow.Name = "textPriceLow";
             this.textPriceLow.Size = new System.Drawing.Size(43, 22);
             this.textPriceLow.TabIndex = 5;
+            this.textPriceLow.Text = "0";
             // 
             // textPriceUp
             // 
@@ -103,6 +105,7 @@ namespace лр_2
             this.textPriceUp.Name = "textPriceUp";
             this.textPriceUp.Size = new System.Drawing.Size(43, 22);
             this.textPriceUp.TabIndex = 6;
+            this.textPriceUp.Text = "10";
             // 
             // label5
             // 
@@ -125,6 +128,7 @@ namespace лр_2
             this.comboFindType.Name = "comboFindType";
             this.comboFindType.Size = new System.Drawing.Size(121, 24);
             this.comboFindType.TabIndex = 8;
+            this.comboFindType.SelectedIndexChanged += new System.EventHandler(this.comboFindType_SelectedIndexChanged);
             // 
             // richFindResult
             // 
@@ -154,6 +158,7 @@ namespace лр_2
             this.buttonFind.Text = "Поиск";
             this.buttonFind.UseVisualStyleBackColor = true;
             this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
+            this.buttonFind.Validating += new System.ComponentModel.CancelEventHandler(this.buttonFind_Validating);
             // 
             // backToForm1
             // 
@@ -174,6 +179,7 @@ namespace лр_2
             this.checkBox3.Size = new System.Drawing.Size(18, 17);
             this.checkBox3.TabIndex = 14;
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -183,6 +189,7 @@ namespace лр_2
             this.checkBox2.Size = new System.Drawing.Size(18, 17);
             this.checkBox2.TabIndex = 13;
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -192,12 +199,26 @@ namespace лр_2
             this.checkBox1.Size = new System.Drawing.Size(18, 17);
             this.checkBox1.TabIndex = 12;
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(149, 430);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(106, 41);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Сброс";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseWaitCursor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 499);
+            this.ClientSize = new System.Drawing.Size(427, 499);
+            this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.backToForm1);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
@@ -214,8 +235,12 @@ namespace лр_2
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form3";
+            this.ShowInTaskbar = false;
             this.Text = "Find";
+            this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,5 +264,6 @@ namespace лр_2
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button1;
     }
 }

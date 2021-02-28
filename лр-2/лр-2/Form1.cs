@@ -18,7 +18,7 @@ namespace лр_2
         public static Producer producer = new Producer();
         public Item item = new Item(producer);
        
-        public List<Item> itemList = new List<Item> { };
+        public static List<Item> itemList = new List<Item> { };
         Form form3 = new Form3();
         public Form Form4 = new Form4();
         public int countItems = 0;
@@ -384,108 +384,139 @@ namespace лр_2
 
         private void названиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             //find -> item name
             form3.Show();
-           
-
-            //var selectedNames = from t in listFromFile 
-            //                    where t.ToUpper().StartsWith("Б") //фильтрация по критерию
-            //                    orderby t  // упорядочиваем по возрастанию
-            //                    select t; // выбираем объект
-
-            //foreach (var s in selectedNames)
-                MessageBox.Show("");
 
         }
 
         private void textStatistics_TextChanged(object sender, EventArgs e)
         {
-            this.textStatistics.Text = $"           {countItems}";
+            //this.textStatistics.Text = $"Количество объектов: {countItems}";
         }
         public static string result;
         private void dateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            result = "";
-            var sortByDate = from i in itemList
-                             orderby i.item_date
-                             select i;
-            foreach (Item s in sortByDate)
+            if (itemList.Count == 0)
             {
-                result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
-                result += "Инвентарный номер: " + s.item_id + "\r\n";
-                result += "Размер: " + s.item_size + "\r\n";
-                result += "Тип: " + s.item_type + "\r\n";
-                result += "Дата поступления: " + s.item_date + "\r\n";
-                result += "Производитель: " + "\n"
-                    + "ФИО: " + s.item_producer.pr_fio + "\r\n"
-                    + "Адрес: " + s.item_producer.pr_address + "\r\n"
-                    + "Огранизация: " + s.item_producer.pr_company + "\r\n"
-                    + "Страна: " + s.item_producer.pr_country + "\r\n"
-                    + "Телефон: " + s.item_producer.pr_phone + "\r\n";
-                result += "Вес: " + s.item_weight + "\r\n";
-                result += "Количество товаров: " + s.item_count + "\r\n";
-                result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
-
+                MessageBox.Show("Добавьте товар в главном окне для дальнейшей сортировки.");
             }
+            else
+            {
+                result = "";
+                var sortByDate = from i in itemList
+                                 orderby i.item_date
+                                 select i;
+                foreach (Item s in sortByDate)
+                {
+                    result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
+                    result += "Инвентарный номер: " + s.item_id + "\r\n";
+                    result += "Размер: " + s.item_size + "\r\n";
+                    result += "Тип: " + s.item_type + "\r\n";
+                    result += "Дата поступления: " + s.item_date + "\r\n";
+                    result += "Производитель: " + "\n"
+                        + "ФИО: " + s.item_producer.pr_fio + "\r\n"
+                        + "Адрес: " + s.item_producer.pr_address + "\r\n"
+                        + "Огранизация: " + s.item_producer.pr_company + "\r\n"
+                        + "Страна: " + s.item_producer.pr_country + "\r\n"
+                        + "Телефон: " + s.item_producer.pr_phone + "\r\n";
+                    result += "Вес: " + s.item_weight + "\r\n";
+                    result += "Количество товаров: " + s.item_count + "\r\n";
+                    result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
 
-             MessageBox.Show(result);
+                }
+
+                MessageBox.Show(result);
+            }
            // Form4.Show();
         }
 
         private void countryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            result = "";
-            var sortByCountry = from i in itemList
-                                orderby i.item_producer.pr_country
-                                select i;
-            foreach (Item s in sortByCountry)
+            if (itemList.Count == 0)
             {
-                result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
-                result += "Инвентарный номер: " + s.item_id + "\r\n";
-                result += "Размер: " + s.item_size + "\r\n";
-                result += "Тип: " + s.item_type + "\r\n";
-                result += "Дата поступления: " + s.item_date + "\r\n";
-                result += "Производитель: " + "\n"
-                    + "ФИО: " + s.item_producer.pr_fio + "\r\n"
-                    + "Адрес: " + s.item_producer.pr_address + "\r\n"
-                    + "Огранизация: " + s.item_producer.pr_company + "\r\n"
-                    + "Страна: " + s.item_producer.pr_country + "\r\n"
-                    + "Телефон: " + s.item_producer.pr_phone + "\r\n";
-                result += "Вес: " + s.item_weight + "\r\n";
-                result += "Количество товаров: " + s.item_count + "\r\n";
-                result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
+                MessageBox.Show("Добавьте товар в главном окне для дальнейшей сортировки.");
             }
-            MessageBox.Show(result);
-            //Form4.Show();
+            else
+            {
+                result = "";
+                var sortByCountry = from i in itemList
+                                    orderby i.item_producer.pr_country
+                                    select i;
+                foreach (Item s in sortByCountry)
+                {
+                    result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
+                    result += "Инвентарный номер: " + s.item_id + "\r\n";
+                    result += "Размер: " + s.item_size + "\r\n";
+                    result += "Тип: " + s.item_type + "\r\n";
+                    result += "Дата поступления: " + s.item_date + "\r\n";
+                    result += "Производитель: " + "\n"
+                        + "ФИО: " + s.item_producer.pr_fio + "\r\n"
+                        + "Адрес: " + s.item_producer.pr_address + "\r\n"
+                        + "Огранизация: " + s.item_producer.pr_company + "\r\n"
+                        + "Страна: " + s.item_producer.pr_country + "\r\n"
+                        + "Телефон: " + s.item_producer.pr_phone + "\r\n";
+                    result += "Вес: " + s.item_weight + "\r\n";
+                    result += "Количество товаров: " + s.item_count + "\r\n";
+                    result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
+                }
+                MessageBox.Show(result);
+                //Form4.Show();
+            }
         }
 
         private void nameToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            result = "";
-            var sortByName = from i in itemList
-                             orderby i.item_name
-                             select i;
-            foreach (Item s in sortByName)
+            if (itemList.Count == 0)
             {
-                result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
-                result += "Инвентарный номер: " + s.item_id + "\r\n";
-                result += "Размер: " + s.item_size + "\r\n";
-                result += "Тип: " + s.item_type + "\r\n";
-                result += "Дата поступления: " + s.item_date + "\r\n";
-                result += "Производитель: " + "\n"
-                    + "ФИО: " + s.item_producer.pr_fio + "\r\n"
-                    + "Адрес: " + s.item_producer.pr_address + "\r\n"
-                    + "Огранизация: " + s.item_producer.pr_company + "\r\n"
-                    + "Страна: " + s.item_producer.pr_country + "\r\n"
-                    + "Телефон: " + s.item_producer.pr_phone + "\r\n";
-                result += "Вес: " + s.item_weight + "\r\n";
-                result += "Количество товаров: " + s.item_count + "\r\n";
-                result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
-
+                MessageBox.Show("Добавьте товар в главном окне для дальнейшей сортировки.");
             }
-            MessageBox.Show(result);
-            //Form4.Show();
+            else
+            {
+                result = "";
+                var sortByName = from i in itemList
+                                 orderby i.item_name
+                                 select i;
+                foreach (Item s in sortByName)
+                {
+                    result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
+                    result += "Инвентарный номер: " + s.item_id + "\r\n";
+                    result += "Размер: " + s.item_size + "\r\n";
+                    result += "Тип: " + s.item_type + "\r\n";
+                    result += "Дата поступления: " + s.item_date + "\r\n";
+                    result += "Производитель: " + "\n"
+                        + "ФИО: " + s.item_producer.pr_fio + "\r\n"
+                        + "Адрес: " + s.item_producer.pr_address + "\r\n"
+                        + "Огранизация: " + s.item_producer.pr_company + "\r\n"
+                        + "Страна: " + s.item_producer.pr_country + "\r\n"
+                        + "Телефон: " + s.item_producer.pr_phone + "\r\n";
+                    result += "Вес: " + s.item_weight + "\r\n";
+                    result += "Количество товаров: " + s.item_count + "\r\n";
+                    result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
+
+                }
+                MessageBox.Show(result);
+                //Form4.Show();
+            }
+        }
+
+        private void typeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            form3.Show();
+        }
+
+        private void priceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            form3.Show();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string path = @"D:\uni\ооп\infoshop.xml";
+            FileInfo fileInf = new FileInfo(path);
+            if (fileInf.Exists)
+            {
+                 File.Delete(path);
+            }
         }
     }
 }

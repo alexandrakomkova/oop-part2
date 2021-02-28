@@ -30,17 +30,37 @@ namespace лр_2
 
         private void backToForm1_Click_1(object sender, EventArgs e)
         {
-            Close();
+            this.Hide();
         }
-
-        private void buttonFind_Click(object sender, EventArgs e)
+        public IEnumerable<Item> selectedItems;
+        public void findName() 
         {
 
-
-            var selectedItems = from t in Form1.listFromFile // определяем каждый объект из teams как t
+                selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
                                 where t.item_name == this.textFindName.Text //фильтрация по критерию
                                 select t; // выбираем объект
+            
+        }
+        public void findType()
+        {
 
+                selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
+                                where t.item_type == this.comboFindType.Text //фильтрация по критерию
+                                select t; // выбираем объект
+            
+        }
+        public void findPrice()
+        {
+            
+                selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
+                                where t.item_cost > Convert.ToInt32(this.textPriceLow.Text) &&
+                                t.item_cost < Convert.ToInt32(this.textPriceUp.Text)
+                                //фильтрация по критерию
+                                select t; // выбираем объект
+            
+        }
+        public void printFind() 
+        {
             foreach (Item i in selectedItems)
             {
                 this.richFindResult.Text += "Название товара: " + i.item_name + "\r\n";
@@ -60,9 +80,75 @@ namespace лр_2
 
             }
         }
+       
 
         private void richFindResult_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboFindType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form3_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+        }
+
+        private void buttonFind_Validating(object sender, CancelEventArgs e)
+        {
+            if (Form1.itemList.Count == 0) 
+            {
+                MessageBox.Show("Добавьте товар в главном окне для дальнейшей работы.");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.textFindName.Text = "";
+            this.comboFindType.Text = "";
+            //this.textPriceLow.Text = "";
+            //this.textPriceUp.Text = "";
+            this.richFindResult.Text = "";
+            selectedItems.ToList().Clear();
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked) 
+            {
+                findName();
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (checkBox2.Checked)
+            {
+                findType();
+            }
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked)
+            {
+                findPrice();
+            }
+        }
+        private void buttonFind_Click(object sender, EventArgs e)
+        {
+
+            printFind();
+
 
         }
     }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+
 
 namespace лр_2
 {
@@ -13,20 +15,22 @@ namespace лр_2
 
     public class Item
     {
-        
 
+        [Required(ErrorMessage = "Имя товара не установлено")]
         [XmlElement(ElementName = "item_name")]
         public string item_name { get; set; }
-
+        [Required(ErrorMessage = "Идентификатор товара не установлен")]
         [XmlElement(ElementName = "item_id")]
         public int item_id { get; set; }
-
+        [Required(ErrorMessage = "Размер товара не установлен")]
         [XmlElement(ElementName = "item_size")] 
         public string item_size{ get; set; }
 
+        [Required(ErrorMessage = "Дата поставки товара не установлена")]
         [XmlElement(ElementName = "item_date")] 
         public string item_date { get; set; }
 
+        [Required(ErrorMessage = "Тип товара не установлен")]
         [XmlElement(ElementName = "item_type")] 
         public string item_type { get; set; }
 

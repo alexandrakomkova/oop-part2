@@ -71,11 +71,6 @@ namespace лр_2
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textStatistics = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -172,6 +167,7 @@ namespace лр_2
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(23, 326);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
@@ -421,26 +417,28 @@ namespace лр_2
             // itemToolStripMenuItem
             // 
             this.itemToolStripMenuItem.Name = "itemToolStripMenuItem";
-            this.itemToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.itemToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.itemToolStripMenuItem.Text = "Item Name";
             this.itemToolStripMenuItem.Click += new System.EventHandler(this.названиеToolStripMenuItem_Click);
             // 
             // typeToolStripMenuItem
             // 
             this.typeToolStripMenuItem.Name = "typeToolStripMenuItem";
-            this.typeToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.typeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.typeToolStripMenuItem.Text = "Item Type";
+            this.typeToolStripMenuItem.Click += new System.EventHandler(this.typeToolStripMenuItem_Click);
             // 
             // priceToolStripMenuItem
             // 
             this.priceToolStripMenuItem.Name = "priceToolStripMenuItem";
-            this.priceToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.priceToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.priceToolStripMenuItem.Text = "Item Price";
+            this.priceToolStripMenuItem.Click += new System.EventHandler(this.priceToolStripMenuItem_Click);
             // 
             // moreStripMenuItem3
             // 
             this.moreStripMenuItem3.Name = "moreStripMenuItem3";
-            this.moreStripMenuItem3.Size = new System.Drawing.Size(166, 26);
+            this.moreStripMenuItem3.Size = new System.Drawing.Size(224, 26);
             this.moreStripMenuItem3.Text = "...";
             this.moreStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
@@ -457,21 +455,21 @@ namespace лр_2
             // dateToolStripMenuItem
             // 
             this.dateToolStripMenuItem.Name = "dateToolStripMenuItem";
-            this.dateToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dateToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.dateToolStripMenuItem.Text = "Date";
             this.dateToolStripMenuItem.Click += new System.EventHandler(this.dateToolStripMenuItem_Click);
             // 
             // countryToolStripMenuItem
             // 
             this.countryToolStripMenuItem.Name = "countryToolStripMenuItem";
-            this.countryToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.countryToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.countryToolStripMenuItem.Text = "Country";
             this.countryToolStripMenuItem.Click += new System.EventHandler(this.countryToolStripMenuItem_Click);
             // 
             // nameToolStripMenuItem1
             // 
             this.nameToolStripMenuItem1.Name = "nameToolStripMenuItem1";
-            this.nameToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.nameToolStripMenuItem1.Size = new System.Drawing.Size(166, 26);
             this.nameToolStripMenuItem1.Text = "Item Name";
             this.nameToolStripMenuItem1.Click += new System.EventHandler(this.nameToolStripMenuItem1_Click);
             // 
@@ -495,70 +493,12 @@ namespace лр_2
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label17.Location = new System.Drawing.Point(781, 70);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(54, 17);
-            this.label17.TabIndex = 38;
-            this.label17.Text = "Время:";
-            this.label17.Click += new System.EventHandler(this.label17_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label16.Location = new System.Drawing.Point(781, 53);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(46, 17);
-            this.label16.TabIndex = 37;
-            this.label16.Text = "Дата:";
-            this.label16.Click += new System.EventHandler(this.label16_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label11.Location = new System.Drawing.Point(781, 36);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(156, 17);
-            this.label11.TabIndex = 36;
-            this.label11.Text = "Количество объектов:";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
-            // 
-            // textStatistics
-            // 
-            this.textStatistics.Location = new System.Drawing.Point(778, 31);
-            this.textStatistics.Multiline = true;
-            this.textStatistics.Name = "textStatistics";
-            this.textStatistics.ReadOnly = true;
-            this.textStatistics.Size = new System.Drawing.Size(216, 79);
-            this.textStatistics.TabIndex = 39;
-            this.textStatistics.TextChanged += new System.EventHandler(this.textStatistics_TextChanged);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.label18.Location = new System.Drawing.Point(781, 87);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(153, 17);
-            this.label18.TabIndex = 40;
-            this.label18.Text = "Последняя операция:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1006, 554);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.textStatistics);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
@@ -591,6 +531,7 @@ namespace лр_2
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
             this.Text = "Item";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
@@ -644,11 +585,6 @@ namespace лр_2
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textStatistics;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ToolStripMenuItem moreStripMenuItem3;
     }
 }
