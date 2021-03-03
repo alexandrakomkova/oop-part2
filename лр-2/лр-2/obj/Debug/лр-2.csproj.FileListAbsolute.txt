@@ -11,3 +11,5 @@ D:\uni\ооп\лр-2\лр-2\obj\Debug\лр-2.pdb
 D:\uni\ооп\лр-2\лр-2\obj\Debug\лр_2.Form2.resources
 D:\uni\ооп\лр-2\лр-2\obj\Debug\лр_2.Form3.resources
 D:\uni\ооп\лр-2\лр-2\obj\Debug\лр_2.Form4.resources
+D:\uni\ооп\лр-2\лр-2\bin\Debug\System.ComponentModel.Annotations.dll
+D:\uni\ооп\лр-2\лр-2\obj\Debug\лр-2.csproj.CopyComplete

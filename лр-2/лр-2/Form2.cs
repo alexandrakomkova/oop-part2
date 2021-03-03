@@ -85,6 +85,7 @@ namespace лр_2
         public static string outputForm2, str_fio, str_address, str_country, str_company,str_phone;
         private void button1_Click(object sender, EventArgs e)
         {
+            Form1.lastOperation = "Вывод данных в форме Производитель";
             this.richTextBox1.Text = "ФИО: " + this.textBox1.Text + "\r\n";
             this.richTextBox1.Text += "Огранизация: " + this.textBox2.Text + "\r\n";
             this.richTextBox1.Text += "Страна: " + comboBox1.Text + "\r\n";
@@ -101,6 +102,7 @@ namespace лр_2
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
+            Form1.lastOperation = "Запись данных в форме Производитель";
             form1.item.item_producer.pr_fio = this.textBox1.Text;
             form1.item.item_producer.pr_company = this.textBox2.Text;
             form1.item.item_producer.pr_country = this.comboBox1.Text;
@@ -117,6 +119,7 @@ namespace лр_2
 
         private void label6_Click(object sender, EventArgs e)
         {
+            Form1.lastOperation = "Help";
             MessageBox.Show("Инструкция\nКомкова А.В. 2021");
         }
 
@@ -143,6 +146,7 @@ namespace лр_2
         }
         public void deleteDataForm2()
         {
+           
             textBox1.Text = ""; //фио
             textBox2.Text = ""; //организация
             textBox3.Text = ""; //адрес
@@ -153,6 +157,7 @@ namespace лр_2
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            Form1.lastOperation = "Сброс данных в форме Производитель";
             deleteDataForm2();
         }
     }

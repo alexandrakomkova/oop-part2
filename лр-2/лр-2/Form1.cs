@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -22,15 +23,22 @@ namespace лр_2
         Form form3 = new Form3();
         public Form Form4 = new Form4();
         public int countItems = 0;
-
+        Timer timer;
         public Form1()
         {
             InitializeComponent();
 
-
+            timer = new Timer() { Interval = 1000 };
+            timer.Tick += timer_Do;
+            timer.Start();
+            
 
         }
-
+        void timer_Do(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = $"Время: {DateTime.Now.ToString()} ";
+            toolStripStatusLabel1.Text += $"Количество товаров: {countItems}";
+        }
         public Form1(Form2 form2)
         {
 
@@ -100,6 +108,7 @@ namespace лр_2
         {
             if (textBox2.Text == " " || textBox2.Text.Length == 0)
                 label13.Visible = true;
+            
         }
         public string radioChoice;
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -147,14 +156,7 @@ namespace лр_2
         private void numericUpDown1_Validating(object sender, CancelEventArgs e)
         {
             //количество товаров
-            if (numericUpDown1.Value > numericUpDown1.Maximum)
-            {
-                MessageBox.Show("Максимальное количество товара 100.");
-            }
-            if (numericUpDown1.Value < numericUpDown1.Minimum)
-            {
-                MessageBox.Show("Минимальное количество товара 1.");
-            }
+           
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
@@ -175,6 +177,7 @@ namespace лр_2
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            lastOperation = "Вывод данных";
             string output;
             output = "Название товара: " + this.textBox1.Text + "\r\n";
             output += "Инвентарный номер: " + this.textBox2.Text + "\r\n";
@@ -208,16 +211,6 @@ namespace лр_2
             item.item_count = Convert.ToInt32(numericUpDown1.Text);
             item.item_cost = trackBar2.Value;
 
-            //itemList.Add(new Item(textBox1.Text, 
-            //    Convert.ToInt32(textBox2.Text),
-            //    radioChoice,
-            //    dateTimePicker1.Text,
-            //    producer,
-            //    comboBox1.Text,
-            //    trackBar1.Value,
-            //    Convert.ToInt32(numericUpDown1.Text),
-            //    trackBar2.Value)
-            //    );
 
             itemList.Add(new Item(textBox1.Text,
                Convert.ToInt32(textBox2.Text),
@@ -253,8 +246,8 @@ namespace лр_2
                 }
                 fs.Close();
             }
-           
 
+            lastOperation = "Запись в файл";
             deleteDataForm1();
             
 
@@ -276,8 +269,9 @@ namespace лр_2
         public static List<Item> listFromFile;
         private void button2_Click(object sender, EventArgs e)
         {
-            
-             listFromFile = XmlSerializeWrapper.Deserialize<List<Item>>(@"D:\uni\ооп\infoshop.xml");
+            lastOperation = "Чтение из файла";
+
+            listFromFile = XmlSerializeWrapper.Deserialize<List<Item>>(@"D:\uni\ооп\infoshop.xml");
             this.richTextOutput.Text = "Из файла прочитано:\n";
             foreach (Item itemFromFile in listFromFile)
             {
@@ -323,6 +317,7 @@ namespace лр_2
         }
         public void deleteDataForm1()
         {
+            lastOperation = "Сброс данных в главной форме";
             textBox1.Text = ""; //название товара
             textBox2.Text = ""; //инвентарный номер
             radioChoice = "";
@@ -349,14 +344,21 @@ namespace лр_2
         {
 
         }
-
+        public static string lastOperation;
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Лабораторная работа 3\nКомкова А.В.\n2021");
+            
+            string about = "Разработала: Комкова А.В. 2021\n" +
+                $"Количество объектов: {countItems}\n" +
+                $"Дата и время: {DateTime.Now.ToString()}\n"+
+                $"Последняя операция: {lastOperation}";
+            MessageBox.Show(about) ;
+
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            lastOperation = "Help";
             MessageBox.Show("Инструкция\nКомкова А.В. 2021");
         }
 
@@ -378,24 +380,46 @@ namespace лр_2
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
             //find -> ...
-           
+            lastOperation = "Поиск";
             form3.Show();
         }
 
         private void названиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            lastOperation = "Поиск";
             //find -> item name
             form3.Show();
 
         }
 
-        private void textStatistics_TextChanged(object sender, EventArgs e)
+        public void sortByDate() 
         {
-            //this.textStatistics.Text = $"Количество объектов: {countItems}";
+            var sortByDate = from i in itemList
+                             orderby i.item_date
+                             select i;
+            foreach (Item s in sortByDate)
+            {
+                result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
+                result += "Инвентарный номер: " + s.item_id + "\r\n";
+                result += "Размер: " + s.item_size + "\r\n";
+                result += "Тип: " + s.item_type + "\r\n";
+                result += "Дата поступления: " + s.item_date + "\r\n";
+                result += "Производитель: " + "\n"
+                    + "ФИО: " + s.item_producer.pr_fio + "\r\n"
+                    + "Адрес: " + s.item_producer.pr_address + "\r\n"
+                    + "Огранизация: " + s.item_producer.pr_company + "\r\n"
+                    + "Страна: " + s.item_producer.pr_country + "\r\n"
+                    + "Телефон: " + s.item_producer.pr_phone + "\r\n";
+                result += "Вес: " + s.item_weight + "\r\n";
+                result += "Количество товаров: " + s.item_count + "\r\n";
+                result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
+
+            }
         }
         public static string result;
         private void dateToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            lastOperation = "Сортировка по дате";
             if (itemList.Count == 0)
             {
                 MessageBox.Show("Добавьте товар в главном окне для дальнейшей сортировки.");
@@ -403,27 +427,7 @@ namespace лр_2
             else
             {
                 result = "";
-                var sortByDate = from i in itemList
-                                 orderby i.item_date
-                                 select i;
-                foreach (Item s in sortByDate)
-                {
-                    result += "----------------\n" + "Название товара: " + s.item_name + "\r\n";
-                    result += "Инвентарный номер: " + s.item_id + "\r\n";
-                    result += "Размер: " + s.item_size + "\r\n";
-                    result += "Тип: " + s.item_type + "\r\n";
-                    result += "Дата поступления: " + s.item_date + "\r\n";
-                    result += "Производитель: " + "\n"
-                        + "ФИО: " + s.item_producer.pr_fio + "\r\n"
-                        + "Адрес: " + s.item_producer.pr_address + "\r\n"
-                        + "Огранизация: " + s.item_producer.pr_company + "\r\n"
-                        + "Страна: " + s.item_producer.pr_country + "\r\n"
-                        + "Телефон: " + s.item_producer.pr_phone + "\r\n";
-                    result += "Вес: " + s.item_weight + "\r\n";
-                    result += "Количество товаров: " + s.item_count + "\r\n";
-                    result += "Цена: " + s.item_cost + "\r\n" + "----------------\n";
-
-                }
+                sortByDate();
 
                 MessageBox.Show(result);
             }
@@ -432,6 +436,7 @@ namespace лр_2
 
         private void countryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            lastOperation = "Сортировка по стране производителя";
             if (itemList.Count == 0)
             {
                 MessageBox.Show("Добавьте товар в главном окне для дальнейшей сортировки.");
@@ -466,6 +471,7 @@ namespace лр_2
 
         private void nameToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            lastOperation = "Сортировка по имени";
             if (itemList.Count == 0)
             {
                 MessageBox.Show("Добавьте товар в главном окне для дальнейшей сортировки.");
@@ -501,11 +507,13 @@ namespace лр_2
 
         private void typeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            lastOperation = "Поиск";
             form3.Show();
         }
 
         private void priceToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            lastOperation = "Поиск";
             form3.Show();
         }
 
@@ -518,5 +526,51 @@ namespace лр_2
                  File.Delete(path);
             }
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            deleteDataForm1();
+        }
+
+        private void findByItemNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lastOperation = "Поиск";
+            form3.Show();
+        }
+
+        private void findByItemPriceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lastOperation = "Поиск";
+            form3.Show();
+        }
+
+        private void findByItemTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lastOperation = "Поиск";
+            form3.Show();
+        }
+
+        private void sortByDateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lastOperation = "Сортировка по дате";
+            if (itemList.Count == 0)
+            {
+                MessageBox.Show("Добавьте товар в главном окне для дальнейшей сортировки.");
+            }
+            else
+            {
+                result = "";
+                sortByDate();
+
+                MessageBox.Show(result);
+            }
+        }
+       
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
     }
 }

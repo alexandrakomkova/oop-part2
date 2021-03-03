@@ -12,36 +12,54 @@ namespace лр_2
     [Serializable]
     [XmlRoot(Namespace = "лр_2")]
     [XmlType("Item")]
-
+    public class IdAttribute : ValidationAttribute
+    {
+        
+        public override bool IsValid(object value)
+        {
+            var i = value as Item;
+            if (i.item_id == 0)
+            {
+                this.ErrorMessage = "Идентификационный номер не может быть равен 0.";
+                return false;
+            }
+            return true;
+        }
+    }
     public class Item
     {
 
         [Required(ErrorMessage = "Имя товара не установлено")]
         [XmlElement(ElementName = "item_name")]
         public string item_name { get; set; }
-        [Required(ErrorMessage = "Идентификатор товара не установлен")]
+        [Id]
+        [Required]
         [XmlElement(ElementName = "item_id")]
         public int item_id { get; set; }
-        [Required(ErrorMessage = "Размер товара не установлен")]
+        [Required]
         [XmlElement(ElementName = "item_size")] 
         public string item_size{ get; set; }
 
-        [Required(ErrorMessage = "Дата поставки товара не установлена")]
+        [Required]
         [XmlElement(ElementName = "item_date")] 
         public string item_date { get; set; }
 
-        [Required(ErrorMessage = "Тип товара не установлен")]
+        [Required]
         [XmlElement(ElementName = "item_type")] 
         public string item_type { get; set; }
 
+        [Required]
         [XmlElement(ElementName = "item_weight")] 
         public int item_weight{ get; set; }
 
+        [Required]
         [XmlElement(ElementName = "item_count")] 
         public int item_count { get; set; }
 
+        
         [XmlElement(ElementName = "item_cost")]
         public int item_cost { get; set; }
+        [Required(ErrorMessage = "Производитель товара не установлен")]
         public Producer item_producer { get; set; }
        
         public Item()
@@ -111,5 +129,6 @@ namespace лр_2
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+        
     }
 }
