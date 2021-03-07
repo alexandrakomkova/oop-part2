@@ -130,7 +130,8 @@ namespace лр_2
 
         private void toolSetting_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Setting.someBusinessLogic(this));
+            Setting.someBusinessLogic(this);
+            
         }
 
         private void toolHelp_Click(object sender, EventArgs e)

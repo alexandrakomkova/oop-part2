@@ -15,27 +15,18 @@ namespace лр_2
 {
     public partial class Form1 : Form
     {
-
-        //// содаем объект пекаря
-        //Baker baker = new Baker();
-        //// создаем билдер для ржаного хлеба
-        //BreadBuilder builder = new RyeBreadBuilder();
-        //// выпекаем
-        //Bread ryeBread = baker.Bake(builder);
-        //Console.WriteLine(ryeBread.ToString());
-        //// оздаем билдер для пшеничного хлеба
-        //builder = new WheatBreadBuilder();
-        //Bread wheatBread = baker.Bake(builder);
-        //Console.WriteLine(wheatBread.ToString());
-
         public static MakeProducer maker = new MakeProducer();
-      //  ProducerBuilder builder = new Producer1();
+        //ProducerBuilder builder = new Producer1();
         public static Producer producer = maker.Make(new Producer1());
 
+        public static IFactory factory = new ItemFactory();
+        //public static ItemFactory factory = new ItemFactory();
+        //IFactory factory = new GucciFactory();
+        public Item item = (Item)factory.CreateItem();
+       
 
-       //public static Producer producer = new Producer();
 
-        public Item item = new Item(producer);
+         //public Item item = new Item(producer);
 
         
        
@@ -52,7 +43,15 @@ namespace лр_2
             timer = new Timer() { Interval = 1000 };
             timer.Tick += timer_Do;
             timer.Start();
-            
+            //Setting.someBusinessLogic(this);
+
+            string path = @"D:\uni\ооп\infoshop.xml";
+            FileInfo fileInf = new FileInfo(path);
+            if (fileInf.Exists)
+            {
+               listFromFile = XmlSerializeWrapper.Deserialize<List<Item>>(path);
+            }
+
 
         }
 
@@ -132,7 +131,7 @@ namespace лр_2
                 label13.Visible = true;
             
         }
-        public string radioChoice;
+        public static string radioChoice;
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             //xs-s
@@ -219,32 +218,61 @@ namespace лр_2
 
        
         XmlSerializer formatter = new XmlSerializer(typeof(List<Item>));
+        public static string i_name, i_address, i_country, i_company, i_phone, i_date, i_type, i_producer;
+        public static int i_id, i_weight, i_cost, i_count;
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            i_name = textBox1.Text;
+            i_id = Convert.ToInt32(textBox2.Text);
+            i_date = dateTimePicker1.Text;
+            i_type = comboBox1.Text;
+            i_weight = trackBar1.Value; 
+            i_cost = trackBar2.Value;
+            i_count = Convert.ToInt32(numericUpDown1.Text);
+            // i_producer = Form2.outputForm2;
+
             //запись в файл
-            item.item_name = textBox1.Text;
-            item.item_id = Convert.ToInt32(textBox2.Text);
-            item.item_size = radioChoice;
-            item.item_date = dateTimePicker1.Text;
-            item.item_producer = producer;
-            item.item_type = comboBox1.Text;
-            item.item_weight = trackBar1.Value;
-            item.item_count = Convert.ToInt32(numericUpDown1.Text);
-            item.item_cost = trackBar2.Value;
+            //item.item_name = textBox1.Text;
+            //item.item_id = Convert.ToInt32(textBox2.Text);
+            //item.item_size = radioChoice;
+            //item.item_date = dateTimePicker1.Text;
+            //item.item_producer = producer;
+            //item.item_type = comboBox1.Text;
+            //item.item_weight = trackBar1.Value;
+            //item.item_count = Convert.ToInt32(numericUpDown1.Text);
+            //item.item_cost = trackBar2.Value;
 
-            itemList.Add(new Item(textBox1.Text,
-              Convert.ToInt32(textBox2.Text),
-              radioChoice,
-              dateTimePicker1.Text,
-              producer,
-              comboBox1.Text,
-              trackBar1.Value,
-              Convert.ToInt32(numericUpDown1.Text),
-              trackBar2.Value)
-              );
+            //itemList.Add(new Item(textBox1.Text,
+            //  Convert.ToInt32(textBox2.Text),
+            //  radioChoice,
+            //  dateTimePicker1.Text,
+            //  producer,
+            //  comboBox1.Text,
+            //  trackBar1.Value,
+            //  Convert.ToInt32(numericUpDown1.Text),
+            //  trackBar2.Value)
+            //  );
 
-           
+            itemList.Add((Item)factory.CreateItem());
+
+           // itemList.Add(item);
+            //MessageBox.Show(
+            //    item.item_cost + "\n"+
+            //    item.item_name + "\n"+
+            //    item.item_id + "\n" +
+            //    item.item_count + "\n" +
+            //    item.item_date + "\n" +
+            //    item.item_weight + "\n" +
+            //    item.item_type+ "\n" +
+            //    item.item_size + "\n" +
+            //    item.item_producer + "\n" );
+            //i_name = "";
+            //i_id = 1;
+            //i_date = "";
+            //i_type = "";
+            //i_weight = 1;
+            //i_cost = 1;
+            //i_count = 1;
 
             countItems++;
             using (FileStream fs = new FileStream(@"D:\uni\ооп\infoshop.xml", FileMode.OpenOrCreate))
@@ -307,7 +335,7 @@ namespace лр_2
                 this.richTextOutput.Text += "Вес: " + itemFromFile.item_weight + "\r\n";
                 this.richTextOutput.Text += "Количество товаров: " + itemFromFile.item_count + "\r\n";
                 this.richTextOutput.Text += "Цена: " + itemFromFile.item_cost + "\r\n\n";
-
+                
             }
 
 
@@ -347,6 +375,19 @@ namespace лр_2
             trackBar2.Value = trackBar2.Minimum;
             numericUpDown1.Value = numericUpDown1.Minimum;
             richTextOutput.Text = "";
+
+            i_name = "";
+            i_id = 1;
+            i_date = "";
+            i_type = "";
+            i_weight = 1;
+            i_cost = 1;
+            i_count = 1;
+            producer.pr_address = "";
+            producer.pr_company = "";
+            producer.pr_country = "";
+            producer.pr_fio = "";
+            producer.pr_phone = "";
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -537,12 +578,12 @@ namespace лр_2
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            string path = @"D:\uni\ооп\infoshop.xml";
-            FileInfo fileInf = new FileInfo(path);
-            if (fileInf.Exists)
-            {
-                 File.Delete(path);
-            }
+            //string path = @"D:\uni\ооп\infoshop.xml";
+            //FileInfo fileInf = new FileInfo(path);
+            //if (fileInf.Exists)
+            //{
+            //     File.Delete(path);
+            //}
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -593,7 +634,13 @@ namespace лр_2
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             Form1.lastOperation = "Settings";
-            MessageBox.Show(Setting.someBusinessLogic(this));
+            Setting.someBusinessLogic(this);
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            lastOperation = "Help";
+            MessageBox.Show("Инструкция\nКомкова А.В. 2021");
         }
     }
 }

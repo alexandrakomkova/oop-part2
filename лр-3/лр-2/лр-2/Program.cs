@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,82 +27,115 @@ namespace лр_2
             return true;
         }
     }
-    public class Item
-    {
+   
 
-        [Required(ErrorMessage = "Имя товара не установлено")]
+    public interface IShopItem
+    {
         [XmlElement(ElementName = "item_name")]
-        public string item_name { get; set; }
+        string item_name { get; }
         [Id]
         [Required]
         [XmlElement(ElementName = "item_id")]
-        public int item_id { get; set; }
+        int item_id { get;  }
         [Required]
-        [XmlElement(ElementName = "item_size")] 
-        public string item_size{ get; set; }
+        [XmlElement(ElementName = "item_size")]
+         string item_size { get;  }
 
         [Required]
-        [XmlElement(ElementName = "item_date")] 
-        public string item_date { get; set; }
+        [XmlElement(ElementName = "item_date")]
+         string item_date { get;  }
 
         [Required]
-        [XmlElement(ElementName = "item_type")] 
-        public string item_type { get; set; }
+        [XmlElement(ElementName = "item_type")]
+         string item_type { get;  }
 
         [Required]
-        [XmlElement(ElementName = "item_weight")] 
-        public int item_weight{ get; set; }
+        [XmlElement(ElementName = "item_weight")]
+         int item_weight { get; }
 
         [Required]
-        [XmlElement(ElementName = "item_count")] 
-        public int item_count { get; set; }
+        [XmlElement(ElementName = "item_count")]
+         int item_count { get;  }
 
         [Required]
         [XmlElement(ElementName = "item_cost")]
-        public int item_cost { get; set; }
+         int item_cost { get;  }
         [Required(ErrorMessage = "Производитель товара не установлен")]
-        public Producer item_producer { get; set; }
-       
-        public Item()
-        {
-            
-        }
-        public Item(string item_name, int item_id, string item_size, string item_date,
-           Producer producer, string item_type, int item_weight, int item_cost, int item_count)
-        {
-            this.item_name = item_name;
-            this.item_id = item_id;
-            this.item_size = item_size;
-            this.item_date = item_date;
-            this.item_producer = producer;
-            this.item_type = item_type;
-            this.item_weight = item_weight;
-            this.item_count = item_count;
-            this.item_cost = item_cost;
-        }
-       
-        public Item(Producer producer)
-        {
-            this.item_producer = producer;
-        }
-       
+         Producer item_producer { get;  }
     }
-    //public interface IProducerBuilder 
-    //{
-    //    //IProducerBuilder SetName(string fio);
-    //    //IProducerBuilder SetCompany(string company);
-    //    //IProducerBuilder SetAddress(string address);
-    //    //IProducerBuilder SetPhone(string phone);
-    //    //IProducerBuilder SetCountry(string country);
+    public class Item : IShopItem
+    {
+        [XmlElement(ElementName = "item_name")]
+        public string item_name => Form1.i_name;
+        // public string item_name => Form1.i_name;
+        [XmlElement(ElementName = "item_id")]
+        public int item_id => Form1.i_id;
+        [XmlElement(ElementName = "item_size")]
+        public string item_size => Form1.radioChoice;
+        [XmlElement(ElementName = "item_date")]
+        public string item_date => Form1.i_date;
+        [XmlElement(ElementName = "item_type")]
+        public string item_type => Form1.i_type;
+        [XmlElement(ElementName = "item_weight")]
+        public int item_weight => Form1.i_weight;
+        [XmlElement(ElementName = "item_count")]
+        public int item_count => Form1.i_count;
+        [XmlElement(ElementName = "item_cost")]
+        public int item_cost => Form1.i_cost;
+        [Required(ErrorMessage = "Производитель товара не установлен")]
+        public Producer item_producer => Form1.producer;
 
-    //    ////void SetName(string fio);
-    //    ////void SetCompany(string company);
-    //    ////void SetAddress(string address);
-    //    ////void SetPhone(string phone);
-    //    ////void SetCountry(string country);
+        //public Item()
+        //{
+        //    //string item_name = Form1.i_name;
+        //    //int item_id = Form1.i_id;
+        //    //string item_size = Form1.radioChoice;
+        //    //string item_date = Form1.i_date;
+        //    //string item_type = Form1.i_type;
+        //    //int item_weight = Form1.i_weight;
+        //    //int item_count = Form1.i_count;
+        //    //int item_cost = Form1.i_cost;
+        //    //Producer item_producer = Form1.producer;
+        //}
+    
+        //public Item(string item_name, int item_id, string item_size, string item_date,
+        //   Producer producer, string item_type, int item_weight, int item_cost, int item_count)
+        //{
+        //    this.item_name = item_name;
+        //    this.item_id = item_id;
+        //    this.item_size = item_size;
+        //    this.item_date = item_date;
+        //    this.item_producer = producer;
+        //    this.item_type = item_type;
+        //    this.item_weight = item_weight;
+        //    this.item_count = item_count;
+        //    this.item_cost = item_cost;
+        //}
 
+        //public Item(Producer producer)
+        //{
+        //    this.item_producer => Form1.producer;
+        //}
 
-    //}
+    }
+    public interface IFactory
+    {
+        IShopItem CreateItem();
+        //Item CreateItem();
+    }
+    public class ItemFactory : IFactory
+    {
+        //public Item CreateItem()
+        //{
+        //    return new Item(); 
+        //}
+        public IShopItem CreateItem()
+        {
+            return new Item();
+        }
+
+    }
+
 
     public abstract class ProducerBuilder
     {
@@ -116,7 +150,7 @@ namespace лр_2
         public abstract void SetPhone(string phone);
         public abstract void SetCountry(string country);
     }
-    public class Producer  //: IProducerBuilder
+    public class Producer  
     {
         [XmlElement(ElementName = "pr_fio")]
         public string pr_fio { get; set; }
@@ -130,21 +164,9 @@ namespace лр_2
         public string pr_country { get; set; }
     }
     [Serializable]
-    public class Producer1 : ProducerBuilder //: IProducerBuilder
+    public class Producer1 : ProducerBuilder 
     {
-        //[XmlElement(ElementName = "pr_fio")]
-        //public string pr_fio { get; set; }
-        //[XmlElement(ElementName = "pr_company")]
-        //public string pr_company { get; set; }
-        //[XmlElement(ElementName = "pr_address")]
-        //public string pr_address { get; set; }
-        //[XmlElement(ElementName = "pr_phone")]
-        //public string pr_phone { get; set; }
-        //[XmlElement(ElementName = "pr_country")]
-        //public string pr_country { get; set; }
-
-
-
+       
         public override void SetName(string fio)
         {
             this.Producer.pr_fio = fio;
@@ -188,15 +210,24 @@ namespace лр_2
         {
             return _instance ?? (_instance = new Setting());
         }
-        public static string someBusinessLogic(Form f)
+        public static void someBusinessLogic(Form f)
         {
-            string res = "Назвние формы: " + f.Text + "\n";
-            res += "Размер формы: " + f.ClientSize + "\n";
-            res += "Цвет фона формы: " + f.BackColor + "\n";
-            return res;
+           f.BackColor = ColorTranslator.FromHtml("#FFF0F5");
+           f.Font = new Font("Times New Roman", 10, FontStyle.Italic);
+           f.Size = new Size(1000, 600);
         }
-    }
-    static class Program
+        //public static string settingsInfo(Form f)
+        //{
+           
+        //    string res = "Назвние формы: " + f.Text + "\n";
+        //    res += "Размер формы: " + f.ClientSize + "\n";
+        //    res += "Цвет фона формы: " + f.BackColor + "\n";
+        //    res += "Шрифт формы: " + f.Font + "\n";
+        //    return res;
+
+        //}
+}
+static class Program
     {
         /// <summary>
         /// Главная точка входа для приложения.

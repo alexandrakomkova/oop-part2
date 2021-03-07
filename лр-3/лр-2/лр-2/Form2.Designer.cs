@@ -259,7 +259,7 @@ namespace лр_2
             this.toolSetting.Image = ((System.Drawing.Image)(resources.GetObject("toolSetting.Image")));
             this.toolSetting.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolSetting.Name = "toolSetting";
-            this.toolSetting.Size = new System.Drawing.Size(27, 24);
+            this.toolSetting.Size = new System.Drawing.Size(37, 24);
             this.toolSetting.Text = "toolStripButton1";
             this.toolSetting.Click += new System.EventHandler(this.toolSetting_Click);
             // 
@@ -280,9 +280,9 @@ namespace лр_2
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolSetting,
             this.toolHelp});
-            this.toolStrip1.Location = new System.Drawing.Point(519, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(509, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(30, 555);
+            this.toolStrip1.Size = new System.Drawing.Size(40, 555);
             this.toolStrip1.TabIndex = 20;
             this.toolStrip1.Text = "toolStrip1";
             // 
