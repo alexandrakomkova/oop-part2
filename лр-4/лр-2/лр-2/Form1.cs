@@ -18,6 +18,8 @@ namespace лр_2
         public static MakeProducer maker = new MakeProducer();
         //ProducerBuilder builder = new Producer1();
         public static Producer producer = maker.Make(new Producer1());
+        
+       
 
         // public static Producer producer = new Producer();
 
@@ -32,6 +34,7 @@ namespace лр_2
 
 
         public static List<Item> itemList = new List<Item> { };
+        public static List<ICopy> prList = new List<ICopy> { };
         Form form3 = new Form3();
         public Form Form4 = new Form4();
         public int countItems = 0;
@@ -255,6 +258,7 @@ namespace лр_2
               state
               )
               );
+           
 
 
             countItems++;
@@ -615,5 +619,10 @@ namespace лр_2
             MessageBox.Show("Инструкция\nКомкова А.В. 2021");
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ICopy clone = item.Clone();
+            MessageBox.Show("копирование");
+        }
     }
 }

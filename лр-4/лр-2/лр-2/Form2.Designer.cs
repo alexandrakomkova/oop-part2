@@ -269,7 +269,7 @@ namespace лр_2
             this.toolHelp.Image = ((System.Drawing.Image)(resources.GetObject("toolHelp.Image")));
             this.toolHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolHelp.Name = "toolHelp";
-            this.toolHelp.Size = new System.Drawing.Size(37, 24);
+            this.toolHelp.Size = new System.Drawing.Size(27, 24);
             this.toolHelp.Text = "toolStripButton2";
             this.toolHelp.Click += new System.EventHandler(this.toolHelp_Click);
             // 

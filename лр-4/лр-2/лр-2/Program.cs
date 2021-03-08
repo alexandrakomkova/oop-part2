@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -15,7 +18,7 @@ namespace лр_2
     [XmlType("Item")]
     public class IdAttribute : ValidationAttribute
     {
-        
+
         public override bool IsValid(object value)
         {
             var i = value as Item;
@@ -28,18 +31,18 @@ namespace лр_2
         }
     }
 
-    public abstract class State 
+    public abstract class State
     {
         public abstract new string ToString();
     }
-    public class New : State 
+    public class New : State
     {
-        public override string ToString() 
+        public override string ToString()
         {
             return "новинка!";
         }
     }
-    public class Old : State 
+    public class Old : State
     {
         public override string ToString()
         {
@@ -60,10 +63,14 @@ namespace лр_2
         public State CreateState()
         { return new Old(); }
     }
+    public interface ICopy
+    {
+        ICopy Clone();
+        
+    }
 
-
-
-    public class Item
+    [Serializable]
+    public class Item : ICopy
     {
 
         [Required(ErrorMessage = "Имя товара не установлено")]
@@ -125,7 +132,12 @@ namespace лр_2
         public Item(Producer producer)
         {
             this.item_producer = producer;
-           
+
+        }
+        public ICopy Clone()
+        {
+
+            return new Item(this.item_producer);
         }
 
     }
@@ -143,9 +155,9 @@ namespace лр_2
         public abstract void SetPhone(string phone);
         public abstract void SetCountry(string country);
     }
-   
+
     [Serializable]
-    public class Producer
+    public class Producer 
     {
         [XmlElement(ElementName = "pr_fio")]
         public string pr_fio { get; set; }
@@ -157,6 +169,8 @@ namespace лр_2
         public string pr_phone { get; set; }
         [XmlElement(ElementName = "pr_country")]
         public string pr_country { get; set; }
+        
+
     }
     [Serializable]
     public class Producer1 : ProducerBuilder
@@ -207,13 +221,15 @@ namespace лр_2
         }
         public static void someBusinessLogic(Form f)
         {
-           f.BackColor = ColorTranslator.FromHtml("#FFF0F5");
-           f.Font = new Font("Times New Roman", 10, FontStyle.Italic);
-           f.Size = new Size(1000, 600);
+            f.BackColor = ColorTranslator.FromHtml("#FFF0F5");
+            f.Font = new Font("Times New Roman", 10, FontStyle.Italic);
+            f.Size = new Size(1000, 600);
         }
-      
-}
-static class Program
+
+    }
+    
+    
+    static class Program
     {
         /// <summary>
         /// Главная точка входа для приложения.
@@ -225,9 +241,9 @@ static class Program
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
-       
+
 
         }
-        
+
     }
 }

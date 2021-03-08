@@ -140,6 +140,8 @@ namespace лр_2
             MessageBox.Show("Инструкция\nКомкова А.В. 2021");
         }
 
+       
+
         private void label8_Click(object sender, EventArgs e)
         {
 

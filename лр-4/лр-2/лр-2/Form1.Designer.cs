@@ -86,6 +86,7 @@ namespace лр_2
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.checkNew = new System.Windows.Forms.CheckBox();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -426,7 +427,7 @@ namespace лр_2
             this.typeToolStripMenuItem,
             this.priceToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(51, 26);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(51, 24);
             this.toolStripMenuItem1.Text = "Find";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -458,7 +459,7 @@ namespace лр_2
             this.countryToolStripMenuItem,
             this.nameToolStripMenuItem1});
             this.сортировкаToolStripMenuItem.Name = "сортировкаToolStripMenuItem";
-            this.сортировкаToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
+            this.сортировкаToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.сортировкаToolStripMenuItem.Text = "Sort by";
             // 
             // dateToolStripMenuItem
@@ -485,20 +486,20 @@ namespace лр_2
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(54, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
@@ -643,12 +644,23 @@ namespace лр_2
             this.checkNew.UseVisualStyleBackColor = true;
             this.checkNew.CheckedChanged += new System.EventHandler(this.checkNew_CheckedChanged);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(774, 164);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(146, 66);
+            this.button6.TabIndex = 39;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1006, 618);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.checkNew);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -757,6 +769,7 @@ namespace лр_2
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.CheckBox checkNew;
+        private System.Windows.Forms.Button button6;
     }
 }
 
