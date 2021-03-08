@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,13 +33,80 @@ namespace лр_2
         { 
             this.Hide();
         }
+
+        //---------------------------------------------------------------------
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                findName();
+            }
+            Form1.lastOperation = "Поиск по имени товара";
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                findType();
+            }
+            Form1.lastOperation = "Поиск по типу товара";
+            if ((checkBox1.Checked && checkBox2.Checked) || (checkBox2.Checked && checkBox1.Checked))
+            {
+                selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
+                                from a in Form1.itemList
+                                where t.item_type == this.comboFindType.Text //фильтрация по критерию
+                                //фильтрация по критерию
+                                where a.item_name == this.textFindName.Text
+                                select t; // выбираем объект
+            }
+            if ((checkBox2.Checked && checkBox3.Checked) || (checkBox3.Checked && checkBox2.Checked))
+            {
+                selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
+                                from a in Form1.itemList
+                                where t.item_type == this.comboFindType.Text //фильтрация по критерию
+                                                                             //фильтрация по критерию
+                                where a.item_cost > Convert.ToInt32(this.textPriceLow.Text) &&
+                               a.item_cost < Convert.ToInt32(this.textPriceUp.Text)
+                                select t; // выбираем объект
+            }
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked)
+            {
+                findPrice();
+            }
+            Form1.lastOperation = "Поиск по цене товара";
+
+            if ((checkBox1.Checked && checkBox3.Checked) || (checkBox3.Checked && checkBox1.Checked))
+            {
+                selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
+                                from a in Form1.itemList
+                                where t.item_cost > Convert.ToInt32(this.textPriceLow.Text) &&
+                                t.item_cost < Convert.ToInt32(this.textPriceUp.Text)
+                                //фильтрация по критерию
+                                where a.item_name == this.textFindName.Text
+                                select t; // выбираем объект
+            }
+
+        }
+        //---------------------------------------------------------------------
+
+
         public IEnumerable<Item> selectedItems;
         public void findName() 
         {
             try
             {
+                string s = textFindName.Text;
+                string pattern = $"{s}";
+                
+                Regex regex = new Regex(pattern);
                 selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
-                                where t.item_name == this.textFindName.Text //фильтрация по критерию
+                                where regex.IsMatch(t.item_name)
                                 select t; // выбираем объект
             }
             catch 
@@ -150,64 +218,7 @@ namespace лр_2
             this.textPriceUp.Text = "10";
         }
 
-        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked) 
-            {
-                findName();
-            }
-            Form1.lastOperation = "Поиск по имени товара";
-            
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox2.Checked)
-            {
-                findType();
-            }
-            Form1.lastOperation = "Поиск по типу товара";
-            if ((checkBox1.Checked && checkBox2.Checked) || (checkBox2.Checked && checkBox1.Checked))
-            {
-                selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
-                                from a in Form1.itemList
-                                where t.item_type == this.comboFindType.Text //фильтрация по критерию
-                                //фильтрация по критерию
-                                where a.item_name == this.textFindName.Text
-                                select t; // выбираем объект
-            }
-            if ((checkBox2.Checked && checkBox3.Checked) || (checkBox3.Checked && checkBox2.Checked))
-            {
-                selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
-                                from a in Form1.itemList
-                                where t.item_type == this.comboFindType.Text //фильтрация по критерию
-                                                                             //фильтрация по критерию
-                                where a.item_cost > Convert.ToInt32(this.textPriceLow.Text) &&
-                               a.item_cost < Convert.ToInt32(this.textPriceUp.Text)
-                                select t; // выбираем объект
-            }
-        }
-
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox3.Checked)
-            {
-                findPrice();
-            }
-            Form1.lastOperation = "Поиск по цене товара";
-            
-            if ((checkBox1.Checked && checkBox3.Checked) || (checkBox3.Checked && checkBox1.Checked))
-            {
-                selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
-                                from a in Form1.itemList
-                                where t.item_cost > Convert.ToInt32(this.textPriceLow.Text) &&
-                                t.item_cost < Convert.ToInt32(this.textPriceUp.Text)
-                                //фильтрация по критерию
-                                where a.item_name == this.textFindName.Text
-                                select t; // выбираем объект
-            }
-
-        }
+       
         private void buttonFind_Click(object sender, EventArgs e)
         {
             if (checkBox1.Checked == false &&

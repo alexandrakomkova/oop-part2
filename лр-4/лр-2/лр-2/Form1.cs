@@ -50,7 +50,12 @@ namespace лр_2
             FileInfo fileInf = new FileInfo(path);
             if (fileInf.Exists)
             {
-              // listFromFile = XmlSerializeWrapper.Deserialize<List<Item>>(path);
+                itemList = XmlSerializeWrapper.Deserialize<List<Item>>(path);
+                
+                foreach (Item itemFromFile in itemList)
+                {
+                    countItems++;
+                }
             }
 
 
@@ -294,7 +299,7 @@ namespace лр_2
         private void button2_Click(object sender, EventArgs e)
         {
             lastOperation = "Чтение из файла";
-
+           
             listFromFile = XmlSerializeWrapper.Deserialize<List<Item>>(@"D:\uni\ооп\infoshop.xml");
             this.richTextOutput.Text = "Из файла прочитано:\n";
             foreach (Item itemFromFile in listFromFile)
