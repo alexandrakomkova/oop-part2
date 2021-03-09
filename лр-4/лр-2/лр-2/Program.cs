@@ -134,10 +134,26 @@ namespace лр_2
             this.item_producer = producer;
 
         }
+        //public ICopy Clone()
+        //{
+
+        //    return new Item(this.item_producer);
+        //}
         public ICopy Clone()
         {
 
-            return new Item(this.item_producer);
+            return new Item(
+                this.item_name,
+            this.item_id ,
+            this.item_size,
+            this.item_date ,
+            this.item_producer ,
+            this.item_type,
+            this.item_weight,
+            this.item_count,
+            this.item_cost,
+            this.item_new
+                );
         }
 
     }

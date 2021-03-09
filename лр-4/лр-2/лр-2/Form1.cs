@@ -34,7 +34,8 @@ namespace лр_2
 
 
         public static List<Item> itemList = new List<Item> { };
-        public static List<ICopy> prList = new List<ICopy> { };
+        public static List<Item> reservList = new List<Item> { };
+        // public static List<ICopy> prList = new List<ICopy> { };
         Form form3 = new Form3();
         public Form Form4 = new Form4();
         public int countItems = 0;
@@ -227,14 +228,17 @@ namespace лр_2
             if (checkNew.Checked == true)
             {
                 State newItem;
+                
                 newItem = newFactory.CreateState();
                 state = newItem.ToString();
+                item.item_new = state;
             }
             else
             {
-                  State oldItem;
+                State oldItem;
                 oldItem= oldFactory.CreateState();
                 state = oldItem.ToString();
+                item.item_new = state;
             }
         }
         XmlSerializer formatter = new XmlSerializer(typeof(List<Item>));
@@ -242,9 +246,21 @@ namespace лр_2
         private void button1_Click(object sender, EventArgs e)
         {
             //запись в файл
+            item.item_name = textBox1.Text;
+            item.item_id = Convert.ToInt32(textBox2.Text);
+            item.item_size = radioChoice;
+            item.item_date = dateTimePicker1.Text;
+            item.item_producer = producer;
+            item.item_type = comboBox1.Text;
+            item.item_weight = trackBar1.Value;
+            item.item_count = Convert.ToInt32(numericUpDown1.Text);
+            item.item_cost = trackBar2.Value;
+
+            ICopy clone = item.Clone();
+            // MessageBox.Show("копирование");
+            reservList.Add((Item)clone);
 
             
-
 
             itemList.Add(new Item(textBox1.Text,
               Convert.ToInt32(textBox2.Text),
@@ -279,7 +295,20 @@ namespace лр_2
                 }
                 fs.Close();
             }
+            using (FileStream fs = new FileStream(@"D:\uni\ооп\copy.xml", FileMode.OpenOrCreate))
+            {
+                try
+                {
+                    formatter.Serialize(fs, reservList);
 
+                }
+                catch
+                {
+                    MessageBox.Show("Резервное копирвоание не произошло");
+                }
+                
+                fs.Close();
+            }
             lastOperation = "Запись в файл";
             deleteDataForm1();
             
@@ -619,10 +648,6 @@ namespace лр_2
             MessageBox.Show("Инструкция\nКомкова А.В. 2021");
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            ICopy clone = item.Clone();
-            MessageBox.Show("копирование");
-        }
+       
     }
 }

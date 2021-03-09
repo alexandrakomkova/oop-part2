@@ -52,23 +52,23 @@ namespace лр_2
                 findType();
             }
             Form1.lastOperation = "Поиск по типу товара";
+            //((checkBox1.Checked && checkBox2.Checked) || (checkBox2.Checked && checkBox1.Checked))
             if ((checkBox1.Checked && checkBox2.Checked) || (checkBox2.Checked && checkBox1.Checked))
             {
                 selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
-                                from a in Form1.itemList
                                 where t.item_type == this.comboFindType.Text //фильтрация по критерию
                                 //фильтрация по критерию
-                                where a.item_name == this.textFindName.Text
+                                && t.item_name == this.textFindName.Text
                                 select t; // выбираем объект
             }
+            //((checkBox2.Checked && checkBox3.Checked) || (checkBox3.Checked && checkBox2.Checked))
             if ((checkBox2.Checked && checkBox3.Checked) || (checkBox3.Checked && checkBox2.Checked))
             {
                 selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
-                                from a in Form1.itemList
                                 where t.item_type == this.comboFindType.Text //фильтрация по критерию
                                                                              //фильтрация по критерию
-                                where a.item_cost > Convert.ToInt32(this.textPriceLow.Text) &&
-                               a.item_cost < Convert.ToInt32(this.textPriceUp.Text)
+                                && t.item_cost > Convert.ToInt32(this.textPriceLow.Text) &&
+                               t.item_cost < Convert.ToInt32(this.textPriceUp.Text)
                                 select t; // выбираем объект
             }
         }
@@ -80,15 +80,13 @@ namespace лр_2
                 findPrice();
             }
             Form1.lastOperation = "Поиск по цене товара";
-
+            //((checkBox1.Checked && checkBox3.Checked) || (checkBox3.Checked && checkBox1.Checked))
             if ((checkBox1.Checked && checkBox3.Checked) || (checkBox3.Checked && checkBox1.Checked))
             {
                 selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
-                                from a in Form1.itemList
                                 where t.item_cost > Convert.ToInt32(this.textPriceLow.Text) &&
                                 t.item_cost < Convert.ToInt32(this.textPriceUp.Text)
-                                //фильтрация по критерию
-                                where a.item_name == this.textFindName.Text
+                                && t.item_name == this.textFindName.Text
                                 select t; // выбираем объект
             }
 
@@ -101,8 +99,8 @@ namespace лр_2
         {
             try
             {
-                string s = textFindName.Text;
-                string pattern = $"{s}";
+                
+                string pattern = $"{textFindName.Text}";
                 
                 Regex regex = new Regex(pattern);
                 selectedItems = from t in Form1.itemList // определяем каждый объект из teams как t
