@@ -229,9 +229,11 @@ namespace лр_2
             if (checkNew.Checked == true)
             {
                 State newItem;
-                
+                Client c = new Client();
+                Super s = new Super();
                 newItem = newFactory.CreateState();
-                state = newItem.ToString();
+                //state = newItem.ToString();
+                state = c.ToString(s);
                 item.item_new = state;
                 //stock.NewAppear();
                 flag = true;

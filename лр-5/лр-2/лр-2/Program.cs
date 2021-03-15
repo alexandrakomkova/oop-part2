@@ -45,10 +45,38 @@ namespace лр_2
         void RemoveObserver(IObserver o);
         void NotifyObservers();
     }
-    public abstract class State 
+
+
+    public class Client //то что использует весь адаптер
+    {
+        public virtual string ToString(Super s)
+        {
+            return s.ToString();
+        }
+    }
+
+
+    // класс, к которому надо адаптировать другой класс   
+    public class Super
+    {
+        public virtual new string ToString()
+        {
+           return "супер новинка";
+        }
+    }
+    class Adapter : Super
+    {
+        private New n = new New();
+
+        public override string ToString()
+        {
+           return n.ToString();
+        }
+    }
+    public abstract class State
     {
         public abstract new string ToString();
-       
+
     }
     public class Stock : IObservable
     {
