@@ -13,3 +13,5 @@ D:\uni\ооп\лр-67\лр-67\obj\Debug\лр-67.csproj.GenerateResource.cache
 D:\uni\ооп\лр-67\лр-67\obj\Debug\лр-67.csproj.CoreCompileInputs.cache
 D:\uni\ооп\лр-67\лр-67\obj\Debug\лр-67.exe
 D:\uni\ооп\лр-67\лр-67\obj\Debug\лр-67.pdb
+D:\uni\ооп\лр-67\лр-67\obj\Debug\AddFly.g.cs
+D:\uni\ооп\лр-67\лр-67\obj\Debug\AddFly.baml

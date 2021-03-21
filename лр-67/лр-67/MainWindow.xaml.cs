@@ -25,9 +25,37 @@ namespace лр_67
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+           this.Close();
+           
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddFly addFlyWindow = new AddFly();
+            addFlyWindow.Show();
+        }
+
+        private void Toolbar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left) 
+            {
+                this.DragMove();
+            }
+        }
+
+        //private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (e.ChangedButton == MouseButton.Left)
+        //    {
+        //        this.DragMove();
+        //    }
+        //}
     }
 }
+/*
+ * <GradientStop Color="#FF0B0B76" Offset="0.092"/>
+                <GradientStop Color="#FF6573FF" Offset="0.648"/>
+                <GradientStop Color="#FFCE6BA8" Offset="0.997"/>
+ */

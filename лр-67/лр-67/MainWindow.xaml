@@ -5,19 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:лр_67"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1000" WindowStyle="None">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="415*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Выход" HorizontalAlignment="Left" Height="26" Margin="903,16,0,0" VerticalAlignment="Top" Width="67" Click="Button_Click" Grid.Column="1"/>
+        Title="MainWindow" Height="700" Width="700" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF0B0B76" Offset="0"/>
+            <GradientStop Color="#FF9550B7" Offset="1"/>
+            <GradientStop Color="#C86573FF" Offset="0.811"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid  RenderTransformOrigin="0.945,0.037" Margin="0,0,0,0">
+        <Grid Name="Toolbar" Background="Transparent" Grid.Row="0" MouseDown="Toolbar_MouseDown" Margin="0,0,0,635">
+            <Button x:Name="ExitButton" Content="Выход" HorizontalAlignment="Left" Height="26" Margin="604,19,-964,0" VerticalAlignment="Top" Width="70" Click="ExitButton_Click" Grid.Column="1"/>
+            <Button x:Name="AddButton" Content="Добавить" HorizontalAlignment="Left" Height="26" Margin="514,19,0,0" VerticalAlignment="Top" Width="70" Click="AddButton_Click"/>
+        </Grid>
+
 
     </Grid>
 </Window>
