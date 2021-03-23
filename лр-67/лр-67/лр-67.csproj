@@ -68,6 +68,7 @@
     <Compile Include="AddFly.xaml.cs">
       <DependentUpon>AddFly.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Airline.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<AirlineList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Collection>
+    <Airline>
+      <id xmlns="лр_67">0</id>
+      <company xmlns="лр_67">белавия</company>
+      <from xmlns="лр_67">минск</from>
+      <to xmlns="лр_67">париж</to>
+      <price xmlns="лр_67">12</price>
+      <shortcode xmlns="лр_67">МИНСК-ПАРИЖ</shortcode>
+      <fullcode xmlns="лр_67">МНСК-ПРЖ</fullcode>
+    </Airline>
+    <Airline>
+      <id xmlns="лр_67">1</id>
+      <company xmlns="лр_67">аэрофлот</company>
+      <from xmlns="лр_67">минск</from>
+      <to xmlns="лр_67">кавказ</to>
+      <price xmlns="лр_67">122</price>
+      <shortcode xmlns="лр_67">МИНСК-КАВКАЗ</shortcode>
+      <fullcode xmlns="лр_67">МНСК-КВКЗ</fullcode>
+    </Airline>
+  </Collection>
+</AirlineList>
