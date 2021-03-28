@@ -3,21 +3,13 @@
   <Collection>
     <Airline>
       <id xmlns="лр_67">0</id>
-      <company xmlns="лр_67">белавия</company>
-      <from xmlns="лр_67">минск</from>
-      <to xmlns="лр_67">париж</to>
-      <price xmlns="лр_67">12</price>
-      <shortcode xmlns="лр_67">МИНСК-ПАРИЖ</shortcode>
-      <fullcode xmlns="лр_67">МНСК-ПРЖ</fullcode>
-    </Airline>
-    <Airline>
-      <id xmlns="лр_67">1</id>
-      <company xmlns="лр_67">аэрофлот</company>
-      <from xmlns="лр_67">минск</from>
-      <to xmlns="лр_67">кавказ</to>
-      <price xmlns="лр_67">122</price>
-      <shortcode xmlns="лр_67">МИНСК-КАВКАЗ</shortcode>
-      <fullcode xmlns="лр_67">МНСК-КВКЗ</fullcode>
+      <company xmlns="лр_67">k</company>
+      <from xmlns="лр_67">k</from>
+      <to xmlns="лр_67">k</to>
+      <price xmlns="лр_67">9</price>
+      <shortcode xmlns="лр_67">K-K</shortcode>
+      <fullcode xmlns="лр_67">K-K</fullcode>
+      <imageURL xmlns="лр_67">C:\Users\Sasha\Desktop\vAAnG1qww4o.jpg</imageURL>
     </Airline>
   </Collection>
 </AirlineList>

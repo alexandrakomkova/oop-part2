@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:лр_67"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="700" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="700" Width="700" WindowStyle="None" WindowStartupLocation="CenterScreen" >
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF0B0B76" Offset="0"/>
@@ -13,12 +13,84 @@
             <GradientStop Color="#C86573FF" Offset="0.811"/>
         </LinearGradientBrush>
     </Window.Background>
+
+    <Window.Resources>
+
+
+    </Window.Resources>
+
     <Grid  RenderTransformOrigin="0.945,0.037" Margin="0,0,0,0">
-        <Grid Name="Toolbar" Background="Transparent" Grid.Row="0" MouseDown="Toolbar_MouseDown" Margin="0,0,0,635">
-            <Button x:Name="ExitButton" Content="Выход" HorizontalAlignment="Left" Height="26" Margin="604,19,-964,0" VerticalAlignment="Top" Width="70" Click="ExitButton_Click" Grid.Column="1"/>
-            <Button x:Name="AddButton" Content="Добавить" HorizontalAlignment="Left" Height="26" Margin="514,19,0,0" VerticalAlignment="Top" Width="70" Click="AddButton_Click"/>
+        <Grid Name="Logo" Background="Transparent"  Grid.Row="0">
+            <Image x:Name="LogoImage" Source="D:/logo.png" Width="40" Height="40" Margin="20,10,633.6,643.6" />
+
+        </Grid>
+        <Grid Name="Toolbar" Background="Transparent" Grid.Row="0" MouseDown="Toolbar_MouseDown" Margin="-1,0,1,630">
+            <Button x:Name="ExitButton" Content="Выход" HorizontalAlignment="Left" Height="25" Margin="604,20,-964,0" VerticalAlignment="Top" Width="70" Click="ExitButton_Click" Grid.Column="1"/>
+
+            <ComboBox x:Name="ComboLanguage"  HorizontalAlignment="Left" Height="25" Margin="539,20,0,0" VerticalAlignment="Top" Width="50">
+                <ComboBoxItem Name="LanguageRus" Content="Rus" Height="20" Width="50" IsSelected="True" Selected="LanguageRus_Selected"/>
+                <ComboBoxItem Name="LanguageEng" Content="Eng" Height="20" Width="50" Selected="LanguageEng_Selected"/>
+            </ComboBox>
+
+
+        </Grid>
+        <Grid x:Name="Instruments" Margin="0,65,530,-0">
+            <Label x:Name="PanelInstruments" Foreground="White" FontStyle="Normal" Content="Панель инструментов" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" />
+            <Button x:Name="AddButton" Content="Добавить" HorizontalAlignment="Left" Height="25" Margin="10,102,0,0" VerticalAlignment="Top" Width="105" Click="AddButton_Click"/>
+            <Button x:Name="ViewAllButton" Content="Посмотреть все" HorizontalAlignment="Left" Height="25" Margin="10,72,0,0" VerticalAlignment="Top" Width="105" Click="ViewAllButton_Click"/>
+            <Label x:Name="SortBy" Foreground="White" FontStyle="Normal" Content="Сортировка" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top" />
+            <Button x:Name="DeleteButton" Content="Удалить" HorizontalAlignment="Left" Height="25" Margin="10,132,0,0" VerticalAlignment="Top" Width="105" Click="DeleteButton_Click"/>
         </Grid>
 
+        <!-- <Grid Name="TemplateGrid" Visibility="Hidden">
+            <Rectangle x:Name="Template" Fill="#FFDBDBEA" HorizontalAlignment="Left" Height="128" Margin="30,90,0,0" Stroke="black" VerticalAlignment="Top" Width="300"/>
+            <Grid Name="TemplateGridImage"  Background="white" Grid.Row="0"  HorizontalAlignment="Left" Height="100" Margin="45,105,0,0" VerticalAlignment="Top" Width="100">
+                <Image x:Name="TemplateImage" HorizontalAlignment="Left" Height="100" Margin="45,105,0,0" VerticalAlignment="Top" Width="100"/>
+            </Grid>
+            <Label Content="Label" HorizontalAlignment="Left" Margin="164,105,0,0" VerticalAlignment="Top"/>
+        </Grid>-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="1" Text="Досптупные авиарейсы" Margin="170,95,249.6,577.6" RenderTransformOrigin="0.492,0.459" Foreground="White"/>
+            <ListView ItemsSource="{Binding list}" x:Name="ListViewCollection"
+            Background="GhostWhite" Foreground="Black" BorderThickness="2" Margin="170,120,19.6,284.6" Grid.Row="1" SelectionMode="Single">
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <StackPanel x:Name="panel">
+                                    <TextBlock Text="{Binding}"/>
+                                </StackPanel>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="panel" Property="Background" Value="Gray"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="40" Header="ID" DisplayMemberBinding="{Binding f_id}"/>
+                        <GridViewColumn Width="40" Header="" DisplayMemberBinding="{Binding imagePath}"/>
+                        <!-- <Image Source="{Binding imagePath}" Height="40" Width="40" Margin="20,20,0,0" Stretch="UniformToFill"/>-->
+                        <GridViewColumn Width="80" Header="Компания" DisplayMemberBinding="{Binding f_company}"/>
+                        <GridViewColumn Header="Цена" Width="50" DisplayMemberBinding="{Binding f_price}"/>
+                        <GridViewColumn Width="80" Header="Код рейса" DisplayMemberBinding="{Binding f_shortname}"/>
+                        <GridViewColumn Width="120" Header="Рейс" DisplayMemberBinding="{Binding f_fullname}"/>
+
+
+                    </GridView>
+                  
+                </ListView.View>
+            </ListView>
+        </Grid>
 
     </Grid>
+
+
 </Window>

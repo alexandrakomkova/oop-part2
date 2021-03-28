@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,10 +11,15 @@ using System.Xml.Serialization;
 
 namespace лр_67
 {
+
+    public interface IEnumerable
+    {
+        IEnumerator GetEnumerator();
+    }
     [Serializable]
     [XmlRoot(Namespace = "лр_67")]
     [XmlType("Airline")]
-    public class Airline
+    public class Airline 
     {
         [XmlElement(ElementName = "id")]
         public int f_id { get; set; } //автоматически считается
@@ -31,8 +38,9 @@ namespace лр_67
         [XmlElement(ElementName = "fullcode")]
         public string f_fullname { get; set; } //состоит из откуда-куда
 
-        [XmlIgnore]
+        [XmlElement(ElementName = "imageURL")]
         public string imagePath { get; set; }
+      
 
         public Airline()
         {
@@ -71,36 +79,54 @@ namespace лр_67
                 this.f_shortname,
                 this.imagePath);
         }
+       
     }
-    public class AirlineList
+    public class AirlineList : IEnumerable
     {
         [XmlArray("Collection"), XmlArrayItem("Airline")]
-        public List<Airline> list { get; set; }
+        public ObservableCollection<Airline> list { get; set; }
         public AirlineList()
         {
-            list = new List<Airline> { };
+            list = new ObservableCollection<Airline> { };
         }
 
         public void AddItem(Airline obj)
         {
             list.Add(obj.Clone());
         }
-
+        public IEnumerator GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
         //public Food Last()
         //{
         //    return list[list.Count - 1];
         //}
     }
+   
     public static class Serializer
     {
-        public static void MyXMLSerializer<T>(T obj)
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(AirlineList));
-            using (FileStream fs = new FileStream($"airlines.xml", FileMode.Create))
+        
+            public static void Serialize<T>(T obj, string filename)
             {
-                xmlSerializer.Serialize(fs, obj);
-                fs.Close();
+                XmlSerializer formatter = new XmlSerializer(typeof(T));
+                using (FileStream fs = new FileStream(filename, FileMode.Create))
+                {
+                    formatter.Serialize(fs, obj);
+                }
             }
+
+        public static T Deserialize<T>(string filename)
+        {
+
+            T obj;
+
+            using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                obj = (T)serializer.Deserialize(fs);
+            }
+            return obj;
 
         }
         public static AirlineList MyXMLDeserializer()
@@ -113,5 +139,8 @@ namespace лр_67
                 return (restObj);
             }
         }
+
+
+      
     }
 }

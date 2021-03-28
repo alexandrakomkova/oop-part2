@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,16 +26,31 @@ namespace лр_67
    
     public partial class AddFly : Window
     {
-        public AddFly()
-        {
-            InitializeComponent();
-        }
-
         public static Airline airline = new Airline();
         public static AirlineList airlineList = new AirlineList();
         public static int countAir = 0;
-        XmlSerializer formatter = new XmlSerializer(typeof(List<Airline>));
 
+        // public string path = "airlines.xml";
+        string path = @"D:\uni\ооп\лр-67\лр-67\bin\Debug\airlines.xml";
+        public AddFly()
+        {
+            InitializeComponent();
+            // 
+           
+            FileInfo fileInf = new FileInfo(path);
+            if (fileInf.Exists)
+            {
+                airlineList = Serializer.Deserialize<AirlineList>(path);
+                //airlineList = Serializer.MyXMLDeserializer();
+                foreach (var flyFromFile in airlineList)
+                {
+                    countAir++;
+                }
+
+            }
+        }
+
+        
         private void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -46,6 +62,7 @@ namespace лр_67
                 {
                     ImageCompany.Source = new BitmapImage(new Uri(ofd.FileName));
                     airline.imagePath = ofd.FileName;
+                    //System.Windows.Forms.MessageBox.Show(airline.imagePath);
                 }
                 catch 
                 {
@@ -76,7 +93,7 @@ namespace лр_67
             
             return $"{f_from.ToUpper()}-{f_to.ToUpper()}";
         }
-
+        
         private void Serialize_Click(object sender, RoutedEventArgs e)
         {
             airline.f_id = countAir++;
@@ -87,10 +104,12 @@ namespace лр_67
             airline.f_shortname = makeShortname(FlyFromTB.Text, FlyToTB.Text);
             airline.f_fullname = makeFullname(FlyFromTB.Text, FlyToTB.Text);
             airlineList.AddItem(airline);
+            //MainWindow mainWindow = new MainWindow();
+            //mainWindow.TemplateGrid.Visibility = Visibility.Visible;
 
-             try
-             {
-                Serializer.MyXMLSerializer(airlineList);
+            try
+            {
+                Serializer.Serialize<AirlineList>(airlineList, path);
                         //System.Windows.MessageBox.Show(
                         ////CompanyTB.Text+
                         ////FlyFromTB.Text+
@@ -100,19 +119,47 @@ namespace лр_67
                         //makeFullname(FlyFromTB.Text, FlyToTB.Text)
                          //);
 
-             }
+            }
              catch
-             {
+            {
                 System.Windows.MessageBox.Show("Что-то пошло не так..");
-             }
+            }
              finally
-             {
+            {
                 System.Windows.MessageBox.Show("Данные записаны в файл");
-             }
-                   
-              
-            
-            
+                Clear();
+            }
+
+           
+
+
+        }
+        public void Clear()
+        {
+          
+            CompanyTB.Text="";
+            FlyFromTB.Text="";
+            FlyToTB.Text="";
+            PriceTB.Text="";
+            ImageCompany.Source = null;
+
+
+        }
+
+        
+
+        private void PriceTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void PriceTB_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            string Symbol = e.Key.ToString();
+            if (!Regex.Match(Symbol, @"[0-9]").Success && e.Key != Key.Back && e.Key != Key.OemPeriod && e.Key != Key.OemComma)
+            {
+                e.Handled = true;
+            }
         }
     }
 }
