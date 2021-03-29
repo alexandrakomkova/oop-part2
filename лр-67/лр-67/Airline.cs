@@ -39,8 +39,9 @@ namespace лр_67
         public string f_fullname { get; set; } //состоит из откуда-куда
 
         [XmlElement(ElementName = "imageURL")]
-        public string imagePath { get; set; }
-      
+        public string imagePath { get; set; } = @"D:\logo.png";
+
+
 
         public Airline()
         {
@@ -129,16 +130,16 @@ namespace лр_67
             return obj;
 
         }
-        public static AirlineList MyXMLDeserializer()
-        {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(AirlineList));
-            using (FileStream fs = new FileStream($"airlines.xml", FileMode.OpenOrCreate))
-            {
-                var restObj = xmlSerializer.Deserialize(fs) as AirlineList;
-                fs.Close();
-                return (restObj);
-            }
-        }
+        //public static AirlineList MyXMLDeserializer()
+        //{
+        //    XmlSerializer xmlSerializer = new XmlSerializer(typeof(AirlineList));
+        //    using (FileStream fs = new FileStream($"airlines.xml", FileMode.OpenOrCreate))
+        //    {
+        //        var restObj = xmlSerializer.Deserialize(fs) as AirlineList;
+        //        fs.Close();
+        //        return (restObj);
+        //    }
+        //}
 
 
       

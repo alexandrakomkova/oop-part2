@@ -22,6 +22,7 @@
     <Grid  RenderTransformOrigin="0.945,0.037" Margin="0,0,0,0">
         <Grid Name="Logo" Background="Transparent"  Grid.Row="0">
             <Image x:Name="LogoImage" Source="D:/logo.png" Width="40" Height="40" Margin="20,10,633.6,643.6" />
+            
 
         </Grid>
         <Grid Name="Toolbar" Background="Transparent" Grid.Row="0" MouseDown="Toolbar_MouseDown" Margin="-1,0,1,630">
@@ -38,8 +39,13 @@
             <Label x:Name="PanelInstruments" Foreground="White" FontStyle="Normal" Content="Панель инструментов" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" />
             <Button x:Name="AddButton" Content="Добавить" HorizontalAlignment="Left" Height="25" Margin="10,102,0,0" VerticalAlignment="Top" Width="105" Click="AddButton_Click"/>
             <Button x:Name="ViewAllButton" Content="Посмотреть все" HorizontalAlignment="Left" Height="25" Margin="10,72,0,0" VerticalAlignment="Top" Width="105" Click="ViewAllButton_Click"/>
-            <Label x:Name="SortBy" Foreground="White" FontStyle="Normal" Content="Сортировка" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top" />
+            <Label x:Name="SortBy" Foreground="White" FontStyle="Normal" Content="Сортировка" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" />
+            <CheckBox x:Name="SortByFromPoint" Content="Пункт отправления" Foreground="white" HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top" Checked="SortByFromPonit_Checked"/>
+            <CheckBox x:Name="SortByCompany" Content="Название компании" Foreground="white" HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top" Checked="SortByCompany_Checked"/>
             <Button x:Name="DeleteButton" Content="Удалить" HorizontalAlignment="Left" Height="25" Margin="10,132,0,0" VerticalAlignment="Top" Width="105" Click="DeleteButton_Click"/>
+            <Button x:Name="EditButton" Content="Изменить" HorizontalAlignment="Left" Height="25" Margin="10,162,0,0" VerticalAlignment="Top" Width="105" Click="EditButton_Click"/>
+            <CheckBox x:Name="SortByToPoint" Content="Пункт прибытия" Foreground="white" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top" Checked="SortByToPoint_Checked"/>
+            <Button x:Name="ClearSortButton" Content="Сброс фильтров" HorizontalAlignment="Left" Height="25" Margin="10,296,0,0" VerticalAlignment="Top" Width="105" Click="ClearSortButton_Click"/>
         </Grid>
 
         <!-- <Grid Name="TemplateGrid" Visibility="Hidden">
@@ -54,10 +60,10 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="1" Text="Досптупные авиарейсы" Margin="170,95,249.6,577.6" RenderTransformOrigin="0.492,0.459" Foreground="White"/>
+            <TextBlock x:Name="ListViewTitle" Grid.Row="1" Text="Досптупные авиарейсы" Margin="170,95,249.6,577.6" RenderTransformOrigin="0.492,0.459" Foreground="White"/>
             <ListView ItemsSource="{Binding list}" x:Name="ListViewCollection"
             Background="GhostWhite" Foreground="Black" BorderThickness="2" Margin="170,120,19.6,284.6" Grid.Row="1" SelectionMode="Single">
-                <Style TargetType="{x:Type ListViewItem}">
+                <!--<Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -72,16 +78,16 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
-                </Style>
+                </Style>-->
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="40" Header="ID" DisplayMemberBinding="{Binding f_id}"/>
-                        <GridViewColumn Width="40" Header="" DisplayMemberBinding="{Binding imagePath}"/>
+                        <GridViewColumn x:Name="LVID" Width="40" Header="ID" DisplayMemberBinding="{Binding f_id}"/>
+                        <GridViewColumn x:Name="LVImage" Width="40" Header="" DisplayMemberBinding="{Binding imagePath}"/>
                         <!-- <Image Source="{Binding imagePath}" Height="40" Width="40" Margin="20,20,0,0" Stretch="UniformToFill"/>-->
-                        <GridViewColumn Width="80" Header="Компания" DisplayMemberBinding="{Binding f_company}"/>
-                        <GridViewColumn Header="Цена" Width="50" DisplayMemberBinding="{Binding f_price}"/>
-                        <GridViewColumn Width="80" Header="Код рейса" DisplayMemberBinding="{Binding f_shortname}"/>
-                        <GridViewColumn Width="120" Header="Рейс" DisplayMemberBinding="{Binding f_fullname}"/>
+                        <GridViewColumn x:Name="LVCompany" Width="80" Header="Компания" DisplayMemberBinding="{Binding f_company}"/>
+                        <GridViewColumn x:Name="LVPrice" Header="Цена" Width="50" DisplayMemberBinding="{Binding f_price}"/>
+                        <GridViewColumn x:Name="LVShortname" Width="80" Header="Код рейса" DisplayMemberBinding="{Binding f_shortname}"/>
+                        <GridViewColumn x:Name="LVFullname" Width="120" Header="Рейс" DisplayMemberBinding="{Binding f_fullname}"/>
 
 
                     </GridView>
