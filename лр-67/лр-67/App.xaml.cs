@@ -53,16 +53,16 @@ namespace лр_67
                 switch (value.Name)
                 {
                     case "en-US":
-                        dict.Source = new Uri(String.Format("Resources/lang.{0}.xaml", value.Name), UriKind.Relative);
+                        dict.Source = new Uri(String.Format("lang.{0}.xaml", value.Name), UriKind.Relative);
                         break;
                     default:
-                        dict.Source = new Uri("Resources/lang.xaml", UriKind.Relative);
+                        dict.Source = new Uri("lang.xaml", UriKind.Relative);
                         break;
                 }
 
                 //3. Находим старую ResourceDictionary и удаляем его и добавляем новую ResourceDictionary
                 ResourceDictionary oldDict = (from d in Application.Current.Resources.MergedDictionaries
-                                              where d.Source != null && d.Source.OriginalString.StartsWith("Resources/lang.")
+                                              where d.Source != null && d.Source.OriginalString.StartsWith("lang.")
                                               select d).First();
                 if (oldDict != null)
                 {
@@ -76,8 +76,8 @@ namespace лр_67
                 }
 
                 //4. Вызываем евент для оповещения всех окон.
-                LanguageChanged(Application.Current, new EventArgs());
+                //LanguageChanged(Application.Current, new EventArgs());
             }
-        }
+    }
     }
 }

@@ -23,8 +23,11 @@ namespace лр_67
     public partial class EditAirline : Window
     {
         public AirlineList airlineList = new AirlineList();
-        public Airline tempAirline = new Airline();
+        ObservableCollection<Airline> list = new ObservableCollection<Airline>();
+        public Airline temp = new Airline();
         int flyToEdit = 0;
+        MainWindow mainWindow = new MainWindow();
+
         string path = @"D:\uni\ооп\лр-67\лр-67\bin\Debug\airlines.xml";
         
         public EditAirline()
@@ -35,37 +38,8 @@ namespace лр_67
         public EditAirline(AirlineList airlineList, object indxToEdit)
         {
             InitializeComponent();
-            this.airlineList = airlineList;
-            // this.flyToEdit = (int)indxToEdit;
-            // int num = 0;
-            //MainWindow window = new MainWindow();
-            //Airline temp = (Airline)window.ListViewCollection.SelectedItem;
-
-            //CompanyTB.Text = temp.f_company;
-            //FlyFromTB.Text = temp.f_from;
-            //FlyToTB.Text = temp.f_toPoint;
-            //PriceTB.Text = temp.f_price.ToString();
-            //ImageCompany.Source = new BitmapImage(new Uri(temp.imagePath));
-
-
-
-            //temp = new Airline();
-            //temp.f_id = flyToEdit + 1000;
-            //temp.f_company = CompanyTB.Text;
-            //temp.f_from = FlyFromTB.Text;
-            //temp.f_toPoint = FlyToTB.Text;
-            //temp.f_price = Convert.ToInt32(PriceTB.Text);
-            //temp.f_shortname = AddFly.makeShortname(FlyFromTB.Text, FlyToTB.Text);
-            //temp.f_fullname = AddFly.makeFullname(FlyFromTB.Text, FlyToTB.Text);
-            //temp.imagePath = image;
-            //foreach (Airline airline in airlineList.list)
-            //{
-            //    if (airline == (Airline)window.ListViewCollection.SelectedItem)
-            //    {
-            //        airlineList.list[airlineList.list.IndexOf(airline)] = temp;
-            //        break;
-            //    }
-            //}
+            
+            
             this.airlineList = airlineList;
             this.flyToEdit = (int)indxToEdit;
             int num = 0;
@@ -78,11 +52,36 @@ namespace лр_67
                     FlyToTB.Text = i.f_toPoint;
                     PriceTB.Text = i.f_price.ToString();
                     ImageCompany.Source = new BitmapImage(new Uri(i.imagePath));
+                    airlineList.list.Remove(i);
+                    Serializer.Serialize(airlineList, path);
+                   // airlineList = Serializer.Deserialize<AirlineList>(path);
+                    
+                    
                     break;
                 }
                 num++;
             }
-            //Airline temp = new Airline();
+           
+            
+           
+
+        }
+        private void SaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            temp.f_id = flyToEdit + 1000;
+            temp.f_company = CompanyTB.Text;
+            temp.f_from = FlyFromTB.Text;
+            temp.f_toPoint = FlyToTB.Text;
+            temp.f_price = Convert.ToInt32(PriceTB.Text);
+            temp.f_shortname = AddFly.makeShortname(FlyFromTB.Text, FlyToTB.Text);
+            temp.f_fullname = AddFly.makeFullname(FlyFromTB.Text, FlyToTB.Text);
+            temp.imagePath = image;
+            airlineList.AddItem(temp);
+            Serializer.Serialize(airlineList, path);
+            //airlineList = Serializer.Deserialize<AirlineList>(path);
+            //list = airlineList.list;
+
+
             //temp.f_id = flyToEdit + 1000;
             //temp.f_company = CompanyTB.Text;
             //temp.f_from = FlyFromTB.Text;
@@ -91,104 +90,14 @@ namespace лр_67
             //temp.f_shortname = AddFly.makeShortname(FlyFromTB.Text, FlyToTB.Text);
             //temp.f_fullname = AddFly.makeFullname(FlyFromTB.Text, FlyToTB.Text);
             //temp.imagePath = image;
-            //foreach (Airline airline in airlineList.list)
-            //{
-            //    if (flyToEdit == window.ListViewCollection.SelectedIndex)
-            //    {
-            //        airlineList.list[airlineList.list.IndexOf(airline)] = temp;
-            //        break;
-            //    }
-            //}
 
-        }
-        private void SaveChanges_Click(object sender, RoutedEventArgs e)
-        {
-            //airline.f_id = countAir++;
-            //airline.f_company = CompanyTB.Text;
-            //airline.f_from = FlyFromTB.Text;
-            //airline.f_toPoint = FlyToTB.Text;
-            //airline.f_price = Convert.ToInt32(PriceTB.Text);
-            //airline.f_shortname = makeShortname(FlyFromTB.Text, FlyToTB.Text);
-            //airline.f_fullname = makeFullname(FlyFromTB.Text, FlyToTB.Text);
-            //airlineList.AddItem(airline);
-
-            //try
-            //{
+            //mainWindow.airlineList.AddItem(temp);
+            //Serializer.Serialize(airlineList, path);
 
 
-            //    //tempAirline.f_id = flyToEdit + 1000;
-            //    //tempAirline.f_company = CompanyTB.Text;
-            //    //tempAirline.f_from = FlyFromTB.Text;
-            //    //tempAirline.f_toPoint = FlyToTB.Text;
-            //    //tempAirline.f_price = Convert.ToInt32(PriceTB.Text);
-            //    //tempAirline.f_shortname = AddFly.makeShortname(FlyFromTB.Text, FlyToTB.Text);
-            //    //tempAirline.f_fullname = AddFly.makeFullname(FlyFromTB.Text, FlyToTB.Text);
-
-            //    //MainWindow window = new MainWindow();
-            //    Serializer.Serialize(airlineList, path);
-            //    System.Windows.MessageBox.Show("Изменения сохранены.");
-            //}
-            //catch
-            //{
-            //    System.Windows.Forms.MessageBox.Show("Ошибка записи в файл.\nПопробуйте снова.");
-
-            //}
-
-            try
-            {
+            //mainWindow.ListViewCollection.ItemsSource = list;
 
 
-                //tempAirline.f_id = flyToEdit + 1000;
-                //tempAirline.f_company = CompanyTB.Text;
-                //tempAirline.f_from = FlyFromTB.Text;
-                //tempAirline.f_toPoint = FlyToTB.Text;
-                //tempAirline.f_price = Convert.ToInt32(PriceTB.Text);
-                //tempAirline.f_shortname = AddFly.makeShortname(FlyFromTB.Text, FlyToTB.Text);
-                //tempAirline.f_fullname = AddFly.makeFullname(FlyFromTB.Text, FlyToTB.Text);
-                //System.Windows.MessageBox.Show(
-                //        tempAirline.f_id + "\n" +
-                //        tempAirline.f_company + "\n" +
-                //        tempAirline.f_from + "\n" +
-                //        tempAirline.f_toPoint + "\n" +
-                //        tempAirline.f_price + "\n" +
-                //        tempAirline.f_shortname + "\n" +
-                //        tempAirline.f_fullname
-                //        );
-                int num = 0;
-                foreach (var i in airlineList.list)
-                {
-                    if (flyToEdit == num)
-                    {
-                        i.f_id = flyToEdit + 1000;
-                        i.f_company = CompanyTB.Text;
-                        i.f_from = FlyFromTB.Text;
-                        i.f_toPoint = FlyToTB.Text;
-                        i.f_price = Convert.ToInt32(PriceTB.Text);
-                        i.f_shortname = AddFly.makeShortname(FlyFromTB.Text, FlyToTB.Text);
-                        i.f_fullname = AddFly.makeFullname(FlyFromTB.Text, FlyToTB.Text);
-                        //airlineList.list[airlineList.list.IndexOf(i)] = tempAirline;
-                        //System.Windows.MessageBox.Show(
-                        //tempAirline.f_id + "\n" +
-                        //tempAirline.f_company + "\n" +
-                        //tempAirline.f_from + "\n" +
-                        //tempAirline.f_toPoint + "\n" +
-                        //tempAirline.f_price + "\n" +
-                        //tempAirline.f_shortname + "\n" +
-                        //tempAirline.f_fullname
-                        //);
-
-                        break;
-                    }
-                    num++;
-                }
-                Serializer.Serialize<AirlineList>(airlineList, path);
-            }
-            catch
-            {
-                System.Windows.Forms.MessageBox.Show("Ошибка записи в файл.\nПопробуйте снова.");
-                
-            }
-            System.Windows.MessageBox.Show("Изменения сохранены.");
 
             this.Hide();
         }

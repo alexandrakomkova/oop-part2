@@ -15,18 +15,17 @@
     </Window.Background>
 
     <Window.Resources>
-
-
+        <Cursor x:Key="Cursor">D:\uni\ооп\лр-67\cursor\macOS cursors for Windows\Link_Select.cur</Cursor>
     </Window.Resources>
 
-    <Grid  RenderTransformOrigin="0.945,0.037" Margin="0,0,0,0">
+    <Grid  RenderTransformOrigin="0.945,0.037" Margin="0,0,0,0" Cursor="{StaticResource Cursor}">
         <Grid Name="Logo" Background="Transparent"  Grid.Row="0">
             <Image x:Name="LogoImage" Source="D:/logo.png" Width="40" Height="40" Margin="20,10,633.6,643.6" />
             
 
         </Grid>
         <Grid Name="Toolbar" Background="Transparent" Grid.Row="0" MouseDown="Toolbar_MouseDown" Margin="-1,0,1,630">
-            <Button x:Name="ExitButton" Content="Выход" HorizontalAlignment="Left" Height="25" Margin="604,20,-964,0" VerticalAlignment="Top" Width="70" Click="ExitButton_Click" Grid.Column="1"/>
+            <Button x:Name="ExitButton" Content="{DynamicResource ExitButton}" HorizontalAlignment="Left" Height="25" Margin="604,20,-964,0" VerticalAlignment="Top" Width="70" Click="ExitButton_Click" Grid.Column="1"/>
 
             <ComboBox x:Name="ComboLanguage"  HorizontalAlignment="Left" Height="25" Margin="539,20,0,0" VerticalAlignment="Top" Width="50">
                 <ComboBoxItem Name="LanguageRus" Content="Rus" Height="20" Width="50" IsSelected="True" Selected="LanguageRus_Selected"/>
@@ -46,6 +45,20 @@
             <Button x:Name="EditButton" Content="Изменить" HorizontalAlignment="Left" Height="25" Margin="10,162,0,0" VerticalAlignment="Top" Width="105" Click="EditButton_Click"/>
             <CheckBox x:Name="SortByToPoint" Content="Пункт прибытия" Foreground="white" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top" Checked="SortByToPoint_Checked"/>
             <Button x:Name="ClearSortButton" Content="Сброс фильтров" HorizontalAlignment="Left" Height="25" Margin="10,296,0,0" VerticalAlignment="Top" Width="105" Click="ClearSortButton_Click"/>
+            <TextBox x:Name="FindTB" HorizontalAlignment="Left" Height="19" Margin="10,358,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125" TextChanged="FindTB_TextChanged"/>
+            <TextBlock x:Name="FindBlock"  IsHitTestVisible="False" FontSize="14" Text="Введите" Margin="10,358,0,0" Foreground="Gray" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName= FindTB}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <Button x:Name="FindButton" Content="Поиск" HorizontalAlignment="Left" Height="25" Margin="10,383,0,0" VerticalAlignment="Top" Width="105" Click="FindButton_Click"/>
         </Grid>
 
         <!-- <Grid Name="TemplateGrid" Visibility="Hidden">
@@ -62,32 +75,24 @@
             </Grid.RowDefinitions>
             <TextBlock x:Name="ListViewTitle" Grid.Row="1" Text="Досптупные авиарейсы" Margin="170,95,249.6,577.6" RenderTransformOrigin="0.492,0.459" Foreground="White"/>
             <ListView ItemsSource="{Binding list}" x:Name="ListViewCollection"
-            Background="GhostWhite" Foreground="Black" BorderThickness="2" Margin="170,120,19.6,284.6" Grid.Row="1" SelectionMode="Single">
-                <!--<Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                <StackPanel x:Name="panel">
-                                    <TextBlock Text="{Binding}"/>
-                                </StackPanel>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="panel" Property="Background" Value="Gray"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>-->
+            Background="GhostWhite" Foreground="Black" BorderThickness="2" Margin="170,120,20,85" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn x:Name="LVID" Width="40" Header="ID" DisplayMemberBinding="{Binding f_id}"/>
-                        <GridViewColumn x:Name="LVImage" Width="40" Header="" DisplayMemberBinding="{Binding imagePath}"/>
+                       
+
+                        <GridViewColumn Width="80" Header="">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding imagePath}" Height="40" Width="40" Margin="20,20,0,0" Stretch="Fill"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <!-- <Image Source="{Binding imagePath}" Height="40" Width="40" Margin="20,20,0,0" Stretch="UniformToFill"/>-->
-                        <GridViewColumn x:Name="LVCompany" Width="80" Header="Компания" DisplayMemberBinding="{Binding f_company}"/>
-                        <GridViewColumn x:Name="LVPrice" Header="Цена" Width="50" DisplayMemberBinding="{Binding f_price}"/>
-                        <GridViewColumn x:Name="LVShortname" Width="80" Header="Код рейса" DisplayMemberBinding="{Binding f_shortname}"/>
-                        <GridViewColumn x:Name="LVFullname" Width="120" Header="Рейс" DisplayMemberBinding="{Binding f_fullname}"/>
+                        <GridViewColumn x:Name="LVCompany" Width="90" Header="Компания" DisplayMemberBinding="{Binding f_company}"/>
+                        <GridViewColumn x:Name="LVPrice" Header="Цена" Width="60" DisplayMemberBinding="{Binding f_price}"/>
+                        <GridViewColumn x:Name="LVShortname" Width="100" Header="Код рейса" DisplayMemberBinding="{Binding f_shortname}"/>
+                        <GridViewColumn x:Name="LVFullname" Width="100" Header="Рейс" DisplayMemberBinding="{Binding f_fullname}"/>
 
 
                     </GridView>

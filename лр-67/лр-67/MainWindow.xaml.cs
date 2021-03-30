@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Resources;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -17,6 +18,7 @@ using System.IO;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Windows.Threading;
+using System.Text.RegularExpressions;
 
 namespace лр_67
 {
@@ -26,13 +28,19 @@ namespace лр_67
     public partial class MainWindow : Window
     {
         public AirlineList airlineList = new AirlineList();
-        // public IEnumerable<AirlineList> airList => airlineList;
         ObservableCollection<Airline> list = new ObservableCollection<Airline>();
         DispatcherTimer timer;
-
+        
         public MainWindow()
         {
             InitializeComponent();
+
+            App.LanguageChanged += LanguageChanged;
+
+            CultureInfo currLang = App.Language;
+
+            //Заполняем меню смены языка:
+           
 
             ListChange();
 
@@ -41,18 +49,30 @@ namespace лр_67
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
         }
+        private void LanguageChanged(Object sender, EventArgs e)
+        {
+            CultureInfo currLang = App.Language;
+
+            
+        }
+       
+        private void LanguageRus_Selected(object sender, RoutedEventArgs e)
+        {
+            CultureInfo lang = new CultureInfo("ru-RU");
+            App.Language = lang;
+        }
+
+        private void LanguageEng_Selected(object sender, RoutedEventArgs e)
+        {
+
+            CultureInfo lang = new CultureInfo("en-US");
+            App.Language = lang;
+
+        }
         private void timerTick(object sender, EventArgs e)
         {
             ListChange();
-            //string path = @"D:\uni\ооп\лр-67\лр-67\bin\Debug\airlines.xml";
-            //FileInfo fileInf = new FileInfo(path);
-            //if (fileInf.Exists)
-            //{
-            //    airlineList = Serializer.Deserialize<AirlineList>(path);
-
-            //    list = airlineList.list;
-            //    ListViewCollection.ItemsSource = list;
-            //}
+            
         }
         public void ListChange()
         {
@@ -89,26 +109,14 @@ namespace лр_67
             }
         }
 
-        private void LanguageRus_Selected(object sender, RoutedEventArgs e)
-        {
-            CultureInfo lang = new CultureInfo("ru-RU");
-            App.Language = lang;
-        }
-
-        private void LanguageEng_Selected(object sender, RoutedEventArgs e)
-        {
-
-            CultureInfo lang = new CultureInfo("en-US");
-            App.Language = lang;
-
-        }
-
+       
         private void ViewAllButton_Click(object sender, RoutedEventArgs e)
         {
             if (!ListViewCollection.Items.IsEmpty)
             {
                 
                 ListChange();
+                FindTB.Text = "";
             }
             else
             {
@@ -197,6 +205,37 @@ namespace лр_67
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        public bool matchIsFound = false;
+      
+        private void FindTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+
+                timer.Stop();
+                string pattern = $"{FindTB.Text}";
+
+                Regex regex = new Regex(pattern);
+                var findItems = from i in airlineList.list
+                                where regex.IsMatch(i.f_company)
+                                select i; // выбираем объект
+                matchIsFound = true;
+                ListViewCollection.ItemsSource = findItems;
+            }
+            catch
+            {
+                MessageBox.Show("Такой рейс отсутствует.");
+            }
+        }
+
+        private void FindButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (matchIsFound==false)
+            {
+                MessageBox.Show("Совпадений не найдено :(");
+            }
+            
         }
     }
 }

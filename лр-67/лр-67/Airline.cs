@@ -39,7 +39,7 @@ namespace лр_67
         public string f_fullname { get; set; } //состоит из откуда-куда
 
         [XmlElement(ElementName = "imageURL")]
-        public string imagePath { get; set; } = @"D:\logo.png";
+        public string imagePath { get; set; } = @"D:\no_image.png";
 
 
 

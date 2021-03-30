@@ -42,7 +42,7 @@ namespace лр_67
             if (fileInf.Exists)
             {
                 airlineList = Serializer.Deserialize<AirlineList>(path);
-                //airlineList = Serializer.MyXMLDeserializer();
+                
                 foreach (var flyFromFile in airlineList)
                 {
                     countAir++;

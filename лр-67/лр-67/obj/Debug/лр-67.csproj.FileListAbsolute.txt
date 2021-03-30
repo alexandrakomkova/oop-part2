@@ -18,3 +18,5 @@ D:\uni\ооп\лр-67\лр-67\obj\Debug\AddFly.baml
 D:\uni\ооп\лр-67\лр-67\obj\Debug\App.baml
 D:\uni\ооп\лр-67\лр-67\obj\Debug\EditAirline.g.cs
 D:\uni\ооп\лр-67\лр-67\obj\Debug\EditAirline.baml
+D:\uni\ооп\лр-67\лр-67\obj\Debug\lang.en-US.baml
+D:\uni\ооп\лр-67\лр-67\obj\Debug\lang.baml
