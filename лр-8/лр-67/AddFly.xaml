@@ -1,0 +1,35 @@
+﻿<Window x:Class="лр_67.AddFly"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:лр_67"
+        mc:Ignorable="d" Cursor="{DynamicResource Cursor}"
+        Title="{DynamicResource AddWindow}" Style="{DynamicResource AddWindowGrid}" Height="300" Width="405" WindowStartupLocation="CenterScreen" Name="AddWindow" ResizeMode="NoResize">
+   
+    <Grid Margin="0,0,0,0">
+
+
+        <TextBox x:Name="CompanyTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25" Margin="228,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
+        <TextBlock x:Name="CompanyBlock" Style="{DynamicResource CompanyTB}" IsHitTestVisible="False"  Text="{DynamicResource CompanyBlock}" Margin="227,29,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox x:Name="FlyToTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25"  Margin="228,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
+        <TextBlock x:Name="FlyToBlock" Style="{DynamicResource FlyToTB}" IsHitTestVisible="False"  Text="{DynamicResource FlyToBlock}" Margin="228,91,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+
+        <TextBox x:Name="FlyFromTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25"  Margin="228,63,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="142"/>
+        <TextBlock x:Name="FlyFromBlock" Style="{DynamicResource FlyFromTB}" IsHitTestVisible="False" Text="{DynamicResource FlyFromBlock}" Margin="228,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+
+        <TextBox x:Name="PriceTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25" Margin="228,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" TextChanged="PriceTB_TextChanged" KeyDown="PriceTB_KeyDown" />
+        <TextBlock x:Name="PriceBlock" Style="{DynamicResource PriceTB}" IsHitTestVisible="False"  Text="{DynamicResource PriceBlock}" Margin="228,125,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+        <Grid Name="Image"  Background="white" Grid.Row="0"  HorizontalAlignment="Left" Height="150" Width="150" Margin="36,34,0,0" VerticalAlignment="Top" >
+            <Image x:Name="ImageCompany" HorizontalAlignment="Left" Height="150" Width="150" Margin="2,0,-2,0" VerticalAlignment="Top"  OpacityMask="Black" />
+            <Button x:Name="LoadButton" Content="{DynamicResource LoadButton}" HorizontalAlignment="Left" Height="26" Margin="2,159,0,-35" VerticalAlignment="Top" Width="70" Click="LoadButton_Click"/>
+
+        </Grid>
+        <Button x:Name="Serialize" Content="{DynamicResource Serialize}" HorizontalAlignment="Left" Height="29" Margin="246,207,0,0" VerticalAlignment="Top" Width="114" Click="Serialize_Click"/>
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,91 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:лр_67"
+                     xmlns:v="clr-namespace:System;assembly=mscorlib" xmlns:v1="http://schemas.microsoft.com/netfx/2007/xaml/presentation">
+    <Style x:Key="TextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="gray"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Text, ElementName= FindTB}" Value="">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="Label" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="white"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+    </Style>
+    <Style x:Key="CheckBox" TargetType="{x:Type CheckBox}">
+        <Setter Property="Foreground" Value="white"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+    </Style>
+    <Style x:Key="Grid" TargetType="Grid">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style x:Key="AddWindowGrid" TargetType="Window">
+        <Setter Property="Background" Value="Lavender"/>
+    </Style>
+    <Style x:Key="TextBox" TargetType="TextBox">
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style x:Key="ImageGrid" TargetType="Grid">
+        <Setter Property="Background" Value="white"/>
+    </Style>
+    <Style x:Key="CompanyTB" TargetType="{x:Type TextBlock}">
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="gray"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Text, ElementName= CompanyTB}" Value="">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="FlyToTB" TargetType="{x:Type TextBlock}">
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="gray"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Text, ElementName= FlyToTB}" Value="">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="FlyFromTB" TargetType="{x:Type TextBlock}">
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="gray"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Text, ElementName= FlyFromTB}" Value="">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="PriceTB" TargetType="{x:Type TextBlock}">
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="gray"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Text, ElementName= PriceTB}" Value="">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ListView" TargetType="{x:Type ListView}">
+        <Setter Property="Background" Value="GhostWhite"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Foreground" Value="black"/>
+       
+    </Style>
+    <Style x:Key="Logo" TargetType="{x:Type Image}">
+
+        <Setter Property="Source" Value="D:\logo.png"/>
+
+    </Style>
+    <Style x:Key="Background" TargetType="{x:Type Window}">
+        <Setter Property="Background" Value="DarkBlue"/>
+    </Style>
+
+</ResourceDictionary>

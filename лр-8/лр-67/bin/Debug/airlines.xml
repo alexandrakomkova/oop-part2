@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<AirlineList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Collection>
+    <Airline>
+      <id xmlns="лр_67">1000</id>
+      <company xmlns="лр_67">Аэрофлот</company>
+      <from xmlns="лр_67">Минску</from>
+      <to xmlns="лр_67">Киев</to>
+      <price xmlns="лр_67">1200</price>
+      <shortcode xmlns="лр_67">МИНСКУ-КИЕВ</shortcode>
+      <fullcode xmlns="лр_67">МНСК-КВ</fullcode>
+      <imageURL xmlns="лр_67">D:\no_image.png</imageURL>
+    </Airline>
+    <Airline>
+      <id xmlns="лр_67">1003</id>
+      <company xmlns="лр_67">Белавия</company>
+      <from xmlns="лр_67">Вильнюс</from>
+      <to xmlns="лр_67">Минск</to>
+      <price xmlns="лр_67">4000</price>
+      <shortcode xmlns="лр_67">ВИЛЬНЮС-МИНСК</shortcode>
+      <fullcode xmlns="лр_67">ВЛЬНС-МНСК</fullcode>
+      <imageURL xmlns="лр_67">C:\Users\Sasha\Desktop\nIfn0cORtRc.jpg</imageURL>
+    </Airline>
+    <Airline>
+      <id xmlns="лр_67">1004</id>
+      <company xmlns="лр_67">Белавия</company>
+      <from xmlns="лр_67">Минск</from>
+      <to xmlns="лр_67">Стамбул</to>
+      <price xmlns="лр_67">9000</price>
+      <shortcode xmlns="лр_67">МИНСК-СТАМБУЛ</shortcode>
+      <fullcode xmlns="лр_67">МНСК-СТМБЛ</fullcode>
+      <imageURL xmlns="лр_67">file:///C:/Users/Sasha/Desktop/vAAnG1qww4o.jpg</imageURL>
+    </Airline>
+  </Collection>
+</AirlineList>

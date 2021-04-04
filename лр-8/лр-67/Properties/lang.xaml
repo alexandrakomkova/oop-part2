@@ -1,0 +1,32 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:лр_67.Resources"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+	<v:String x:Key="ExitButton">Выход</v:String>
+	<v:String x:Key="PanelInstruments">Панель инструментов</v:String>
+	<v:String x:Key="AddButton">Добавить</v:String>
+	<v:String x:Key="ViewAllButton">Посмотреть все</v:String>
+	<v:String x:Key="SortBy">Сортировка</v:String>
+	<v:String x:Key="SortByFromPoint">Пункт отправления</v:String>
+	<v:String x:Key="SortByCompany">Названии компании</v:String>
+	<v:String x:Key="DeleteButton">Удалить</v:String>
+	<v:String x:Key="EditButton">Изменить</v:String>
+	<v:String x:Key="SortByToPoint">Пункт прибытия</v:String>
+	<v:String x:Key="ClearSortButton">Сброс фильтров</v:String>
+	<v:String x:Key="ListViewTitle">Доступные авиарейсы</v:String>
+	<v:String x:Key="LVID">ID</v:String>
+	<v:String x:Key="LVCompany">Компания</v:String>
+	<v:String x:Key="LVPrice">Цена</v:String>
+	<v:String x:Key="LVShortname">Код рейса</v:String>
+	<v:String x:Key="LVFullname">Рейс</v:String>
+	<v:String x:Key="FlyFromBlock">Откуда</v:String>
+	<v:String x:Key="CompanyBlock">Компания</v:String>
+	<v:String x:Key="FlyToBlock">Куда</v:String>
+	<v:String x:Key="PriceBlock">Цена</v:String>
+	<v:String x:Key="LoadButton">Загрузить</v:String>
+	<v:String x:Key="Serialize">Добавить</v:String>
+	<v:String x:Key="SaveChanges">Сохранить</v:String>
+	<v:String x:Key="EditWindow">Изменить авиарейс</v:String>
+	<v:String x:Key="AddWindow">Добавить авиарейс</v:String>
+    
+</ResourceDictionary>

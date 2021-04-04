@@ -1,0 +1,90 @@
+﻿<Window x:Class="лр_67.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:лр_67"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="700" WindowStyle="None" WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize" SizeToContent="Width" Cursor="{DynamicResource Cursor}" Style="{DynamicResource Background}">
+   
+
+
+    <Grid  RenderTransformOrigin="0.945,0.037" Margin="0,0,0,0">
+        <Grid Name="Logo" Style="{DynamicResource Grid}"  Grid.Row="0">
+            <Image x:Name="LogoImage" Style="{DynamicResource Logo}" Width="40" Height="40" Margin="20,10,633.6,643.6" />
+            
+            
+
+        </Grid>
+        <Grid x:Name="Instruments" Margin="0,65,530,-0" >
+            <Label x:Name="PanelInstruments" Style="{DynamicResource Label}" Content="{DynamicResource PanelInstruments}" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" />
+            <Button x:Name="AddButton" Content="{DynamicResource AddButton}" HorizontalAlignment="Left" Height="25" Margin="10,102,0,0" VerticalAlignment="Top" Width="105" Click="AddButton_Click"/>
+            <Button x:Name="ViewAllButton" Content="{DynamicResource ViewAllButton}" HorizontalAlignment="Left" Height="25" Margin="10,72,0,0" VerticalAlignment="Top" Width="105" Click="ViewAllButton_Click"/>
+            <Label x:Name="SortBy" Style="{DynamicResource Label}" Content="{DynamicResource SortBy}" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" />
+            <CheckBox x:Name="SortByFromPoint" Style="{DynamicResource CheckBox}" Content="{DynamicResource SortByFromPoint}"  HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top" Checked="SortByFromPonit_Checked"/>
+            <CheckBox x:Name="SortByCompany" Style="{DynamicResource CheckBox}" Content="{DynamicResource SortByCompany}"  HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top" Checked="SortByCompany_Checked"/>
+            <Button x:Name="DeleteButton" Content="{DynamicResource DeleteButton}" HorizontalAlignment="Left" Height="25" Margin="10,132,0,0" VerticalAlignment="Top" Width="105" Click="DeleteButton_Click"/>
+            <Button x:Name="EditButton" Content="{DynamicResource EditButton}" HorizontalAlignment="Left" Height="25" Margin="10,162,0,0" VerticalAlignment="Top" Width="105" Click="EditButton_Click"/>
+            <CheckBox x:Name="SortByToPoint" Style="{DynamicResource CheckBox}" Content="{DynamicResource SortByToPoint}" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top" Checked="SortByToPoint_Checked"/>
+            <Button x:Name="ClearSortButton" Content="{DynamicResource ClearSortButton}" HorizontalAlignment="Left" Height="25" Margin="10,296,0,0" VerticalAlignment="Top" Width="105" Click="ClearSortButton_Click"/>
+            <TextBox x:Name="FindTB" HorizontalAlignment="Left" Height="19" Margin="10,358,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125" TextChanged="FindTB_TextChanged"/>
+            <TextBlock x:Name="FindBlock" Style="{DynamicResource TextBlock}" IsHitTestVisible="False" Text="{DynamicResource FindBlock}" Margin="10,358,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left">
+            </TextBlock>
+            <Button x:Name="FindButton" Content="{DynamicResource FindButton}" HorizontalAlignment="Left" Height="25" Margin="10,383,0,0" VerticalAlignment="Top" Width="105" Click="FindButton_Click"/>
+        </Grid>
+
+       
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="ListViewTitle" Grid.Row="1" Style="{DynamicResource Label}" Content="{DynamicResource ListViewTitle}" Margin="170,95,249.6,577.6" RenderTransformOrigin="0.492,0.459"/>
+            <ListView  ItemsSource="{Binding list}" x:Name="ListViewCollection" 
+                Margin="170,120,20,85" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                <ListView.View >
+                    <!--Style="ListView"-->
+                    <GridView >
+                        <GridViewColumn x:Name="LVID" Width="40" Header="ID" DisplayMemberBinding="{Binding f_id}"/>
+
+
+                        <GridViewColumn Width="80" Header="">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding imagePath}" Height="40" Width="40" Margin="20,20,0,0" Stretch="Fill"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                      
+                        <GridViewColumn x:Name="LVCompany" Width="90" Header="{DynamicResource LVCompany}" DisplayMemberBinding="{Binding f_company}"/>
+                        <GridViewColumn x:Name="LVPrice" Header="{DynamicResource LVPrice}" Width="60" DisplayMemberBinding="{Binding f_price}"/>
+                        <GridViewColumn x:Name="LVShortname" Width="100" Header="{DynamicResource LVShortname}" DisplayMemberBinding="{Binding f_shortname}"/>
+                        <GridViewColumn x:Name="LVFullname" Width="100" Header="{DynamicResource LVFullname}" DisplayMemberBinding="{Binding f_fullname}"/>
+
+
+                    </GridView>
+
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Grid x:Name="Toolbar" Style="{DynamicResource Grid}" Grid.Row="0" MouseDown="Toolbar_MouseDown" Margin="-1,0,1,630">
+            <Button x:Name="ExitButton" Content="{DynamicResource ExitButton}" HorizontalAlignment="Left" Height="25" Margin="604,20,-964,0" VerticalAlignment="Top" Width="70" Click="ExitButton_Click" Grid.Column="1"/>
+
+            <ComboBox x:Name="ComboLanguage"  HorizontalAlignment="Left" Height="25" Margin="539,20,0,0" VerticalAlignment="Top" Width="50">
+                <ComboBoxItem x:Name="LanguageRus" Content="Рус" Height="20" Width="50" IsSelected="True" Selected="LanguageRus_Selected"/>
+                <ComboBoxItem x:Name="LanguageEng" Content="Eng" Height="20" Width="50" Selected="LanguageEng_Selected"/>
+            </ComboBox>
+            
+            <ComboBox x:Name="AppTheme" Height="25" Width="100" Margin="240,20,0,0" VerticalAlignment="Top">
+                <ComboBoxItem x:Name="Default" Content="Стандартная" Height="20" Width="100" />
+                <ComboBoxItem x:Name="Dark" Content="Темная" Height="20" Width="100" IsSelected="True"/>
+            </ComboBox>
+
+
+        </Grid>
+
+    </Grid>
+
+
+</Window>
