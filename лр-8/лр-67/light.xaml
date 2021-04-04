@@ -86,6 +86,44 @@
     <Style x:Key="Background" TargetType="{x:Type Window}">
         <Setter Property="Background" Value="LavenderBlush"/>
     </Style>
+    <Style x:Key="ButtonTrigger" TargetType="{x:Type Button}">
+        <Setter Property="BorderBrush" Value="DarkGray" />
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="BorderThickness" Value="2" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="MultiButton" TargetType="{x:Type Button}">
+        <Setter Property="RenderTransformOrigin" Value="0.5 0.5" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <RotateTransform />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Button.Click">
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="RenderTransform.Angle">
+                        <DoubleAnimation
+                                        FillBehavior="Stop"
+                                        AutoReverse="True"
+                                        RepeatBehavior="3x"
+                                        From="-5"
+                                        To="5"
+                                        Duration="0:0:0.05" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
 
 
 </ResourceDictionary>

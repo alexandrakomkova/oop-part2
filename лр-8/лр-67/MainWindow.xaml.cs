@@ -272,16 +272,6 @@ namespace лр_67
 
             
         }
-        private void Default_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("11");
-
-
-        }
-
-        private void Dark_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("11");
-        }
+        
     }
 }

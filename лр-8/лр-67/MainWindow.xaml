@@ -19,19 +19,19 @@
         </Grid>
         <Grid x:Name="Instruments" Margin="0,65,530,-0" >
             <Label x:Name="PanelInstruments" Style="{DynamicResource Label}" Content="{DynamicResource PanelInstruments}" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" />
-            <Button x:Name="AddButton" Content="{DynamicResource AddButton}" HorizontalAlignment="Left" Height="25" Margin="10,102,0,0" VerticalAlignment="Top" Width="105" Click="AddButton_Click"/>
-            <Button x:Name="ViewAllButton" Content="{DynamicResource ViewAllButton}" HorizontalAlignment="Left" Height="25" Margin="10,72,0,0" VerticalAlignment="Top" Width="105" Click="ViewAllButton_Click"/>
+            <Button x:Name="AddButton" Style="{DynamicResource ButtonTrigger}" Content="{DynamicResource AddButton}" HorizontalAlignment="Left" Height="25" Margin="10,102,0,0" VerticalAlignment="Top" Width="105" Click="AddButton_Click"/>
+            <Button x:Name="ViewAllButton" Style="{DynamicResource ButtonTrigger}" Content="{DynamicResource ViewAllButton}" HorizontalAlignment="Left" Height="25" Margin="10,72,0,0" VerticalAlignment="Top" Width="105" Click="ViewAllButton_Click"/>
             <Label x:Name="SortBy" Style="{DynamicResource Label}" Content="{DynamicResource SortBy}" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" />
             <CheckBox x:Name="SortByFromPoint" Style="{DynamicResource CheckBox}" Content="{DynamicResource SortByFromPoint}"  HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top" Checked="SortByFromPonit_Checked"/>
             <CheckBox x:Name="SortByCompany" Style="{DynamicResource CheckBox}" Content="{DynamicResource SortByCompany}"  HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top" Checked="SortByCompany_Checked"/>
-            <Button x:Name="DeleteButton" Content="{DynamicResource DeleteButton}" HorizontalAlignment="Left" Height="25" Margin="10,132,0,0" VerticalAlignment="Top" Width="105" Click="DeleteButton_Click"/>
-            <Button x:Name="EditButton" Content="{DynamicResource EditButton}" HorizontalAlignment="Left" Height="25" Margin="10,162,0,0" VerticalAlignment="Top" Width="105" Click="EditButton_Click"/>
+            <Button x:Name="DeleteButton" Style="{DynamicResource ButtonTrigger}" Content="{DynamicResource DeleteButton}" HorizontalAlignment="Left" Height="25" Margin="10,132,0,0" VerticalAlignment="Top" Width="105" Click="DeleteButton_Click"/>
+            <Button x:Name="EditButton" Style="{DynamicResource ButtonTrigger}" Content="{DynamicResource EditButton}" HorizontalAlignment="Left" Height="25" Margin="10,162,0,0" VerticalAlignment="Top" Width="105" Click="EditButton_Click"/>
             <CheckBox x:Name="SortByToPoint" Style="{DynamicResource CheckBox}" Content="{DynamicResource SortByToPoint}" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top" Checked="SortByToPoint_Checked"/>
-            <Button x:Name="ClearSortButton" Content="{DynamicResource ClearSortButton}" HorizontalAlignment="Left" Height="25" Margin="10,296,0,0" VerticalAlignment="Top" Width="105" Click="ClearSortButton_Click"/>
+            <Button x:Name="ClearSortButton" Style="{DynamicResource ButtonTrigger}" Content="{DynamicResource ClearSortButton}" HorizontalAlignment="Left" Height="25" Margin="10,296,0,0" VerticalAlignment="Top" Width="105" Click="ClearSortButton_Click"/>
             <TextBox x:Name="FindTB" HorizontalAlignment="Left" Height="19" Margin="10,358,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125" TextChanged="FindTB_TextChanged"/>
             <TextBlock x:Name="FindBlock" Style="{DynamicResource TextBlock}" IsHitTestVisible="False" Text="{DynamicResource FindBlock}" Margin="10,358,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left">
             </TextBlock>
-            <Button x:Name="FindButton" Content="{DynamicResource FindButton}" HorizontalAlignment="Left" Height="25" Margin="10,383,0,0" VerticalAlignment="Top" Width="105" Click="FindButton_Click"/>
+            <Button x:Name="FindButton" Style="{DynamicResource MultiButton}" Content="{DynamicResource FindButton}" HorizontalAlignment="Left" Height="25" Margin="10,383,0,0" VerticalAlignment="Top" Width="105" Click="FindButton_Click"/>
         </Grid>
 
        
@@ -69,7 +69,7 @@
             </ListView>
         </Grid>
         <Grid x:Name="Toolbar" Style="{DynamicResource Grid}" Grid.Row="0" MouseDown="Toolbar_MouseDown" Margin="-1,0,1,630">
-            <Button x:Name="ExitButton" Content="{DynamicResource ExitButton}" HorizontalAlignment="Left" Height="25" Margin="604,20,-964,0" VerticalAlignment="Top" Width="70" Click="ExitButton_Click" Grid.Column="1"/>
+            <Button x:Name="ExitButton" Style="{DynamicResource ButtonTrigger}" Content="{DynamicResource ExitButton}" HorizontalAlignment="Left" Height="25" Margin="604,20,-964,0" VerticalAlignment="Top" Width="70" Click="ExitButton_Click" Grid.Column="1"/>
 
             <ComboBox x:Name="ComboLanguage"  HorizontalAlignment="Left" Height="25" Margin="539,20,0,0" VerticalAlignment="Top" Width="50">
                 <ComboBoxItem x:Name="LanguageRus" Content="Рус" Height="20" Width="50" IsSelected="True" Selected="LanguageRus_Selected"/>
