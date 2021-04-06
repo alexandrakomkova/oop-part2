@@ -29,8 +29,12 @@ namespace лр_67
     {
         public AirlineList airlineList = new AirlineList();
         ObservableCollection<Airline> list = new ObservableCollection<Airline>();
-        //DispatcherTimer timer;
-        
+       
+        // Stack<Airline> undoStack = new Stack<Airline>();
+        public AirlineList undoStack = new AirlineList();
+        public AirlineList redoStack = new AirlineList();
+        public Airline last = new Airline();
+        string path = "airlines.xml";
         public MainWindow()
         {
             InitializeComponent();
@@ -39,20 +43,13 @@ namespace лр_67
             AppTheme.SelectionChanged += ThemeChange;
             AppTheme.ItemsSource = styles;
             AppTheme.SelectedItem = "dark";
-            App.LanguageChanged += LanguageChanged;
 
+            App.LanguageChanged += LanguageChanged;
             CultureInfo currLang = App.Language;
 
-            //Заполняем меню смены языка:
-           
-
-            ListChange();
-
-            //timer = new DispatcherTimer();
-            //timer.Tick += new EventHandler(timerTick);
-            //timer.Interval = new TimeSpan(0, 0, 1);
-            //timer.Start();
+            ListChange(); 
         }
+
         private void LanguageChanged(Object sender, EventArgs e)
         {
             CultureInfo currLang = App.Language;
@@ -85,11 +82,7 @@ namespace лр_67
             App.Language = lang;
 
         }
-        //private void timerTick(object sender, EventArgs e)
-        //{
-        //    ListChange();
-            
-        //}
+       
         public void ListChange()
         {
             string path = "airlines.xml";
@@ -113,8 +106,7 @@ namespace лр_67
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             AddFly addFlyWindow = new AddFly();
-            //добавил событие на закрытие окна
-            //САНЯ САНЯ САНЯ
+         
             addFlyWindow.Closing += (Sender, E) => ListChange();
             addFlyWindow.Show();
         }
@@ -144,6 +136,16 @@ namespace лр_67
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            
+            undoStack.list.Clear();
+            
+            for (int i = 0; i < airlineList.list.Count; i++)
+            {
+                undoStack.AddItem(airlineList.list[i]);
+                
+            }
+            redoStack.list.Clear();
+
             int num = 0;
             if (!ListViewCollection.Items.IsEmpty)
             {
@@ -151,8 +153,18 @@ namespace лр_67
                 {
                     if (num == ListViewCollection.SelectedIndex)
                     {
+                        
                         airlineList.list.Remove((Airline)ListViewCollection.SelectedItem);
-                        Serializer.Serialize(airlineList, "airlines.xml");
+                       
+                        Serializer.Serialize(airlineList, path);
+                        for(int i = 0; i < airlineList.list.Count; i++)
+                        {
+
+                            redoStack.AddItem(airlineList.list[i]);
+
+                            RedoButton.IsEnabled = true;
+
+                        }
                         MessageBox.Show($"Рейс {airlineFromList.f_id} - {airlineFromList.f_shortname} удалён.");
                         break;
                     }
@@ -168,6 +180,16 @@ namespace лр_67
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
+            undoStack.list.Clear();
+          
+            for (int i = 0; i < airlineList.list.Count; i++)
+            {
+                undoStack.AddItem(airlineList.list[i]);
+               
+                UndoButton.IsEnabled = true;
+               
+
+            }
             if (ListViewCollection.SelectedItem == null)
             {
                 MessageBox.Show("Выберите объект для изменения.");
@@ -176,9 +198,9 @@ namespace лр_67
             else
             {
                 EditAirline editFlyWindow = new EditAirline(airlineList, ListViewCollection.SelectedIndex);
-                //EditAirline editFlyWindow = new EditAirline(airlineList, ListViewCollection.SelectedItem);
+                
 
-                //САНЯ САНЯ САНЯ
+                
                 editFlyWindow.Closing += (Sender, E) => ListChange();
                 editFlyWindow.Show();
             }
@@ -272,6 +294,58 @@ namespace лр_67
 
             
         }
-        
+        private void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            //if (matchIsFound == false)
+            //{
+            //    MessageBox.Show("Совпадений не найдено :(");
+            //}
+
+
+        }
+        private void RedoCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+
+                airlineList.list.Clear();
+                for (int i = 0; i < redoStack.list.Count; i++)
+                {
+                    airlineList.AddItem(redoStack.list[i]);
+                }
+                Serializer.Serialize<AirlineList>(airlineList, path);
+                ListChange();
+
+            }
+            catch
+            {
+                MessageBox.Show("не работает блин");
+                RedoButton.IsEnabled = false;
+            }
+        }
+        private void UndoCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //не удалять
+            //-----------------------------
+            try
+            {
+               
+                airlineList.list.Clear();
+                for (int i = 0; i < undoStack.list.Count; i++)
+                {
+                    airlineList.AddItem(undoStack.list[i]);
+                }
+                Serializer.Serialize<AirlineList>(airlineList, path);
+                ListChange();
+               
+            }
+            catch
+            {
+                MessageBox.Show("не работает блин");
+                UndoButton.IsEnabled = false;
+            }
+            //-----------------------------
+        }
+
     }
 }

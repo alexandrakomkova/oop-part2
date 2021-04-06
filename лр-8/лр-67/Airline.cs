@@ -86,6 +86,7 @@ namespace лр_67
     {
         [XmlArray("Collection"), XmlArrayItem("Airline")]
         public ObservableCollection<Airline> list { get; set; }
+       
         public AirlineList()
         {
             list = new ObservableCollection<Airline> { };
@@ -99,7 +100,12 @@ namespace лр_67
         {
             return list.GetEnumerator();
         }
-        
+        public event EventHandler Changed = delegate { };
+        public virtual void OnChanged()
+        {
+            Changed(this, EventArgs.Empty);
+        }
+
     }
    
     public static class Serializer

@@ -29,8 +29,7 @@ namespace лр_67
         public static Airline airline = new Airline();
         public static AirlineList airlineList = new AirlineList();
         public static int countAir = 1000;
-        
-
+        MainWindow mainWindow = new MainWindow();
         // public string path = "airlines.xml";
         string path = "airlines.xml";
         public AddFly()
@@ -105,11 +104,20 @@ namespace лр_67
             airline.f_shortname = makeShortname(FlyFromTB.Text, FlyToTB.Text);
             airline.f_fullname = makeFullname(FlyFromTB.Text, FlyToTB.Text);
             airlineList.AddItem(airline);
-            
+            mainWindow.redoStack.list.Clear();
+            for (int i = 0; i < airlineList.list.Count; i++)
+            {
+
+                mainWindow.redoStack.AddItem(airlineList.list[i]);
+                mainWindow.RedoButton.IsEnabled = true;
+
+            }
+
 
             try
             {
                 Serializer.Serialize<AirlineList>(airlineList, path);
+
             }
              catch
             {
@@ -137,8 +145,8 @@ namespace лр_67
 
 
         }
+      
 
-        
 
         private void PriceTB_TextChanged(object sender, TextChangedEventArgs e)
         {

@@ -26,7 +26,7 @@ namespace лр_67
         ObservableCollection<Airline> list = new ObservableCollection<Airline>();
         public Airline temp = new Airline();
         int flyToEdit = 0;
-
+        MainWindow mainWindow = new MainWindow();
         string path = "airlines.xml";
         
         public EditAirline()
@@ -74,12 +74,20 @@ namespace лр_67
             temp.f_price = Convert.ToInt32(PriceTB.Text);
             temp.f_shortname = AddFly.makeShortname(FlyFromTB.Text, FlyToTB.Text);
             temp.f_fullname = AddFly.makeFullname(FlyFromTB.Text, FlyToTB.Text);
-            //ТУТ ТОЖЕ ПОМЕНЯЛ САНЯ САНЯ
+           
             temp.imagePath = ImageCompany.Source.ToString();
             airlineList.AddItem(temp);
             Serializer.Serialize(airlineList, path);
-            
+            // mainWindow.redoStack.list.Clear();
+            mainWindow.redoStack.list.Clear();
+            for (int i = 0; i < airlineList.list.Count; i++)
+            {
 
+                mainWindow.redoStack.AddItem(airlineList.list[i]);
+
+                mainWindow.RedoButton.IsEnabled = true;
+
+            }
 
 
             this.Close();

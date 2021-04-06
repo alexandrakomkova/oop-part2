@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:лр_67"
+        xmlns:MyNamespace="clr-namespace:лр_67"
+        xmlns:control="clr-namespace:лр_67"
+      
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="700" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize" SizeToContent="Width" Cursor="{DynamicResource Cursor}" Style="{DynamicResource Background}">
@@ -70,17 +72,29 @@
         </Grid>
         <Grid x:Name="Toolbar" Style="{DynamicResource Grid}" Grid.Row="0" MouseDown="Toolbar_MouseDown" Margin="-1,0,1,630">
             <Button x:Name="ExitButton" Style="{DynamicResource ButtonTrigger}" Content="{DynamicResource ExitButton}" HorizontalAlignment="Left" Height="25" Margin="604,20,-964,0" VerticalAlignment="Top" Width="70" Click="ExitButton_Click" Grid.Column="1"/>
-
+            <Button x:Name="RedoButton" Style="{DynamicResource ButtonTrigger}" BorderThickness="0" Background="Transparent"  HorizontalAlignment="Left" Height="30" Margin="370,20,-964,0" VerticalAlignment="Top" Width="30" Grid.Column="1" Command="ApplicationCommands.Redo">
+                <Image x:Name="RedoIcon" Width="30" Height="30" Style="{DynamicResource Redo}"/>
+                <Button.CommandBindings>
+                    <CommandBinding Command="Redo" Executed="RedoCommandBinding_Executed" />
+                </Button.CommandBindings>
+            </Button>
+            <Button x:Name="UndoButton" Style="{DynamicResource ButtonTrigger}" BorderThickness="0" Background="Transparent"  HorizontalAlignment="Left" Height="30" Margin="330,20,-964,0" VerticalAlignment="Top" Width="30"  Grid.Column="1" Command="ApplicationCommands.Undo" Click="Undo_Click">
+                <Image x:Name="UndoIcon"  Width="30" Height="30" Style="{DynamicResource Undo}"/>
+                <Button.CommandBindings>
+                    <CommandBinding Command="Undo" Executed="UndoCommandBinding_Executed" />
+                </Button.CommandBindings>
+            </Button>
             <ComboBox x:Name="ComboLanguage"  HorizontalAlignment="Left" Height="25" Margin="539,20,0,0" VerticalAlignment="Top" Width="50">
                 <ComboBoxItem x:Name="LanguageRus" Content="Рус" Height="20" Width="50" IsSelected="True" Selected="LanguageRus_Selected"/>
                 <ComboBoxItem x:Name="LanguageEng" Content="Eng" Height="20" Width="50" Selected="LanguageEng_Selected"/>
             </ComboBox>
             
             <ComboBox x:Name="AppTheme" Height="25" Width="100" Margin="240,20,0,0" VerticalAlignment="Top">
-                <ComboBoxItem x:Name="Default" Content="Стандартная" Height="20" Width="100" />
+                <MyNamespace:CustomControl x:Name="Default" Content="Стандартная" Height="20" Width="100" />
                 <ComboBoxItem x:Name="Dark" Content="Темная" Height="20" Width="100" IsSelected="True"/>
+                
             </ComboBox>
-
+            
 
         </Grid>
 

@@ -123,7 +123,13 @@
             </EventTrigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="Redo" TargetType="{x:Type Image}">
 
+        <Setter Property="Source" Value="D:\redo.png"/>
+    </Style>
+    <Style x:Key="Undo" TargetType="{x:Type Image}">
 
+        <Setter Property="Source" Value="D:\undo.png"/>
+    </Style>
 
 </ResourceDictionary>

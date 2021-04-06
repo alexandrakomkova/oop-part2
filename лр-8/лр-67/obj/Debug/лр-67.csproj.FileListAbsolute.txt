@@ -65,9 +65,7 @@ D:\uni\лр-67\лр-67\obj\Debug\лр-67.csproj.CoreCompileInputs.cache
 D:\uni\лр-67\лр-67\obj\Debug\лр-67.exe
 D:\uni\лр-67\лр-67\obj\Debug\лр-67.pdb
 D:\uni\ооп\лр-8\лр-67\bin\Debug\лр-67.exe.config
-D:\uni\ооп\лр-8\лр-67\bin\Debug\лр-67.exe
 D:\uni\ооп\лр-8\лр-67\bin\Debug\лр-67.pdb
-D:\uni\ооп\лр-8\лр-67\obj\Debug\лр-67.csprojAssemblyReference.cache
 D:\uni\ооп\лр-8\лр-67\obj\Debug\AddFly.g.cs
 D:\uni\ооп\лр-8\лр-67\obj\Debug\EditAirline.g.cs
 D:\uni\ооп\лр-8\лр-67\obj\Debug\MainWindow.g.cs
@@ -84,7 +82,12 @@ D:\uni\ооп\лр-8\лр-67\obj\Debug\лр-67.g.resources
 D:\uni\ооп\лр-8\лр-67\obj\Debug\лр_67.Properties.Resources.resources
 D:\uni\ооп\лр-8\лр-67\obj\Debug\лр-67.csproj.GenerateResource.cache
 D:\uni\ооп\лр-8\лр-67\obj\Debug\лр-67.csproj.CoreCompileInputs.cache
-D:\uni\ооп\лр-8\лр-67\obj\Debug\лр-67.exe
 D:\uni\ооп\лр-8\лр-67\obj\Debug\лр-67.pdb
 D:\uni\ооп\лр-8\лр-67\obj\Debug\light.baml
 D:\uni\ооп\лр-8\лр-67\obj\Debug\dark.baml
+D:\uni\ооп\лр-8\лр-67\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\uni\ооп\лр-8\лр-67\obj\Debug\Themes\Generic.baml
+D:\uni\ооп\лр-8\лр-67\bin\Debug\Properties.Resources.Designer.cs.dll
+D:\uni\ооп\лр-8\лр-67\obj\Debug\лр-67.csproj.CopyComplete
+D:\uni\ооп\лр-8\лр-67\obj\Debug\лр-67.exe
+D:\uni\ооп\лр-8\лр-67\obj\Debug\лр-67.csprojAssemblyReference.cache
