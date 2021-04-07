@@ -27,6 +27,7 @@ namespace лр_67
         public Airline temp = new Airline();
         int flyToEdit = 0;
         MainWindow mainWindow = new MainWindow();
+        public AirlineList redoStack = new AirlineList();
         string path = "airlines.xml";
         
         public EditAirline()
@@ -78,18 +79,7 @@ namespace лр_67
             temp.imagePath = ImageCompany.Source.ToString();
             airlineList.AddItem(temp);
             Serializer.Serialize(airlineList, path);
-            // mainWindow.redoStack.list.Clear();
-            mainWindow.redoStack.list.Clear();
-            for (int i = 0; i < airlineList.list.Count; i++)
-            {
-
-                mainWindow.redoStack.AddItem(airlineList.list[i]);
-
-                mainWindow.RedoButton.IsEnabled = true;
-
-            }
-
-
+         
             this.Close();
         }
         public void Clear()

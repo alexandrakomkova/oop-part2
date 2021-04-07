@@ -3,32 +3,22 @@
   <Collection>
     <Airline>
       <id xmlns="лр_67">1000</id>
-      <company xmlns="лр_67">f</company>
-      <from xmlns="лр_67">f</from>
-      <to xmlns="лр_67">f</to>
-      <price xmlns="лр_67">1</price>
-      <shortcode xmlns="лр_67">F-F</shortcode>
-      <fullcode xmlns="лр_67">F-F</fullcode>
+      <company xmlns="лр_67">ук</company>
+      <from xmlns="лр_67">укук</from>
+      <to xmlns="лр_67">ук</to>
+      <price xmlns="лр_67">4</price>
+      <shortcode xmlns="лр_67">УКУК-УК</shortcode>
+      <fullcode xmlns="лр_67">КК-К</fullcode>
       <imageURL xmlns="лр_67">D:\no_image.png</imageURL>
     </Airline>
     <Airline>
-      <id xmlns="лр_67">1001</id>
-      <company xmlns="лр_67">f</company>
-      <from xmlns="лр_67">f</from>
-      <to xmlns="лр_67">e</to>
-      <price xmlns="лр_67">2</price>
-      <shortcode xmlns="лр_67">F-E</shortcode>
-      <fullcode xmlns="лр_67">F-</fullcode>
-      <imageURL xmlns="лр_67">D:\no_image.png</imageURL>
-    </Airline>
-    <Airline>
-      <id xmlns="лр_67">1002</id>
-      <company xmlns="лр_67">e</company>
-      <from xmlns="лр_67">we</from>
-      <to xmlns="лр_67">ew</to>
-      <price xmlns="лр_67">3</price>
-      <shortcode xmlns="лр_67">WE-EW</shortcode>
-      <fullcode xmlns="лр_67">W-W</fullcode>
+      <id xmlns="лр_67">1004</id>
+      <company xmlns="лр_67">к</company>
+      <from xmlns="лр_67">ц</from>
+      <to xmlns="лр_67">ц</to>
+      <price xmlns="лр_67">3333</price>
+      <shortcode xmlns="лр_67">Ц-Ц</shortcode>
+      <fullcode xmlns="лр_67">Ц-Ц</fullcode>
       <imageURL xmlns="лр_67">D:\no_image.png</imageURL>
     </Airline>
   </Collection>

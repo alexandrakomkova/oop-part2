@@ -78,7 +78,7 @@
                     <CommandBinding Command="Redo" Executed="RedoCommandBinding_Executed" />
                 </Button.CommandBindings>
             </Button>
-            <Button x:Name="UndoButton" Style="{DynamicResource ButtonTrigger}" BorderThickness="0" Background="Transparent"  HorizontalAlignment="Left" Height="30" Margin="330,20,-964,0" VerticalAlignment="Top" Width="30"  Grid.Column="1" Command="ApplicationCommands.Undo" Click="Undo_Click">
+            <Button x:Name="UndoButton" Style="{DynamicResource ButtonTrigger}" BorderThickness="0" Background="Transparent"  HorizontalAlignment="Left" Height="30" Margin="330,20,-964,0" VerticalAlignment="Top" Width="30"  Grid.Column="1" Command="ApplicationCommands.Undo">
                 <Image x:Name="UndoIcon"  Width="30" Height="30" Style="{DynamicResource Undo}"/>
                 <Button.CommandBindings>
                     <CommandBinding Command="Undo" Executed="UndoCommandBinding_Executed" />

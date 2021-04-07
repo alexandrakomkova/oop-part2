@@ -29,12 +29,10 @@ namespace лр_67
     {
         public AirlineList airlineList = new AirlineList();
         ObservableCollection<Airline> list = new ObservableCollection<Airline>();
-       
-        // Stack<Airline> undoStack = new Stack<Airline>();
-        public AirlineList undoStack = new AirlineList();
-        public AirlineList redoStack = new AirlineList();
+
         public Airline last = new Airline();
         string path = "airlines.xml";
+      
         public MainWindow()
         {
             InitializeComponent();
@@ -42,12 +40,15 @@ namespace лр_67
             List<string> styles = new List<string> { "light", "dark" };
             AppTheme.SelectionChanged += ThemeChange;
             AppTheme.ItemsSource = styles;
-            AppTheme.SelectedItem = "dark";
+            AppTheme.SelectedItem = "light";
 
             App.LanguageChanged += LanguageChanged;
             CultureInfo currLang = App.Language;
+            UndoButton.IsEnabled = false;
+            RedoButton.IsEnabled = false;
+            ListChange();
+          
 
-            ListChange(); 
         }
 
         private void LanguageChanged(Object sender, EventArgs e)
@@ -91,7 +92,6 @@ namespace лр_67
             if (fileInf.Exists)
             {
                 airlineList = Serializer.Deserialize<AirlineList>(path);
-
                 list = airlineList.list;
                 ListViewCollection.ItemsSource = list;
             }
@@ -105,10 +105,17 @@ namespace лр_67
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            //ListChange();
+            //if (airlineList.list.Count > 0)
+            //{
+            //    last = airlineList.list[airlineList.list.Count() - 1];
+            //}
+
             AddFly addFlyWindow = new AddFly();
          
             addFlyWindow.Closing += (Sender, E) => ListChange();
             addFlyWindow.Show();
+            UndoButton.IsEnabled = true;
         }
 
         private void Toolbar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -136,16 +143,10 @@ namespace лр_67
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            UndoButton.IsEnabled = true;
+            RedoButton.IsEnabled = true;
             
-            undoStack.list.Clear();
-            
-            for (int i = 0; i < airlineList.list.Count; i++)
-            {
-                undoStack.AddItem(airlineList.list[i]);
-                
-            }
-            redoStack.list.Clear();
-
+            //last = airlineList.list[airlineList.list.Count() - 1];
             int num = 0;
             if (!ListViewCollection.Items.IsEmpty)
             {
@@ -155,16 +156,8 @@ namespace лр_67
                     {
                         
                         airlineList.list.Remove((Airline)ListViewCollection.SelectedItem);
-                       
                         Serializer.Serialize(airlineList, path);
-                        for(int i = 0; i < airlineList.list.Count; i++)
-                        {
-
-                            redoStack.AddItem(airlineList.list[i]);
-
-                            RedoButton.IsEnabled = true;
-
-                        }
+                       
                         MessageBox.Show($"Рейс {airlineFromList.f_id} - {airlineFromList.f_shortname} удалён.");
                         break;
                     }
@@ -180,27 +173,15 @@ namespace лр_67
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            undoStack.list.Clear();
-          
-            for (int i = 0; i < airlineList.list.Count; i++)
-            {
-                undoStack.AddItem(airlineList.list[i]);
-               
-                UndoButton.IsEnabled = true;
-               
-
-            }
+            
             if (ListViewCollection.SelectedItem == null)
             {
                 MessageBox.Show("Выберите объект для изменения.");
-
             }
             else
             {
+               
                 EditAirline editFlyWindow = new EditAirline(airlineList, ListViewCollection.SelectedIndex);
-                
-
-                
                 editFlyWindow.Closing += (Sender, E) => ListChange();
                 editFlyWindow.Show();
             }
@@ -294,28 +275,15 @@ namespace лр_67
 
             
         }
-        private void Undo_Click(object sender, RoutedEventArgs e)
-        {
-            //if (matchIsFound == false)
-            //{
-            //    MessageBox.Show("Совпадений не найдено :(");
-            //}
-
-
-        }
+       
         private void RedoCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
-
-                airlineList.list.Clear();
-                for (int i = 0; i < redoStack.list.Count; i++)
-                {
-                    airlineList.AddItem(redoStack.list[i]);
-                }
+                airlineList.AddItem(last);
                 Serializer.Serialize<AirlineList>(airlineList, path);
                 ListChange();
-
+                UndoButton.IsEnabled = true;
             }
             catch
             {
@@ -329,15 +297,13 @@ namespace лр_67
             //-----------------------------
             try
             {
-               
-                airlineList.list.Clear();
-                for (int i = 0; i < undoStack.list.Count; i++)
-                {
-                    airlineList.AddItem(undoStack.list[i]);
-                }
+                
+                last = airlineList.list[airlineList.list.Count() - 1];
+                airlineList.list.Remove(last);
                 Serializer.Serialize<AirlineList>(airlineList, path);
                 ListChange();
-               
+                RedoButton.IsEnabled = true;
+               // UndoButton.IsEnabled = false;
             }
             catch
             {
@@ -346,6 +312,6 @@ namespace лр_67
             }
             //-----------------------------
         }
-
+      
     }
 }

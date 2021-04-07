@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ICommand.cs" />
+    <Compile Include="UndoRedo.cs" />
     <Compile Include="UndoRedoClass.cs" />
     <Page Include="AddFly.xaml">
       <SubType>Designer</SubType>
