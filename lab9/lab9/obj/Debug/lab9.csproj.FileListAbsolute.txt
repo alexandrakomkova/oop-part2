@@ -25,3 +25,5 @@ D:\uni\ооп\lab9\lab9\obj\Debug\light.baml
 D:\uni\ооп\lab9\lab9\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\uni\ооп\lab9\lab9\obj\Debug\Themes\Generic.baml
 D:\uni\ооп\lab9\lab9\obj\Debug\CustomControls\AnalogClock.baml
+D:\uni\ооп\lab9\lab9\obj\Debug\CustomControls\LimitedTextBox.g.cs
+D:\uni\ооп\lab9\lab9\obj\Debug\CustomControls\LimitedTextBox.baml

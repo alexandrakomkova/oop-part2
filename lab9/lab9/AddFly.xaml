@@ -3,15 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         
         xmlns:local="clr-namespace:lab9"
+        xmlns:txt="clr-namespace:lab9.CustomControls"
         mc:Ignorable="d" Cursor="{DynamicResource Cursor}"
         Title="{DynamicResource AddWindow}" Style="{DynamicResource AddWindowGrid}" Height="300" Width="405" WindowStartupLocation="CenterScreen" Name="AddWindow" ResizeMode="NoResize">
    
     <Grid Margin="0,0,0,0">
 
-
-        <TextBox x:Name="CompanyTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25" Margin="228,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
-        <TextBlock x:Name="CompanyBlock" Style="{DynamicResource CompanyTB}" IsHitTestVisible="False"  Text="{DynamicResource CompanyBlock}" Margin="227,29,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        
+        <!--<TextBox x:Name="CompanyTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25" Margin="228,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
+        <TextBlock x:Name="CompanyBlock" Style="{DynamicResource CompanyTB}" IsHitTestVisible="False"  Text="{DynamicResource CompanyBlock}" Margin="227,29,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>-->
         <TextBox x:Name="FlyToTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25"  Margin="228,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
         <TextBlock x:Name="FlyToBlock" Style="{DynamicResource FlyToTB}" IsHitTestVisible="False"  Text="{DynamicResource FlyToBlock}" Margin="228,91,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
@@ -29,7 +31,8 @@
 
         </Grid>
         <Button x:Name="Serialize" Content="{DynamicResource Serialize}" HorizontalAlignment="Left" Height="29" Margin="246,207,0,0" VerticalAlignment="Top" Width="114" Click="Serialize_Click"/>
-
+        <txt:LimitedTextBox x:Name="txtCompany" Title="Copmany name:" MaxLength="10" Height="52" Margin="228,5,28.4,213.4" />
 
     </Grid>
+   
 </Window>

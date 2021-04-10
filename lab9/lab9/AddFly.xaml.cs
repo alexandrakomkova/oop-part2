@@ -98,7 +98,8 @@ namespace lab9
         private void Serialize_Click(object sender, RoutedEventArgs e)
         {
             airline.f_id = countAir++;
-            airline.f_company = CompanyTB.Text;
+            // airline.f_company = CompanyTB.Text;
+            airline.f_company = txtCompany.txtLimitedInput.Text;
             airline.f_from = FlyFromTB.Text;
             airline.f_toPoint = FlyToTB.Text;
             airline.f_price = Convert.ToInt32(PriceTB.Text);
@@ -126,8 +127,8 @@ namespace lab9
         }
         public void Clear()
         {
-          
-            CompanyTB.Text="";
+
+            txtCompany.txtLimitedInput.Text = "";
             FlyFromTB.Text="";
             FlyToTB.Text="";
             PriceTB.Text="";
