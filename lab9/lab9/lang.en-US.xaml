@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:lab9"
+    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <v:String x:Key="ExitButton">Exit</v:String>
+    <v:String x:Key="PanelInstruments">Instruments</v:String>
+    <v:String x:Key="AddButton">Add</v:String>
+    <v:String x:Key="ViewAllButton">View All</v:String>
+    <v:String x:Key="SortBy">Filters</v:String>
+    <v:String x:Key="SortByFromPoint">From Point</v:String>
+    <v:String x:Key="SortByCompany">Company</v:String>
+    <v:String x:Key="DeleteButton">Delete</v:String>
+    <v:String x:Key="EditButton">Edit</v:String>
+    <v:String x:Key="SortByToPoint">To Point</v:String>
+    <v:String x:Key="ClearSortButton">Clear filters</v:String>
+    <v:String x:Key="ListViewTitle">Airlines</v:String>
+    <v:String x:Key="LVID">ID</v:String>
+    <v:String x:Key="LVCompany">Company</v:String>
+    <v:String x:Key="LVPrice">Price</v:String>
+    <v:String x:Key="LVShortname">Airline Code</v:String>
+    <v:String x:Key="LVFullname">Airline</v:String>
+    <v:String x:Key="FlyFromBlock">From Point</v:String>
+    <v:String x:Key="CompanyBlock">Company</v:String>
+    <v:String x:Key="FlyToBlock">To Point</v:String>
+    <v:String x:Key="PriceBlock">Price</v:String>
+    <v:String x:Key="LoadButton">Load picture</v:String>
+    <v:String x:Key="Serialize">Add</v:String>
+    <v:String x:Key="SaveChanges">Save</v:String>
+    <v:String x:Key="EditWindow">Edit Airline</v:String>
+    <v:String x:Key="AddWindow">Add Airline</v:String>
+    <v:String x:Key="FindBlock">...</v:String>
+    <v:String x:Key="FindButton">Find</v:String>
+</ResourceDictionary>
