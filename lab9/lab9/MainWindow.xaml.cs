@@ -33,7 +33,7 @@ namespace lab9
 
         public Airline last = new Airline();
         string path = "airlines.xml";
-      
+        public bool buttonIsClicked = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -48,7 +48,7 @@ namespace lab9
             UndoButton.IsEnabled = false;
             RedoButton.IsEnabled = false;
             ListChange();
-          
+            
 
         }
 
@@ -100,7 +100,8 @@ namespace lab9
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-           this.Close();
+            buttonIsClicked = true;
+           //this.Close();
            
         }
 
@@ -318,6 +319,24 @@ namespace lab9
         {
             ClockText.Text = e.newTime.ToString("hh:mm:ss");
              
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Хорошего дня!! :)");
+            this.Close();
+        }
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (buttonIsClicked == true)
+            {
+                e.CanExecute = true;
+            }
+            else 
+            {
+                e.CanExecute = false;
+            }
         }
     }
 }

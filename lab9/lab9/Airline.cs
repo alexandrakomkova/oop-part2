@@ -6,8 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
+using System.Windows.Controls;
+using lab9.CustomControls;
 
 namespace lab9
 {
@@ -19,8 +22,11 @@ namespace lab9
     [Serializable]
     [XmlRoot(Namespace = "lab9")]
     [XmlType("Airline")]
-    public class Airline 
+    public class Airline : DependencyObject
     {
+        public static readonly DependencyProperty PriceProperty;
+        
+
         [XmlElement(ElementName = "id")]
         public int f_id { get; set; } //автоматически считается
         [XmlElement(ElementName = "company")]
@@ -30,8 +36,12 @@ namespace lab9
         public string f_from { get; set; }
         [XmlElement(ElementName = "to")]
         public string f_toPoint { get; set; }
-        [XmlElement(ElementName = "price")]
-        public int f_price { get; set; }
+       
+        //public int f_price
+        //{
+        //    get ; 
+        //    set ; 
+        //}
         [XmlElement(ElementName = "shortcode")]
         public string f_shortname { get; set; } //состоит из откуда-куда без гласных и в ап
 
@@ -47,6 +57,13 @@ namespace lab9
         {
 
         }
+        static Airline() 
+        {
+            FrameworkPropertyMetadata metadata = new FrameworkPropertyMetadata();
+            metadata.CoerceValueCallback = new CoerceValueCallback(CorrectValue);
+            PriceProperty = DependencyProperty.Register(
+                    "Txt", typeof(int), typeof(Airline), metadata, new ValidateValueCallback(ValidateValue));
+        }
 
         public Airline(
             int f_id,
@@ -59,6 +76,7 @@ namespace lab9
             string imagePath
             )
         {
+           
             this.f_id = f_id;
             this.f_company = f_company;
             this.f_from = f_from;
@@ -67,6 +85,26 @@ namespace lab9
             this.f_fullname = f_fullname;
             this.f_shortname = f_shortname;
             this.imagePath = imagePath;
+        }
+        private static bool ValidateValue(object value)
+        {
+            int currentValue = (int)value;
+            if (currentValue >= 0) // если текущее значение от нуля и выше
+                return true;
+            return false;
+        }
+        private static object CorrectValue(DependencyObject d, object baseValue)
+        {
+            int currentValue = (int)baseValue;
+            if (currentValue > 9000)  // если больше 1000, возвращаем 1000
+                return 9000;
+            return currentValue; // иначе возвращаем текущее значение
+        }
+        [XmlElement(ElementName = "price")]
+        public int f_price
+        {
+            get { return (int)GetValue(PriceProperty); }
+            set { SetValue(PriceProperty, value); }
         }
         public Airline Clone()
         {

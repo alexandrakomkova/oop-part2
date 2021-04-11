@@ -20,21 +20,29 @@ namespace lab9.CustomControls
     /// </summary>
     public partial class LimitedTextBox : UserControl
     {
-        public static DependencyProperty CompanyProperty;
+       // public static DependencyProperty PriceProperty;
         public LimitedTextBox()
         {
             InitializeComponent();
             this.DataContext = this;
-            CompanyProperty = DependencyProperty.Register("Title", typeof(string), typeof(LimitedTextBox));
+            
 
-            FrameworkPropertyMetadata metadata = new FrameworkPropertyMetadata();
-            metadata.CoerceValueCallback = new CoerceValueCallback(CorrectValue);
+            //FrameworkPropertyMetadata metadata = new FrameworkPropertyMetadata();
+            //metadata.CoerceValueCallback = new CoerceValueCallback(CorrectValue);
+            //PriceProperty = DependencyProperty.Register(
+            //    "Txt", typeof(bool), typeof(LimitedTextBox), metadata, new ValidateValueCallback(ValidateValue));
+            
 
         }
        
         public string Title { get; set; }
 
         public int MaxLength { get; set; }
+        //public bool CheckPrice
+        //{
+        //    get { return (bool)GetValue(PriceProperty); }
+        //    set { SetValue(PriceProperty, value); }
+        //}
         
     }
 }

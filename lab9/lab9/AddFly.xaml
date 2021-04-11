@@ -8,10 +8,10 @@
         xmlns:txt="clr-namespace:lab9.CustomControls"
         mc:Ignorable="d" Cursor="{DynamicResource Cursor}"
         Title="{DynamicResource AddWindow}" Style="{DynamicResource AddWindowGrid}" Height="300" Width="405" WindowStartupLocation="CenterScreen" Name="AddWindow" ResizeMode="NoResize">
-   
+
     <Grid Margin="0,0,0,0">
 
-        
+
         <!--<TextBox x:Name="CompanyTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25" Margin="228,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
         <TextBlock x:Name="CompanyBlock" Style="{DynamicResource CompanyTB}" IsHitTestVisible="False"  Text="{DynamicResource CompanyBlock}" Margin="227,29,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>-->
         <TextBox x:Name="FlyToTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25"  Margin="228,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
@@ -22,8 +22,8 @@
         <TextBlock x:Name="FlyFromBlock" Style="{DynamicResource FlyFromTB}" IsHitTestVisible="False" Text="{DynamicResource FlyFromBlock}" Margin="228,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
 
-        <TextBox x:Name="PriceTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25" Margin="228,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" TextChanged="PriceTB_TextChanged" KeyDown="PriceTB_KeyDown" />
-        <TextBlock x:Name="PriceBlock" Style="{DynamicResource PriceTB}" IsHitTestVisible="False"  Text="{DynamicResource PriceBlock}" Margin="228,125,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <!--<TextBox x:Name="PriceTB" Style="{DynamicResource TextBox}"  HorizontalAlignment="Left" Height="25" Margin="228,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" TextChanged="PriceTB_TextChanged" KeyDown="PriceTB_KeyDown" />
+        <TextBlock x:Name="PriceBlock" Style="{DynamicResource PriceTB}" IsHitTestVisible="False"  Text="{DynamicResource PriceBlock}" Margin="228,125,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>-->
 
         <Grid Name="Image"  Background="white" Grid.Row="0"  HorizontalAlignment="Left" Height="150" Width="150" Margin="36,34,0,0" VerticalAlignment="Top" >
             <Image x:Name="ImageCompany" HorizontalAlignment="Left" Height="150" Width="150" Margin="2,0,-2,0" VerticalAlignment="Top"  OpacityMask="Black" />
@@ -31,8 +31,8 @@
 
         </Grid>
         <Button x:Name="Serialize" Content="{DynamicResource Serialize}" HorizontalAlignment="Left" Height="29" Margin="246,207,0,0" VerticalAlignment="Top" Width="114" Click="Serialize_Click"/>
-        <txt:LimitedTextBox x:Name="txtCompany" Title="Copmany name:" MaxLength="10" Height="52" Margin="228,5,28.4,213.4" />
-
+        <txt:LimitedTextBox x:Name="txtCompany" Title="Copmany name:" MaxLength="10" Margin="228,0,28.4,207.4" />
+        <txt:LimitedTextBox x:Name="txtPrice" Title="Price:" MaxLength="4" Margin="228,114,28.4,86.4" KeyDown="txtPrice_KeyDown" />
     </Grid>
-   
+
 </Window>

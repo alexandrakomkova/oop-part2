@@ -102,7 +102,7 @@ namespace lab9
             airline.f_company = txtCompany.txtLimitedInput.Text;
             airline.f_from = FlyFromTB.Text;
             airline.f_toPoint = FlyToTB.Text;
-            airline.f_price = Convert.ToInt32(PriceTB.Text);
+            airline.f_price = Convert.ToInt32(txtPrice.txtLimitedInput.Text);
             airline.f_shortname = makeShortname(FlyFromTB.Text, FlyToTB.Text);
             airline.f_fullname = makeFullname(FlyFromTB.Text, FlyToTB.Text);
             airlineList.AddItem(airline);
@@ -131,7 +131,7 @@ namespace lab9
             txtCompany.txtLimitedInput.Text = "";
             FlyFromTB.Text="";
             FlyToTB.Text="";
-            PriceTB.Text="";
+            txtPrice.txtLimitedInput.Text="";
             ImageCompany.Source = null;
 
 
@@ -145,6 +145,15 @@ namespace lab9
         }
 
         private void PriceTB_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            string Symbol = e.Key.ToString();
+            if (!Regex.Match(Symbol, @"[0-9]").Success && e.Key != Key.Back && e.Key != Key.OemPeriod && e.Key != Key.OemComma)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPrice_KeyDown(object sender, KeyEventArgs e)
         {
             string Symbol = e.Key.ToString();
             if (!Regex.Match(Symbol, @"[0-9]").Success && e.Key != Key.Back && e.Key != Key.OemPeriod && e.Key != Key.OemComma)
